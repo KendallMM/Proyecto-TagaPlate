@@ -1,4 +1,4 @@
-# IDE CODE TAMBORDUINE
+# IDE CODE TAGAPLATE
 
 import tkinter as tk
 from tkinter.filedialog import askopenfilename, asksaveasfilename
@@ -6,7 +6,7 @@ from tkinter.filedialog import askopenfilename, asksaveasfilename
 gpath = ''
 
 main = tk.Tk()
-main.title("Tambarduine IDE")
+main.title("TagaPlate IDE")
 
 
 class LineNumber(tk.Text):
