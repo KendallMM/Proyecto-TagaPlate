@@ -45,12 +45,17 @@ t_IGUAL = '=='
 t_DISTINTO = '<>'
 t_MENIGUAL = '<='
 t_MAYIGUAL = '>='
+t_LPARENT = '\('
+t_RPARENT = '\)'
+t_COMMA = ','
+t_DOT = '\.'
 
 def t_ID(t):
-    r'@[a-zA-Z_][a-zA-Z0-9_]*'
-def t_COMENTARIOS(t):
+    r'@[a-zA-Z_#][a-zA-Z0-9_#]*'
+def t_COMMENT(t):
     r'\--.*'
     pass
+
 
 
 
