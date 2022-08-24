@@ -7,8 +7,6 @@ gpath = ''
 
 main = tk.Tk()
 main.title("TagaPlate IDE")
-err_frame = tk.Toplevel(main)
-prt_frame = tk.Toplevel(main)
 
 class LineNumber(tk.Text):
     def __init__(self, master, text_widget, **kwargs):
@@ -56,44 +54,23 @@ def save_as():
     else:
         print("No file selected")
 
-#def close_window(option):
-
-
-#def open_errframe():
-
-
-#def open_prframe():
-
-
 textEditor = tk.Text()
 textEditor.pack(side=tk.RIGHT, expand=1)
 
 lineText = LineNumber(main, textEditor, width=1)
 lineText.pack(side=tk.LEFT)
 
-lineText1 = LineNumber(err_frame, textEditor, width=1)
-lineText1.pack(side=tk.LEFT)
-
-lineText2 = LineNumber(prt_frame, textEditor, width=1)
-lineText2.pack(side=tk.LEFT)
-
 menuBar = tk.Menu(main)
 
 fileBar = tk.Menu(menuBar, tearoff=0)
-fileBar.add_command(label='Edit file', command=open_file)
-fileBar.add_command(label='Save file as', command=save_as)
+fileBar.add_command(label='Open', command=open_file)
+fileBar.add_command(label='Save as', command=save_as)
 menuBar.add_cascade(label='File', menu=fileBar)
 
-menuBar.add_command(label='Compile')
-menuBar.add_command(label='Compile and Run')
-
-seeBar = tk.Menu(menuBar, tearoff=0)
-#seeBar.add_command(label='Errors', command=open_errframe)
-#seeBar.add_command(label='Prints', command=open_prframe)
-menuBar.add_cascade(label='See', menu=seeBar)
+runBar = tk.Menu(menuBar, tearoff=0)
+runBar.add_command(label='Compile')
+runBar.add_command(label='Compile and Run')
+menuBar.add_cascade(label='Run', menu=runBar)
 
 main.config(menu=menuBar)
-
-#ERR_WINDOW.protocol("WM_DELETE_WINDOW", close_window(1))
-#PRI_WINDOW.protocol("WM_DELETE_WINDOW", close_window(2))
 main.mainloop()
