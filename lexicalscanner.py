@@ -58,7 +58,7 @@ def t_whitespace(t):
 
 def t_error(t):
     print("Lexical Error: Illegal character '%s' in line '%d'" % (t.value[0], t.lexer.lineno))
-    t.lexer.skip(1)
+    t.lexer.skip(len(t.value))
 
 def read_txt(path):
     file = open(path, mode='r')
