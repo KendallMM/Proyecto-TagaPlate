@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Modificar analizador">
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Analizador léxico finalizado">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lexical Analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lexical Analyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TagaPlate IDE.py" beforeDir="false" afterPath="$PROJECT_DIR$/TagaPlate IDE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lexicalscanner.py" beforeDir="false" afterPath="$PROJECT_DIR$/lexicalscanner.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660874868234</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Analizador léxico finalizado">
+      <created>1661321864220</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1661321864220</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -115,6 +121,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Create tokens" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create tokens" />
+    <MESSAGE value="Analizador léxico finalizado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Analizador léxico finalizado" />
   </component>
 </project>
