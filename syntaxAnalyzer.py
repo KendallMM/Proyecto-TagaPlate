@@ -223,9 +223,12 @@ def p_empty(p):
     pass
 
 def p_error(p):
-    print("Sintax error: %s\nError on line %d" % (p, p.lineno))
+    if(p==None):
+        print("El código esta vacío.")
+    else:
+        print("Sintax error: %s\nError on line %d" % (p, p.lineno))
 
-txt = read_txt('C://Users//Usuario//Desktop//Nuevo Documento de texto.txt')
+txt = read_txt('/home/kendall/Escritorio/Nuevo Documento de texto.txt')
 parser = yacc.yacc()
 result = parser.parse(txt)
 print(result)

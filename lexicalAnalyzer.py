@@ -6,7 +6,7 @@ tokens = ['PRINCIPAL', 'ID', 'NUMBER', 'ADD', 'SUB', 'MUL', 'DIV', 'NEW', 'CALL'
           'PRINT', 'GT', 'LT', 'GET', 'LET', 'EQ', 'DT', 'COMMA', 'SEMICOLON', 'LPARENT',
           'RPARENT', 'COMMENT', 'NORTH', 'SOUTH', 'EAST', 'WEST', 'BREAK', 'STRING']
 
-t_ignore = '\t'
+t_ignore = ' \t'
 t_PRINCIPAL = r'Principal'
 t_ID = r'@[a-zA-Z0-9_#]{2,9}'
 t_NUMBER = r'[0-9]+'
@@ -59,10 +59,6 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-def t_whitespace(t):
-    r'\s+'
-    t.lexer.lexpos += len(t.value) - 1
-
 def t_error(t):
     print("Lexical Error: Illegal character '%s' in line '%d'" % (t.value[0], t.lexer.lineno))
     t.lexer.skip(len(t.value))
@@ -74,10 +70,10 @@ def read_txt(path):
     return txt
 
 lexer = lex.lex()
-lexer.input(read_txt('C://Users//Usuario//Desktop//Nuevo Documento de texto.txt'))
-while True:
+lexer.input(read_txt('/home/kendall/Escritorio/Nuevo Documento de texto.txt'))
+'''while True:
     token = lexer.token()
     if not token:
         break
-    #print(token)
+    print(token)'''
 
