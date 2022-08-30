@@ -70,10 +70,11 @@ def read_txt(path):
     return txt
 
 lexer = lex.lex()
-lexer.input(read_txt('/home/kendall/Escritorio/Nuevo Documento de texto.txt'))
-'''while True:
+lexer.input(read_txt('prueba.txt'))
+while True:
     token = lexer.token()
     if not token:
+        lexer.lineno = 1
         break
-    print(token)'''
+    print(token)
 

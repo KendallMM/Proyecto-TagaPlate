@@ -1,6 +1,7 @@
 import ply.yacc as yacc
 from lexicalAnalyzer import tokens
 from lexicalAnalyzer import read_txt
+from lexicalAnalyzer import lexer
 
 def p_program(p):
     '''program : COMMENT bodyprogram'''
@@ -13,6 +14,9 @@ def p_bodyprogram1(p):
 def p_bodyprogram2(p):
     '''bodyprogram : procedure'''
     print("bodyprogram3")
+
+def p_bodyprogram3(p):
+    '''bodyprogram : COMMENT'''
 
 def p_bodyprogramEmpty(p):
     '''bodyprogram : empty'''
@@ -85,6 +89,9 @@ def p_instructions14(p):
 def p_instructions15(p):
     '''instructions : CALL LPARENT ID RPARENT SEMICOLON instructions'''
     print("Call instruction")
+
+def p_instructions16(p):
+    '''instructions : COMMENT instructions'''
 
 def p_instructionsEmpty(p):
     '''instructions : empty'''
@@ -223,12 +230,12 @@ def p_empty(p):
     pass
 
 def p_error(p):
-    if(p==None):
-        print("El código esta vacío.")
+    if p.type != 'COMMENT' and p.lineno == 1:
+        print("Sintax error on line 1: Missing expected initial comment.")
     else:
-        print("Sintax error: %s\nError on line %d" % (p, p.lineno))
+        print("Sintax error on line %d: %s does not match %s position." % (p.lineno, p.value, p.type))
 
-txt = read_txt('/home/kendall/Escritorio/Nuevo Documento de texto.txt')
+txt = read_txt('prueba.txt')
 parser = yacc.yacc()
 result = parser.parse(txt)
 print(result)
