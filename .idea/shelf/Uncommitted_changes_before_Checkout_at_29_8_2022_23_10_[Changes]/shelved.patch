@@ -1,0 +1,190 @@
+Index: lexicalAnalyzer.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import ply.lex as lex\r\n\r\ntokens = ['PRINCIPAL', 'ID', 'NUMBER', 'ADD', 'SUB', 'MUL', 'DIV', 'NEW', 'CALL', 'PROCEDURE',\r\n          'TRUE', 'FALSE', 'NUMVAL', 'BOOLVAL', 'VALUES', 'ALTER', 'ALTERB', 'MOVR', 'MOVL',\r\n          'HAMMER', 'STOP', 'VERT', 'REPEAT', 'UNTIL', 'WHILE', 'CASE', 'WHEN', 'THEN', 'ELSE',\r\n          'PRINT', 'GT', 'LT', 'GET', 'LET', 'EQ', 'DT', 'COMMA', 'SEMICOLON', 'LPARENT',\r\n          'RPARENT', 'COMMENT', 'NORTH', 'SOUTH', 'EAST', 'WEST', 'BREAK', 'STRING']\r\n\r\nt_ignore = ' \\t'\r\nt_PRINCIPAL = r'Principal'\r\nt_ID = r'@[a-zA-Z0-9_#]{2,9}'\r\nt_NUMBER = r'[0-9]+'\r\nt_ADD = r'ADD'\r\nt_SUB = r'SUB'\r\nt_MUL = r'MUL'\r\nt_DIV = r'DIV'\r\nt_NEW = r'New'\r\nt_CALL = r'CALL'\r\nt_PROCEDURE = r'Proc'\r\nt_TRUE = r'True'\r\nt_FALSE = r'False'\r\nt_NUMVAL = r'Num'\r\nt_BOOLVAL = r'Bool'\r\nt_VALUES = r'Values'\r\nt_ALTER = r'Alter'\r\nt_ALTERB = r'AlterB'\r\nt_MOVR = r'MoveRight'\r\nt_MOVL = r'MoveLeft'\r\nt_HAMMER = r'Hammer'\r\nt_STOP = r'Stop'\r\nt_VERT = r'isTrue'\r\nt_REPEAT = r'Repeat'\r\nt_UNTIL = r'Until'\r\nt_WHILE = r'While'\r\nt_CASE = r'Case'\r\nt_WHEN = r'When'\r\nt_THEN = r'Then'\r\nt_ELSE = r'Else'\r\nt_BREAK = r'Break'\r\nt_PRINT = r'PrintValues'\r\nt_NORTH = r'N'\r\nt_SOUTH = r'S'\r\nt_EAST = r'E'\r\nt_WEST = r'O'\r\nt_GT = r'>'\r\nt_LT = r'<'\r\nt_GET = r'>='\r\nt_LET = r'<='\r\nt_EQ = r'=='\r\nt_DT = r'<>'\r\nt_LPARENT = r'\\('\r\nt_RPARENT = r'\\)'\r\nt_COMMA = r'\\,'\r\nt_SEMICOLON = r'\\;'\r\nt_STRING = r'\\\".*\\\"'\r\nt_COMMENT = r'--.*'\r\n\r\ndef t_newline(t):\r\n    r'\\n+'\r\n    t.lexer.lineno += len(t.value)\r\n\r\ndef t_error(t):\r\n    print(\"Lexical Error: Illegal character '%s' in line '%d'\" % (t.value[0], t.lexer.lineno))\r\n    t.lexer.skip(len(t.value))\r\n\r\ndef read_txt(path):\r\n    file = open(path, mode='r')\r\n    txt = file.read()\r\n    file.close()\r\n    return txt\r\n\r\nlexer = lex.lex()\r\nlexer.input(read_txt('prueba.txt'))\r\nwhile True:\r\n    token = lexer.token()\r\n    if not token:\r\n        lexer.lineno = 1\r\n        break\r\n    print(token)\r\n\r\n
+===================================================================
+diff --git a/lexicalAnalyzer.py b/lexicalAnalyzer.py
+--- a/lexicalAnalyzer.py	
++++ b/lexicalAnalyzer.py	
+@@ -63,18 +63,13 @@
+     print("Lexical Error: Illegal character '%s' in line '%d'" % (t.value[0], t.lexer.lineno))
+     t.lexer.skip(len(t.value))
+ 
+-def read_txt(path):
+-    file = open(path, mode='r')
+-    txt = file.read()
+-    file.close()
+-    return txt
+-
+-lexer = lex.lex()
+-lexer.input(read_txt('prueba.txt'))
+-while True:
+-    token = lexer.token()
+-    if not token:
+-        lexer.lineno = 1
+-        break
+-    print(token)
++def lex_analysis(path):
++    lexer = lex.lex()
++    lexer.input(path)
++    while True:
++        token = lexer.token()
++        if not token:
++            lexer.lineno = 1
++            break
++        print(token)
+ 
+Index: prueba.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>--Jeje\r\nPrincipal\r\n(\r\n\tNew @v__#23(Num,1);\r\n\tNew @var2(Bool,False); -- Loquera\r\n\tCALL(@proc1);\r\n);\r\n\r\nProc @proc1\r\n(\r\n\tNew @var3(Num,190);\r\n\tAlter(@var3,ADD,10); -- Otra loquera\r\n\tPrintValues(\"Este es un string\");\r\n);
+===================================================================
+diff --git a/prueba.txt b/prueba.txt
+--- a/prueba.txt	
++++ b/prueba.txt	
+@@ -11,4 +11,4 @@
+ 	New @var3(Num,190);
+ 	Alter(@var3,ADD,10); -- Otra loquera
+ 	PrintValues("Este es un string");
+-);
+\ No newline at end of file
++);
+Index: syntaxAnalyzer.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import ply.yacc as yacc\r\nfrom lexicalAnalyzer import tokens\r\nfrom lexicalAnalyzer import read_txt\r\nfrom lexicalAnalyzer import lexer\r\n\r\ndef p_program(p):\r\n    '''program : COMMENT bodyprogram'''\r\n    print(\"program\")\r\n\r\ndef p_bodyprogram1(p):\r\n    '''bodyprogram : procedure bodyprogram'''\r\n    print(\"bodyprogram1\")\r\n\r\ndef p_bodyprogram2(p):\r\n    '''bodyprogram : procedure'''\r\n    print(\"bodyprogram3\")\r\n\r\ndef p_bodyprogram3(p):\r\n    '''bodyprogram : COMMENT'''\r\n\r\ndef p_bodyprogramEmpty(p):\r\n    '''bodyprogram : empty'''\r\n    print(\"bodyprogram nulo\")\r\n\r\ndef p_procedure1(p):\r\n    '''procedure : PRINCIPAL LPARENT instructions RPARENT SEMICOLON'''\r\n    print(\"procedure1\")\r\n\r\ndef p_procedure2(p):\r\n    '''procedure : PROCEDURE ID LPARENT instructions RPARENT SEMICOLON'''\r\n    print(\"procedure2\")\r\n\r\ndef p_instructions1(p):\r\n    '''instructions : NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON instructions'''\r\n    print(\"New instruction\")\r\n\r\ndef p_instructions2(p):\r\n    '''instructions : VALUES LPARENT ID COMMA value RPARENT SEMICOLON instructions'''\r\n    print(\"Values instruction\")\r\n    \r\ndef p_instructions3(p):\r\n    '''instructions : alterbody SEMICOLON instructions'''\r\n    print(\"Alter instruction\")\r\n\r\ndef p_instructions4(p):\r\n    '''instructions : ALTERB LPARENT value RPARENT SEMICOLON instructions'''\r\n    print(\"AlterB instruction\")\r\n\r\ndef p_instructions5(p):\r\n    '''instructions : MOVR SEMICOLON instructions'''\r\n    print(\"MoveRight instruction\")\r\n\r\ndef p_instructions6(p):\r\n    '''instructions : MOVL SEMICOLON instructions'''\r\n    print(\"MoveLeft instruction\")\r\n\r\ndef p_instructions7(p):\r\n    '''instructions : HAMMER LPARENT position RPARENT SEMICOLON instructions'''\r\n    print(\"Hammer instruction\")\r\n\r\ndef p_instructions8(p):\r\n    '''instructions : STOP SEMICOLON instructions'''\r\n    print(\"Stop instruction\")\r\n\r\ndef p_instructions9(p):\r\n    '''instructions : REPEAT LPARENT repeat_instructions RPARENT SEMICOLON instructions'''\r\n    print(\"Repeat instruction\")\r\n\r\ndef p_instructions10(p):\r\n    '''instructions : untilbody SEMICOLON instructions'''\r\n    print(\"Until instruction\")\r\n\r\ndef p_instructions11(p):\r\n    '''instructions : whilebody SEMICOLON instructions'''\r\n    print(\"While instruction\")\r\n\r\ndef p_instructions12(p):\r\n    '''instructions : casebody SEMICOLON instructions'''\r\n    print(\"Case instruction\")\r\n\r\ndef p_instructions13(p):\r\n    '''instructions : PRINT LPARENT printvalues RPARENT SEMICOLON instructions'''\r\n    print(\"PrintValues instruction\")\r\n\r\ndef p_instructions14(p):\r\n    '''instructions : istrue SEMICOLON instructions'''\r\n    print(\"isTrue instruction\")\r\n\r\ndef p_instructions15(p):\r\n    '''instructions : CALL LPARENT ID RPARENT SEMICOLON instructions'''\r\n    print(\"Call instruction\")\r\n\r\ndef p_instructions16(p):\r\n    '''instructions : COMMENT instructions'''\r\n\r\ndef p_instructionsEmpty(p):\r\n    '''instructions : empty'''\r\n    print(\"instruccion nula\")\r\n\r\ndef p_alterbody(p):\r\n    '''alterbody : ALTER LPARENT ID COMMA operator COMMA value RPARENT'''\r\n\r\ndef p_datatype1(p):\r\n    '''datatype : NUMVAL'''\r\n\r\ndef p_datatype2(p):\r\n    '''datatype : BOOLVAL'''\r\n\r\ndef p_value1(p):\r\n    '''value : NUMBER'''\r\n\r\ndef p_value2(p):\r\n    '''value : TRUE'''\r\n\r\ndef p_value3(p):\r\n    '''value : FALSE'''\r\n\r\ndef p_value4(p):\r\n    '''value : alterbody'''\r\n\r\ndef p_operator1(p):\r\n    '''operator : ADD'''\r\n\r\ndef p_operator2(p):\r\n    '''operator : SUB'''\r\n\r\ndef p_operator3(p):\r\n    '''operator : MUL'''\r\n\r\ndef p_operator4(p):\r\n    '''operator : DIV'''\r\n\r\ndef p_comparator1(p):\r\n    '''comparator : GT'''\r\n\r\ndef p_comparator2(p):\r\n    '''comparator : LT'''\r\n\r\ndef p_comparator3(p):\r\n    '''comparator : GET'''\r\n\r\ndef p_comparator4(p):\r\n    '''comparator : LET'''\r\n\r\ndef p_comparator5(p):\r\n    '''comparator : EQ'''\r\n\r\ndef p_comparator6(p):\r\n    '''comparator : DT'''\r\n\r\ndef p_position1(p):\r\n    '''position : NORTH'''\r\n\r\ndef p_position2(p):\r\n    '''position : SOUTH'''\r\n\r\ndef p_position3(p):\r\n    '''position : EAST'''\r\n\r\ndef p_position4(p):\r\n    '''position : WEST'''\r\n\r\ndef p_repeatInstructions(p):\r\n    '''repeat_instructions : instructions BREAK'''\r\n\r\ndef p_untilbody(p):\r\n    '''untilbody : UNTIL LPARENT instructions RPARENT condition'''\r\n\r\ndef p_whilebody(p):\r\n    '''whilebody : WHILE condition LPARENT instructions RPARENT'''\r\n\r\ndef p_casebody1(p):\r\n    '''casebody : CASE WHEN LPARENT condition RPARENT THEN LPARENT instructions RPARENT'''\r\n\r\ndef p_casebody2(p):\r\n    '''casebody : casebody ELSE LPARENT instructions RPARENT'''\r\n\r\ndef p_casebody3(p):\r\n    '''casebody : CASE ID innercasebody'''\r\n\r\ndef p_innercasebody1(p):\r\n    '''innercasebody : WHEN NUMBER THEN LPARENT instructions RPARENT innercasebody'''\r\n\r\ndef p_innercasebody2(p):\r\n    '''innercasebody : WHEN TRUE THEN LPARENT instructions RPARENT innercasebody'''\r\n\r\ndef p_innercasebody3(p):\r\n    '''innercasebody : WHEN FALSE THEN LPARENT instructions RPARENT innercasebody'''\r\n\r\ndef p_innercasebodyEmpty(p):\r\n    '''innercasebody : empty'''\r\n    print(\"nulo\")\r\n    \r\ndef p_condition1(p):\r\n    '''condition : ID comparator ID'''\r\n\r\ndef p_condition2(p):\r\n    '''condition : ID comparator NUMBER'''\r\n\r\ndef p_condition3(p):\r\n    '''condition : NUMBER comparator ID'''\r\n\r\ndef p_condition4(p):\r\n    '''condition : NUMBER comparator NUMBER'''\r\n\r\ndef p_condition5(p):\r\n    '''condition : TRUE'''\r\n\r\ndef p_condition6(p):\r\n    '''condition : FALSE'''\r\n\r\ndef p_condition7(p):\r\n    '''condition : istrue'''\r\n\r\ndef p_istrue(p):\r\n    '''istrue : VERT LPARENT ID RPARENT'''\r\n\r\ndef p_printvalues1(p):\r\n    '''printvalues : STRING printvalues'''\r\n\r\ndef p_printvalues2(p):\r\n    '''printvalues : COMMA ID printvalues'''\r\n\r\ndef p_printvaluesEmpty(p):\r\n    '''printvalues : empty'''\r\n    print(\"printvalues nulo\")\r\n    \r\ndef p_empty(p):\r\n    '''empty :'''\r\n    pass\r\n\r\ndef p_error(p):\r\n    if p.type != 'COMMENT' and p.lineno == 1:\r\n        print(\"Sintax error on line 1: Missing expected initial comment.\")\r\n    else:\r\n        print(\"Sintax error on line %d: %s does not match %s position.\" % (p.lineno, p.value, p.type))\r\n\r\ntxt = read_txt('prueba.txt')\r\nparser = yacc.yacc()\r\nresult = parser.parse(txt)\r\nprint(result)\r\n
+===================================================================
+diff --git a/syntaxAnalyzer.py b/syntaxAnalyzer.py
+--- a/syntaxAnalyzer.py	
++++ b/syntaxAnalyzer.py	
+@@ -1,101 +1,78 @@
+ import ply.yacc as yacc
+ from lexicalAnalyzer import tokens
+-from lexicalAnalyzer import read_txt
+-from lexicalAnalyzer import lexer
++from tagaplate import read_txt
+ 
+ def p_program(p):
+     '''program : COMMENT bodyprogram'''
+-    print("program")
+ 
+ def p_bodyprogram1(p):
+     '''bodyprogram : procedure bodyprogram'''
+-    print("bodyprogram1")
+ 
+ def p_bodyprogram2(p):
+     '''bodyprogram : procedure'''
+-    print("bodyprogram3")
+ 
+ def p_bodyprogram3(p):
+     '''bodyprogram : COMMENT'''
+ 
+ def p_bodyprogramEmpty(p):
+     '''bodyprogram : empty'''
+-    print("bodyprogram nulo")
+ 
+ def p_procedure1(p):
+     '''procedure : PRINCIPAL LPARENT instructions RPARENT SEMICOLON'''
+-    print("procedure1")
+ 
+ def p_procedure2(p):
+     '''procedure : PROCEDURE ID LPARENT instructions RPARENT SEMICOLON'''
+-    print("procedure2")
+ 
+ def p_instructions1(p):
+     '''instructions : NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON instructions'''
+-    print("New instruction")
+ 
+ def p_instructions2(p):
+     '''instructions : VALUES LPARENT ID COMMA value RPARENT SEMICOLON instructions'''
+-    print("Values instruction")
+     
+ def p_instructions3(p):
+     '''instructions : alterbody SEMICOLON instructions'''
+-    print("Alter instruction")
+ 
+ def p_instructions4(p):
+     '''instructions : ALTERB LPARENT value RPARENT SEMICOLON instructions'''
+-    print("AlterB instruction")
+ 
+ def p_instructions5(p):
+     '''instructions : MOVR SEMICOLON instructions'''
+-    print("MoveRight instruction")
+ 
+ def p_instructions6(p):
+     '''instructions : MOVL SEMICOLON instructions'''
+-    print("MoveLeft instruction")
+ 
+ def p_instructions7(p):
+     '''instructions : HAMMER LPARENT position RPARENT SEMICOLON instructions'''
+-    print("Hammer instruction")
+ 
+ def p_instructions8(p):
+     '''instructions : STOP SEMICOLON instructions'''
+-    print("Stop instruction")
+ 
+ def p_instructions9(p):
+     '''instructions : REPEAT LPARENT repeat_instructions RPARENT SEMICOLON instructions'''
+-    print("Repeat instruction")
+ 
+ def p_instructions10(p):
+     '''instructions : untilbody SEMICOLON instructions'''
+-    print("Until instruction")
+ 
+ def p_instructions11(p):
+     '''instructions : whilebody SEMICOLON instructions'''
+-    print("While instruction")
+ 
+ def p_instructions12(p):
+     '''instructions : casebody SEMICOLON instructions'''
+-    print("Case instruction")
+ 
+ def p_instructions13(p):
+     '''instructions : PRINT LPARENT printvalues RPARENT SEMICOLON instructions'''
+-    print("PrintValues instruction")
+ 
+ def p_instructions14(p):
+     '''instructions : istrue SEMICOLON instructions'''
+-    print("isTrue instruction")
+ 
+ def p_instructions15(p):
+     '''instructions : CALL LPARENT ID RPARENT SEMICOLON instructions'''
+-    print("Call instruction")
+ 
+ def p_instructions16(p):
+     '''instructions : COMMENT instructions'''
+ 
+ def p_instructionsEmpty(p):
+     '''instructions : empty'''
+-    print("instruccion nula")
+ 
+ def p_alterbody(p):
+     '''alterbody : ALTER LPARENT ID COMMA operator COMMA value RPARENT'''
+@@ -189,7 +166,6 @@
+ 
+ def p_innercasebodyEmpty(p):
+     '''innercasebody : empty'''
+-    print("nulo")
+     
+ def p_condition1(p):
+     '''condition : ID comparator ID'''
+@@ -223,7 +199,6 @@
+ 
+ def p_printvaluesEmpty(p):
+     '''printvalues : empty'''
+-    print("printvalues nulo")
+     
+ def p_empty(p):
+     '''empty :'''
+@@ -235,7 +210,7 @@
+     else:
+         print("Sintax error on line %d: %s does not match %s position." % (p.lineno, p.value, p.type))
+ 
+-txt = read_txt('prueba.txt')
+-parser = yacc.yacc()
+-result = parser.parse(txt)
+-print(result)
++def syntax_analysis(text):
++    parser = yacc.yacc()
++    result = parser.parse(text)
++    print(result)

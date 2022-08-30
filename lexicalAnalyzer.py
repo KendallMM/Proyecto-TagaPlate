@@ -63,18 +63,13 @@ def t_error(t):
     print("Lexical Error: Illegal character '%s' in line '%d'" % (t.value[0], t.lexer.lineno))
     t.lexer.skip(len(t.value))
 
-def read_txt(path):
-    file = open(path, mode='r')
-    txt = file.read()
-    file.close()
-    return txt
-
-lexer = lex.lex()
-lexer.input(read_txt('prueba.txt'))
-while True:
-    token = lexer.token()
-    if not token:
-        lexer.lineno = 1
-        break
-    print(token)
+def lexical_analisis(text):
+    lexer = lex.lex()
+    lexer.input(text)
+    while True:
+        token = lexer.token()
+        if not token:
+            lexer.lineno = 1
+            break
+        print(token)
 

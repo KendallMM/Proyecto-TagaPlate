@@ -1,7 +1,5 @@
 import ply.yacc as yacc
 from lexicalAnalyzer import tokens
-from lexicalAnalyzer import read_txt
-from lexicalAnalyzer import lexer
 
 def p_program(p):
     '''program : COMMENT bodyprogram'''
@@ -235,7 +233,7 @@ def p_error(p):
     else:
         print("Sintax error on line %d: %s does not match %s position." % (p.lineno, p.value, p.type))
 
-txt = read_txt('prueba.txt')
-parser = yacc.yacc()
-result = parser.parse(txt)
-print(result)
+def sintax_analisis(text):
+    parser = yacc.yacc()
+    result = parser.parse(text)
+    print(result)
