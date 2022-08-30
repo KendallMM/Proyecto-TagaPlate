@@ -1,12 +1,13 @@
 import ply.lex as lex
 
-tokens = ['ID', 'NUMBER', 'KEYWORD', 'ADD', 'SUB', 'MUL', 'DIV', 'NEW', 'CALL', 'PROCEDURE',
+tokens = ['PRINCIPAL', 'ID', 'NUMBER', 'ADD', 'SUB', 'MUL', 'DIV', 'NEW', 'CALL', 'PROCEDURE',
           'TRUE', 'FALSE', 'NUMVAL', 'BOOLVAL', 'VALUES', 'ALTER', 'ALTERB', 'MOVR', 'MOVL',
           'HAMMER', 'STOP', 'VERT', 'REPEAT', 'UNTIL', 'WHILE', 'CASE', 'WHEN', 'THEN', 'ELSE',
-          'PRINT', 'GT', 'LT', 'GET', 'LET', 'EQ', 'DT', 'FUNC', 'COMMA', 'DOT', 'LPARENT',
-          'RPARENT', 'COMMENT']
+          'PRINT', 'GT', 'LT', 'GET', 'LET', 'EQ', 'DT', 'COMMA', 'SEMICOLON', 'LPARENT',
+          'RPARENT', 'COMMENT', 'NORTH', 'SOUTH', 'EAST', 'WEST', 'BREAK', 'STRING']
 
-t_ignore = '\t'
+t_ignore = ' \t'
+t_PRINCIPAL = r'Principal'
 t_ID = r'@[a-zA-Z0-9_#]{2,9}'
 t_NUMBER = r'[0-9]+'
 t_ADD = r'ADD'
@@ -35,7 +36,12 @@ t_CASE = r'Case'
 t_WHEN = r'When'
 t_THEN = r'Then'
 t_ELSE = r'Else'
+t_BREAK = r'Break'
 t_PRINT = r'PrintValues'
+t_NORTH = r'N'
+t_SOUTH = r'S'
+t_EAST = r'E'
+t_WEST = r'O'
 t_GT = r'>'
 t_LT = r'<'
 t_GET = r'>='
@@ -45,16 +51,13 @@ t_DT = r'<>'
 t_LPARENT = r'\('
 t_RPARENT = r'\)'
 t_COMMA = r'\,'
-t_DOT = r'\.'
+t_SEMICOLON = r'\;'
+t_STRING = r'\".*\"'
 t_COMMENT = r'--.*'
 
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
-
-def t_whitespace(t):
-    r'\s+'
-    t.lexer.lexpos += len(t.value) - 1
 
 def t_error(t):
     print("Lexical Error: Illegal character '%s' in line '%d'" % (t.value[0], t.lexer.lineno))
@@ -66,15 +69,12 @@ def read_txt(path):
     file.close()
     return txt
 
-def scanner(path):
-    scanner = lex.lex()
-    scanner.input(read_txt(path))
-    while True:
-        token = scanner.token()
-        if not token:
-            break
-        print(token)
-
-
-
+lexer = lex.lex()
+lexer.input(read_txt('prueba.txt'))
+while True:
+    token = lexer.token()
+    if not token:
+        lexer.lineno = 1
+        break
+    print(token)
 

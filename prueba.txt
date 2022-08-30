@@ -1,0 +1,14 @@
+--Jeje
+Principal
+(
+	New @v__#23(Num,1);
+	New @var2(Bool,False); -- Loquera
+	CALL(@proc1);
+);
+
+Proc @proc1
+(
+	New @var3(Num,190);
+	Alter(@var3,ADD,10); -- Otra loquera
+	PrintValues("Este es un string");
+);
