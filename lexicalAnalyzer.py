@@ -1,4 +1,5 @@
 import ply.lex as lex
+from tagaplate import read_text
 
 tokens = ['PRINCIPAL', 'ID', 'NUMBER', 'ADD', 'SUB', 'MUL', 'DIV', 'NEW', 'CALL', 'PROCEDURE',
           'TRUE', 'FALSE', 'NUMVAL', 'BOOLVAL', 'VALUES', 'ALTER', 'ALTERB', 'MOVR', 'MOVL',
@@ -63,13 +64,13 @@ def t_error(t):
     print("Lexical Error: Illegal character '%s' in line '%d'" % (t.value[0], t.lexer.lineno))
     t.lexer.skip(len(t.value))
 
-def lexical_analisis(text):
-    lexer = lex.lex()
-    lexer.input(text)
-    while True:
-        token = lexer.token()
-        if not token:
-            lexer.lineno = 1
-            break
-        print(token)
+#def lexical_analisis(text):
+lexer = lex.lex()
+lexer.input(read_text("prueba.txt"))
+while True:
+    token = lexer.token()
+    if not token:
+        lexer.lineno = 1
+        break
+    print(token)
 

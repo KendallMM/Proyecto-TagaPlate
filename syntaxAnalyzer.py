@@ -1,20 +1,25 @@
 import ply.yacc as yacc
 from lexicalAnalyzer import tokens
+from semanticAnalyzer import *
 
 def p_program(p):
     '''program : COMMENT bodyprogram'''
+    p[0] = Program(p[2], "Program")
     print("program")
 
 def p_bodyprogram1(p):
     '''bodyprogram : procedure bodyprogram'''
+    p[0] = BodyProgram1(p[1], p[2], "BodyProgram1")
     print("bodyprogram1")
 
 def p_bodyprogram2(p):
     '''bodyprogram : procedure'''
-    print("bodyprogram3")
+    p[0] = BodyProgram2(p[1], "BodyProgram2")
+    print("bodyprogram2")
 
 def p_bodyprogram3(p):
     '''bodyprogram : COMMENT'''
+    print("bodyprogram3")
 
 def p_bodyprogramEmpty(p):
     '''bodyprogram : empty'''
@@ -233,7 +238,7 @@ def p_error(p):
     else:
         print("Sintax error on line %d: %s does not match %s position." % (p.lineno, p.value, p.type))
 
-def sintax_analisis(text):
-    parser = yacc.yacc()
-    result = parser.parse(text)
-    print(result)
+#def sintax_analisis(text):
+#parser = yacc.yacc()
+#result = parser.parse(read_text("prueba.txt"))
+#print(result)
