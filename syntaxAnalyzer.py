@@ -5,7 +5,7 @@ from semanticAnalyzer import *
 def p_program(p):
     '''program : COMMENT bodyprogram'''
     p[0] = Program(p[2], "Program")
-    print("program")
+    print(p[0])
 
 def p_bodyprogram1(p):
     '''bodyprogram : procedure bodyprogram'''
@@ -23,6 +23,7 @@ def p_bodyprogram3(p):
 
 def p_bodyprogramEmpty(p):
     '''bodyprogram : empty'''
+    p[0] = Null()
     print("bodyprogram nulo")
 
 def p_procedure1(p):
@@ -239,6 +240,8 @@ def p_error(p):
         print("Sintax error on line %d: %s does not match %s position." % (p.lineno, p.value, p.type))
 
 #def sintax_analisis(text):
-#parser = yacc.yacc()
-#result = parser.parse(read_text("prueba.txt"))
-#print(result)
+parser = yacc.yacc()
+result = parser.parse(open("C://Users//Usuario//Documents//GitHub//Proyecto-TagaPlate//prueba1").read())
+#result.print_op("\t")
+print(result)
+

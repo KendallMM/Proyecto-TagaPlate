@@ -1,5 +1,4 @@
 import ply.lex as lex
-from tagaplate import read_text
 
 tokens = ['PRINCIPAL', 'ID', 'NUMBER', 'ADD', 'SUB', 'MUL', 'DIV', 'NEW', 'CALL', 'PROCEDURE',
           'TRUE', 'FALSE', 'NUMVAL', 'BOOLVAL', 'VALUES', 'ALTER', 'ALTERB', 'MOVR', 'MOVL',
@@ -66,7 +65,7 @@ def t_error(t):
 
 #def lexical_analisis(text):
 lexer = lex.lex()
-lexer.input(read_text("prueba.txt"))
+lexer.input(open("C://Users//Usuario//Documents//GitHub//Proyecto-TagaPlate//prueba1").read())
 while True:
     token = lexer.token()
     if not token:

@@ -61,8 +61,6 @@ class BodyProgram1(Node):
 
         txt += id + "[label= " + self.name + "]" + "\n\t"
         txt += id + "->" + son1 + "\n\t"
-
-        txt += id + "[label= " + self.name + "]" + "\n\t"
         txt += id + "->" + son2 + "\n\t"
 
         return id
@@ -90,7 +88,8 @@ class BodyProgram3(Node):
     def __init__(self, name):
         self.name = name
 
-    def print_op(self):
+    def print_op(self, ident):
+        print(ident + "Node: " + self.name)
 
     def translate(self):
         global txt
@@ -101,7 +100,8 @@ class BodyProgramEmpty(Node):
     def __init__(self, name):
         self.name = name
 
-    def print_op(self):
+    def print_op(self, ident):
+        print(ident + "Node: " + self.name)
 
     def translate(self):
         global txt
@@ -109,25 +109,39 @@ class BodyProgramEmpty(Node):
         return id
 
 class Procedure1(Node):
-    def __init__(self, name):
+    def __init__(self, son3, name):
         self.name = name
+        self.son3 = son3
 
-    def print_op(self):
+    def print_op(self, ident):
+        self.son3.print_op(ident)
+        print(ident + "Node: " + self.name)
 
     def translate(self):
         global txt
         id = update_id()
+        son3 = self.son3.translate()
+
+        txt += id + "[label= " + self.name + "]" + "\n\t"
+        txt += id + "->" + son3 + "\n\t"
         return id
 
 class Procedure2(Node):
-    def __init__(self, name):
+    def __init__(self, son3, name):
         self.name = name
+        self.son3 = son3
 
-    def print_op(self):
+    def print_op(self, ident):
+        self.son3.print_op(ident)
+        print(ident + "Node: " + self.name)
 
     def translate(self):
         global txt
         id = update_id()
+        son3 = self.son3.translate()
+
+        txt += id + "[label= " + self.name + "]" + "\n\t"
+        txt += id + "->" + son3 + "\n\t"
         return id
 
 class Instructions1(Node):
@@ -135,6 +149,7 @@ class Instructions1(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -146,6 +161,7 @@ class Instructions2(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -157,6 +173,7 @@ class Instructions3(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -168,6 +185,7 @@ class Instructions4(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -179,6 +197,7 @@ class Instructions5(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -190,6 +209,7 @@ class Instructions6(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -201,6 +221,7 @@ class Instructions7(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -212,6 +233,7 @@ class Instructions8(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -223,6 +245,7 @@ class Instructions9(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -234,6 +257,7 @@ class Instructions10(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -245,6 +269,7 @@ class Instructions11(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -256,6 +281,7 @@ class Instructions12(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -267,6 +293,7 @@ class Instructions13(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -278,6 +305,7 @@ class Instructions14(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -289,6 +317,7 @@ class Instructions15(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -300,6 +329,7 @@ class Instructions16(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -311,6 +341,7 @@ class InstructionsEmpty(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -322,6 +353,7 @@ class AlterBody(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -333,6 +365,7 @@ class DataType1(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -344,6 +377,7 @@ class DataType2(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -355,6 +389,7 @@ class Value1(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -366,6 +401,7 @@ class Value2(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -377,6 +413,7 @@ class Value3(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -388,6 +425,7 @@ class Value4(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -399,6 +437,7 @@ class Operator1(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -410,6 +449,7 @@ class Operator2(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -421,6 +461,7 @@ class Operator3(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -432,6 +473,7 @@ class Operator4(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -443,6 +485,7 @@ class Comparator1(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -454,6 +497,7 @@ class Comparator2(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -465,6 +509,7 @@ class Comparator3(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -476,6 +521,7 @@ class Comparator4(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -487,6 +533,7 @@ class Comparator5(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -498,6 +545,7 @@ class Comparator6(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -509,6 +557,7 @@ class Position1(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -520,6 +569,7 @@ class Position2(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -531,6 +581,7 @@ class Position3(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -542,6 +593,7 @@ class Position4(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -553,6 +605,7 @@ class RepeatInstructions(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -564,6 +617,7 @@ class UntilBody(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -575,6 +629,7 @@ class WhileBody(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -586,6 +641,7 @@ class CaseBody1(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -597,6 +653,7 @@ class CaseBody2(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -608,6 +665,7 @@ class CaseBody3(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -619,6 +677,7 @@ class InnerCaseBody1(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -630,6 +689,7 @@ class InnerCaseBody2(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -641,6 +701,7 @@ class InnerCaseBody3(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -652,6 +713,7 @@ class InnerCaseBodyEmpty(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -663,6 +725,7 @@ class Condition1(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -674,6 +737,7 @@ class Condition2(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -685,6 +749,7 @@ class Condition3(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -696,6 +761,7 @@ class Condition4(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -707,6 +773,7 @@ class Condition5(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -718,6 +785,7 @@ class Condition6(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -729,6 +797,7 @@ class Condition7(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -740,6 +809,7 @@ class IsTrue(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -751,6 +821,7 @@ class PrintValues1(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -762,6 +833,7 @@ class PrintValues2(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
@@ -773,10 +845,11 @@ class PrintValuesEmpty(Node):
         self.name = name
 
     def print_op(self):
+        pass
 
     def translate(self):
         global txt
         id = update_id()
         return id
 
-class Empty(Node):
+##class Empty(Node):

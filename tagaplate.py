@@ -2,12 +2,14 @@
 
 import tkinter as tk
 from tkinter.filedialog import askopenfilename, asksaveasfilename
+from tkinter import messagebox
 
 gpath = ''
 saved = False
 
 main = tk.Tk()
 main.title("TagaPlate IDE")
+
 
 class LineNumber(tk.Text):
     def __init__(self, master, text_widget, **kwargs):
@@ -84,26 +86,29 @@ def save_as():
         code = textEditor.get('1.0', tk.END)
         file.write(code)
         file.close()
+        gpath = path
     else:
         print("No file selected")
 
 def compile():
     global gpath
-    path = ''
     if gpath == '':
-        path = asksaveasfilename(filetypes=[('TagaPlate File', '*.tgp')])
-        gpath = path
-        if path == '':
-            print("Can't compile without saving file")
+        msgbox = tk.messagebox.askquestion('Save first', 'Do you want to save your file?', icon='warning')
+        if msgbox == 'yes':
+            path = asksaveasfilename(filetypes=[('TagaPlate File', '*.tgp')])
+            gpath = path
+            if path != '':
+                file = open(path, 'w')
+                file.write(textEditor.get('1.0', tk.END))
+                file.close()
+                compile()
         else:
-            file = open(path, 'w')
-            file.write(textEditor.get('1.0', tk.END))
-            file.close()
-    elif path != '':
+            w_errors("Can't compile without saving file")
+    elif gpath != '':
         print("Compile process")
 
 def set_dark():
-    textEditor.config(background='darkgray', foreground='white')
+    textEditor.config(background='black', foreground='white')
 
 def set_light():
     textEditor.config(background='white', foreground='black')
@@ -121,9 +126,48 @@ def update_title():
     else:
         main.title('TagaPlate IDE *')
 
+def w_errors(message):
+    minwin = tk.Toplevel()
+    label = tk.Label(minwin, text=message, background='white', foreground='red')
+    label.place(x=0, y=0)
+
+def highlight_keywords(event):
+    words = {'New': 'blue',
+             'True': 'blue',
+             'False': 'blue',
+             'While': 'blue',
+             'Until': 'blue',
+             'Case': 'blue',
+             'When': 'blue',
+             'Then': 'blue',
+             'Else': 'blue',
+             'Break': 'blue',
+             'Values': 'red',
+             'Alter': 'red',
+             'AlterB': 'red',
+             'MoveRight': 'red',
+             'MoveLeft': 'red',
+             'Hammer': 'red',
+             'Stop': 'red',
+             'isTrue': 'red',
+             'Repeat': 'red',
+             'PrintValues': 'red'}
+    for k, c in words.items():
+        startIndex = '1.0'
+        while True:
+            startIndex = textEditor.search(k, startIndex, tk.END)
+            if startIndex:
+                endIndex = textEditor.index('%s+%dc' % (startIndex, (len(k))))
+                textEditor.tag_add(k, startIndex, endIndex)
+                textEditor.tag_config(k, foreground=c)
+                startIndex = endIndex
+            else:
+                break
+
 textEditor = tk.Text()
 textEditor.config(background='white', foreground='black')
 textEditor.pack(side=tk.RIGHT, expand=1)
+textEditor.bind('<Key>', highlight_keywords)
 
 lineText = LineNumber(main, textEditor, width=1)
 lineText.pack(side=tk.LEFT)

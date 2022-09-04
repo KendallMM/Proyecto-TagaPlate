@@ -1,0 +1,19 @@
+--Comentario inicial
+Principal (
+    New @var1(Num, 1);
+    New @boolVar(Bool, True);
+    Alter(@var1, ADD, 3);
+    While @var1 < 100 (
+        MoveLeft;
+        MoveRight;
+        Alter(@var1, ADD, 1);
+    );
+    CALL(@proc1);
+);
+
+Proc @proc1 (
+    Hammer(S);
+    Hammer(O);
+
+    PrintValues("Hola Mundo"); -- Otro comentario
+);

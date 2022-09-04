@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Sintactico terminado v2">
-      <change afterPath="$PROJECT_DIR$/semanticAnalyzer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tagaplate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_8_2022_19_47_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_8_2022_19_47__Changes_.xml" beforeDir="false" />
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="semanticAnalyzer.py sin terminar">
+      <change afterPath="$PROJECT_DIR$/prueba1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TagaPlate IDE.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lexicalAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/lexicalAnalyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prueba.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semanticAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/semanticAnalyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/syntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/syntaxAnalyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tagaplate.py" beforeDir="false" afterPath="$PROJECT_DIR$/tagaplate.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661836420490</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="semanticAnalyzer.py sin terminar">
+      <created>1662182790055</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1662182790055</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -218,6 +222,7 @@
     <MESSAGE value="Analizador léxico finalizado v2" />
     <MESSAGE value="sintactico empezado" />
     <MESSAGE value="Sintactico terminado v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sintactico terminado v2" />
+    <MESSAGE value="semanticAnalyzer.py sin terminar" />
+    <option name="LAST_COMMIT_MESSAGE" value="semanticAnalyzer.py sin terminar" />
   </component>
 </project>
