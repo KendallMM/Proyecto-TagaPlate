@@ -1,6 +1,7 @@
 # IDE CODE TAGAPLATE
 
 import tkinter as tk
+import sys
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 from tkinter import messagebox
 
@@ -51,6 +52,7 @@ def new_file():
         textEditor.insert('1.0', welcome)
         file.close()
         gpath = path
+        lineText.on_key_release('<Enter>')
 
 
 def open_file():
@@ -65,6 +67,8 @@ def open_file():
         textEditor.insert('1.0', code)
         gpath = path
         file.close()
+        lineText.on_key_release('<Enter>')
+        highlight_keywords('<Enter>')
     else:
         print("No file selected")
 
@@ -104,6 +108,8 @@ def compile():
                 compile()
         else:
             w_errors("Can't compile without saving file")
+            msgbox = tk.messagebox.showinfo('Uncompiled', "Can't compile without saving file", icon='warning')
+
     elif gpath != '':
         print("Compile process")
 
@@ -125,11 +131,14 @@ def update_title():
         main.title('TagaPlate IDE')
     else:
         main.title('TagaPlate IDE *')
-
-def w_errors(message):
-    minwin = tk.Toplevel()
-    label = tk.Label(minwin, text=message, background='white', foreground='red')
-    label.place(x=0, y=0)
+def showErrors():
+    errorW.deiconify()
+def w_errors(messageError):
+    t.config(state='normal')
+    t.insert(index, messageError+"\n")
+    raw+1
+    t.pack()
+    t.config(state='disabled')
 
 def highlight_keywords(event):
     words = {'New': 'blue',
@@ -169,6 +178,17 @@ textEditor.config(background='white', foreground='black')
 textEditor.pack(side=tk.RIGHT, expand=1)
 textEditor.bind('<Key>', highlight_keywords)
 
+errorW = tk.Toplevel(main)
+errorW.title("Errors Window")
+errorW.geometry("500x300")
+errorW.withdraw()
+t=tk.Text(errorW)
+sys.stdout=t
+t.config(state='disabled')
+raw=1
+index=str(raw)+".0"
+
+
 lineText = LineNumber(main, textEditor, width=1)
 lineText.pack(side=tk.LEFT)
 
@@ -188,7 +208,12 @@ menuBar.add_cascade(label='Run', menu=runBar)
 themeBar = tk.Menu(menuBar, tearoff=0)
 themeBar.add_command(label='Dark', command=set_dark)
 themeBar.add_command(label='Light', command=set_light)
+secondWindows = tk.Menu(menuBar, tearoff=0)
+secondWindows.add_command(label='Errors window', command=showErrors)
+#secondWindows.add_command(label='Prints window', command=set_light)
+
 menuBar.add_cascade(label='Theme', menu=themeBar)
+menuBar.add_cascade(label='Windows', menu=secondWindows)
 
 menuBar.add_command(label="PATH", command=print_path)
 
