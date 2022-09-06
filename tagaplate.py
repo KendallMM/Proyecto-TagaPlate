@@ -7,6 +7,7 @@ from tkinter import messagebox
 
 gpath = ''
 saved = False
+err_row = 1
 
 main = tk.Tk()
 main.title("TagaPlate IDE")
@@ -131,12 +132,18 @@ def update_title():
         main.title('TagaPlate IDE')
     else:
         main.title('TagaPlate IDE *')
+
 def showErrors():
     errorW.deiconify()
+
+def exitErrors():
+    errorW.withdraw()
+
 def w_errors(messageError):
+    global err_row
     t.config(state='normal')
-    t.insert(index, messageError+"\n")
-    raw+1
+    t.insert(str(err_row) + '.0', messageError+"\n")
+    err_row += 1
     t.pack()
     t.config(state='disabled')
 
@@ -179,14 +186,12 @@ textEditor.pack(side=tk.RIGHT, expand=1)
 textEditor.bind('<Key>', highlight_keywords)
 
 errorW = tk.Toplevel(main)
-errorW.title("Errors Window")
+errorW.title("TagaPlate - Errors")
 errorW.geometry("500x300")
+errorW.protocol("WM_DELETE_WINDOW", exitErrors)
 errorW.withdraw()
-t=tk.Text(errorW)
-sys.stdout=t
-t.config(state='disabled')
-raw=1
-index=str(raw)+".0"
+t = tk.Text(errorW)
+t.config(foreground='red', state='disabled')
 
 
 lineText = LineNumber(main, textEditor, width=1)
