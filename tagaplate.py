@@ -5,13 +5,16 @@ import sys
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 from tkinter import messagebox
 
+# GLOBAL VARIABLES
 gpath = ''
 saved = False
 err_row = 1
 
+# MAIN WINDOW
 main = tk.Tk()
 main.title("TagaPlate IDE")
 
+# _________________________________________ Line Number Class __________________________________________________________
 
 class LineNumber(tk.Text):
     def __init__(self, master, text_widget, **kwargs):
@@ -35,6 +38,8 @@ class LineNumber(tk.Text):
         self.configure(state='disabled')
         saved = False
         update_title()
+
+#____________________________________ File Functions ___________________________________________________________________
 
 def new_file():
     global gpath, saved
@@ -80,8 +85,6 @@ def save_as():
         path = asksaveasfilename(filetypes=[('TagaPlate Files', '*.tgp')])
     else:
         path = gpath
-    saved = True
-    update_title()
     if path != '':
         if not path.endswith(".tgp"):
             path += ".tgp"
@@ -92,8 +95,13 @@ def save_as():
         file.write(code)
         file.close()
         gpath = path
+        saved = True
+        update_title()
     else:
+        saved = False
         print("No file selected")
+
+#________________________________________ Compile and Run Functions ____________________________________________________
 
 def compile():
     global gpath
@@ -114,11 +122,7 @@ def compile():
     elif gpath != '':
         print("Compile process")
 
-def set_dark():
-    textEditor.config(background='black', foreground='white')
-
-def set_light():
-    textEditor.config(background='white', foreground='black')
+#____________________________________________ Print Management Functions _______________________________________________
 
 def print_path():
     if gpath == '':
@@ -126,26 +130,20 @@ def print_path():
     else:
         print(gpath)
 
+#__________________________________________ IDE Modifier Functions _____________________________________________________
+
+def set_dark():
+    textEditor.config(background='black', foreground='white')
+
+def set_light():
+    textEditor.config(background='white', foreground='black')
+
 def update_title():
     global saved
     if saved:
         main.title('TagaPlate IDE')
     else:
-        main.title('TagaPlate IDE *')
-
-def showErrors():
-    errorW.deiconify()
-
-def exitErrors():
-    errorW.withdraw()
-
-def w_errors(messageError):
-    global err_row
-    t.config(state='normal')
-    t.insert(str(err_row) + '.0', messageError+"\n")
-    err_row += 1
-    t.pack()
-    t.config(state='disabled')
+        main.title('TagaPlate IDE (not saved)')
 
 def highlight_keywords(event):
     words = {'New': 'blue',
@@ -180,10 +178,21 @@ def highlight_keywords(event):
             else:
                 break
 
-textEditor = tk.Text()
-textEditor.config(background='white', foreground='black')
-textEditor.pack(side=tk.RIGHT, expand=1)
-textEditor.bind('<Key>', highlight_keywords)
+# _________________________________________ Error Management Functions _________________________________________________
+
+def showErrors():
+    errorW.deiconify()
+
+def exitErrors():
+    errorW.withdraw()
+
+def w_errors(messageError):
+    global err_row
+    t.config(state='normal')
+    t.insert(str(err_row) + '.0', messageError+"\n")
+    err_row += 1
+    t.pack()
+    t.config(state='disabled')
 
 errorW = tk.Toplevel(main)
 errorW.title("TagaPlate - Errors")
@@ -193,9 +202,17 @@ errorW.withdraw()
 t = tk.Text(errorW)
 t.config(foreground='red', state='disabled')
 
+#________________________________________ IDE Editor ___________________________________________________________________
+
+textEditor = tk.Text()
+textEditor.config(background='white', foreground='black')
+textEditor.pack(side=tk.RIGHT, expand=1)
+textEditor.bind('<Key>', highlight_keywords)
 
 lineText = LineNumber(main, textEditor, width=1)
 lineText.pack(side=tk.LEFT)
+
+#___________________________________________ IDE Menu Management _______________________________________________________
 
 menuBar = tk.Menu(main)
 
@@ -221,6 +238,7 @@ menuBar.add_cascade(label='Theme', menu=themeBar)
 menuBar.add_cascade(label='Windows', menu=secondWindows)
 
 menuBar.add_command(label="PATH", command=print_path)
+#_______________________________________________________________________________________________________________________
 
 main.config(menu=menuBar)
 main.mainloop()
