@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 from tkinter import messagebox
 import lexicalAnalyzer as lx
+import syntaxAnalyzer as sx
 
 # GLOBAL VARIABLES
 gpath = ''
@@ -54,8 +55,10 @@ def new_file():
         file.write(welcome)
         textEditor.delete('1.0', tk.END)
         textEditor.insert('1.0', welcome)
+        delete()
         file.close()
         gpath = path
+        lineText.on_key_release('<Enter>')
     saved = True
     update_title()
 
@@ -68,8 +71,11 @@ def open_file():
         code = file.read()
         textEditor.delete('1.0', tk.END)
         textEditor.insert('1.0', code)
+        delete()
         gpath = path
         file.close()
+        lineText.on_key_release('<Enter>')
+        highlight_keywords('<Enter>')
     else:
         print("No file selected")
     saved = True
@@ -107,6 +113,8 @@ def compile():
     else:
         lx.lexical_analisis(gpath)
         lexical_error_check()
+        sx.sintax_analisis(gpath)
+        sintax_error_check()
 
 def compile_aux():
     if ask_to_save() == 'yes':
@@ -154,6 +162,7 @@ def highlight_keywords(event):
              'Then': 'blue',
              'Else': 'blue',
              'Break': 'blue',
+             'Proc': 'blue',
              'Values': 'red',
              'Alter': 'red',
              'AlterB': 'red',
@@ -163,7 +172,8 @@ def highlight_keywords(event):
              'Stop': 'red',
              'isTrue': 'red',
              'Repeat': 'red',
-             'PrintValues': 'red'}
+             'PrintValues': 'red',
+             'CALL': 'red'}
     for k, c in words.items():
         startIndex = '1.0'
         while True:
@@ -179,6 +189,8 @@ def highlight_keywords(event):
 # _________________________________________ Error Management Functions _________________________________________________
 
 def showErrors():
+    lx.err = ''
+    sx.err = ''
     errorW.deiconify()
 
 def exitErrors():
@@ -198,6 +210,18 @@ def lexical_error_check():
         showErrors()
     else:
         pass
+
+def sintax_error_check():
+    if sx.err != '':
+        w_errors(sx.err)
+        showErrors()
+    else:
+        pass
+
+def delete():
+    t.config(state='normal')
+    t.delete('1.0', tk.END)
+    t.config(state='disabled')
 
 errorW = tk.Toplevel(main)
 errorW.title("TagaPlate - Errors")
@@ -229,12 +253,13 @@ menuBar.add_cascade(label='File', menu=fileBar)
 
 runBar = tk.Menu(menuBar, tearoff=0)
 runBar.add_command(label='Compile', command=compile)
-runBar.add_command(label='Compile and Run')
+runBar.add_command(label='Compile and Run', command=delete)
 menuBar.add_cascade(label='Run', menu=runBar)
 
 themeBar = tk.Menu(menuBar, tearoff=0)
 themeBar.add_command(label='Dark', command=set_dark)
 themeBar.add_command(label='Light', command=set_light)
+
 secondWindows = tk.Menu(menuBar, tearoff=0)
 secondWindows.add_command(label='Errors window', command=showErrors)
 #secondWindows.add_command(label='Prints window', command=set_light)
@@ -243,6 +268,7 @@ menuBar.add_cascade(label='Theme', menu=themeBar)
 menuBar.add_cascade(label='Windows', menu=secondWindows)
 
 menuBar.add_command(label="PATH", command=print_path)
+menuBar.add_command(label='Flush errors', command=delete)
 #_______________________________________________________________________________________________________________________
 
 main.config(menu=menuBar)

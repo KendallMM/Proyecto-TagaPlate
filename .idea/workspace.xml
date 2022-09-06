@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="tagaplate.py comentado">
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="tagaplate.py mejorado v2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexicalAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/lexicalAnalyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prueba1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/syntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/syntaxAnalyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tagaplate.py" beforeDir="false" afterPath="$PROJECT_DIR$/tagaplate.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -214,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662423927583</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="tagaplate.py mejorado v2">
+      <created>1662431941122</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1662431941122</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -237,6 +243,7 @@
     <MESSAGE value="semanticAnalyzer.py sin terminar" />
     <MESSAGE value="tagaplate.py mejorado" />
     <MESSAGE value="tagaplate.py comentado" />
-    <option name="LAST_COMMIT_MESSAGE" value="tagaplate.py comentado" />
+    <MESSAGE value="tagaplate.py mejorado v2" />
+    <option name="LAST_COMMIT_MESSAGE" value="tagaplate.py mejorado v2" />
   </component>
 </project>

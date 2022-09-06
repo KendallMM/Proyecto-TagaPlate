@@ -2,19 +2,21 @@ import ply.yacc as yacc
 from lexicalAnalyzer import tokens
 from semanticAnalyzer import *
 
+err = ''
+
 def p_program(p):
     '''program : COMMENT bodyprogram'''
-    p[0] = Program(p[2], "Program")
-    print(p[0])
+    #p[0] = Program(p[2], "Program")
+    #print(p[0])
 
 def p_bodyprogram1(p):
     '''bodyprogram : procedure bodyprogram'''
-    p[0] = BodyProgram1(p[1], p[2], "BodyProgram1")
+    #p[0] = BodyProgram1(p[1], p[2], "BodyProgram1")
     print("bodyprogram1")
 
 def p_bodyprogram2(p):
     '''bodyprogram : procedure'''
-    p[0] = BodyProgram2(p[1], "BodyProgram2")
+    #p[0] = BodyProgram2(p[1], "BodyProgram2")
     print("bodyprogram2")
 
 def p_bodyprogram3(p):
@@ -23,7 +25,7 @@ def p_bodyprogram3(p):
 
 def p_bodyprogramEmpty(p):
     '''bodyprogram : empty'''
-    p[0] = Null()
+    #p[0] = Null()
     print("bodyprogram nulo")
 
 def p_procedure1(p):
@@ -234,14 +236,15 @@ def p_empty(p):
     pass
 
 def p_error(p):
-    if p.type != 'COMMENT' and p.lineno == 1:
-        print("Sintax error on line 1: Missing expected initial comment.")
-    else:
-        print("Sintax error on line %d: %s does not match %s position." % (p.lineno, p.value, p.type))
+    global err
+    if p.type:
+        if p.type != 'COMMENT' and p.lineno == 1:
+            err = "Sintax error on line 1: Missing expected initial comment."
+        else:
+            err = "Sintax error on line %d: %s does not match %s position." % (p.lineno, p.value, p.type)
 
-#def sintax_analisis(text):
-parser = yacc.yacc()
-result = parser.parse(open("C://Users//Usuario//Documents//GitHub//Proyecto-TagaPlate//prueba1").read())
-#result.print_op("\t")
-print(result)
+def sintax_analisis(path):
+    parser = yacc.yacc()
+    result = parser.parse(open(path).read())
+    print(result)
 
