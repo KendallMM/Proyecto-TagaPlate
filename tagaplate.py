@@ -1,9 +1,9 @@
 # IDE CODE TAGAPLATE
 
 import tkinter as tk
-import sys
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 from tkinter import messagebox
+import lexicalAnalyzer as lx
 
 # GLOBAL VARIABLES
 gpath = ''
@@ -44,8 +44,6 @@ class LineNumber(tk.Text):
 def new_file():
     global gpath, saved
     path = asksaveasfilename(filetypes=[('TagaPlate Files', '*.tgp')])
-    saved = True
-    update_title()
     if path != '':
         if not path.endswith(".tgp"):
             path += ".tgp"
@@ -58,14 +56,13 @@ def new_file():
         textEditor.insert('1.0', welcome)
         file.close()
         gpath = path
-        lineText.on_key_release('<Enter>')
+    saved = True
+    update_title()
 
 
 def open_file():
     global gpath, saved
     path = askopenfilename(filetypes=[('TagaPlate Files', '*.tgp')])
-    saved = True
-    update_title()
     if path != '':
         file = open(path, 'r')
         code = file.read()
@@ -73,10 +70,10 @@ def open_file():
         textEditor.insert('1.0', code)
         gpath = path
         file.close()
-        lineText.on_key_release('<Enter>')
-        highlight_keywords('<Enter>')
     else:
         print("No file selected")
+    saved = True
+    update_title()
 
 
 def save_as():
@@ -104,23 +101,24 @@ def save_as():
 #________________________________________ Compile and Run Functions ____________________________________________________
 
 def compile():
-    global gpath
-    if gpath == '':
-        msgbox = tk.messagebox.askquestion('Save first', 'Do you want to save your file?', icon='warning')
-        if msgbox == 'yes':
-            path = asksaveasfilename(filetypes=[('TagaPlate File', '*.tgp')])
-            gpath = path
-            if path != '':
-                file = open(path, 'w')
-                file.write(textEditor.get('1.0', tk.END))
-                file.close()
-                compile()
-        else:
-            w_errors("Can't compile without saving file")
-            msgbox = tk.messagebox.showinfo('Uncompiled', "Can't compile without saving file", icon='warning')
+    global gpath, saved
+    if (gpath == '') or (gpath != '' and not saved):
+        compile_aux()
+    else:
+        lx.lexical_analisis(gpath)
+        lexical_error_check()
 
-    elif gpath != '':
-        print("Compile process")
+def compile_aux():
+    if ask_to_save() == 'yes':
+        save_as()
+        compile()
+    else:
+        w_errors("Can't compile without saving file")
+        showErrors()
+        tk.messagebox.showinfo('Uncompiled', "Can't compile without saving file", icon='warning')
+
+def ask_to_save():
+    return tk.messagebox.askquestion('Save first', 'Do you want to save your file?', icon='warning')
 
 #____________________________________________ Print Management Functions _______________________________________________
 
@@ -193,6 +191,13 @@ def w_errors(messageError):
     err_row += 1
     t.pack()
     t.config(state='disabled')
+
+def lexical_error_check():
+    if lx.err != '':
+        w_errors(lx.err)
+        showErrors()
+    else:
+        pass
 
 errorW = tk.Toplevel(main)
 errorW.title("TagaPlate - Errors")

@@ -1,5 +1,7 @@
 import ply.lex as lex
 
+err = ''
+
 tokens = ['PRINCIPAL', 'ID', 'NUMBER', 'ADD', 'SUB', 'MUL', 'DIV', 'NEW', 'CALL', 'PROCEDURE',
           'TRUE', 'FALSE', 'NUMVAL', 'BOOLVAL', 'VALUES', 'ALTER', 'ALTERB', 'MOVR', 'MOVL',
           'HAMMER', 'STOP', 'VERT', 'REPEAT', 'UNTIL', 'WHILE', 'CASE', 'WHEN', 'THEN', 'ELSE',
@@ -60,16 +62,17 @@ def t_newline(t):
     t.lexer.lineno += len(t.value)
 
 def t_error(t):
-    print("Lexical Error: Illegal character '%s' in line '%d'" % (t.value[0], t.lexer.lineno))
+    global err
+    err = "Lexical Error: Illegal character '%s' in line '%d'" % (t.value[0], t.lexer.lineno)
     t.lexer.skip(len(t.value))
 
-#def lexical_analisis(text):
-lexer = lex.lex()
-lexer.input(open("C://Users//Usuario//Documents//GitHub//Proyecto-TagaPlate//prueba1").read())
-while True:
-    token = lexer.token()
-    if not token:
-        lexer.lineno = 1
-        break
-    print(token)
+def lexical_analisis(path):
+    lexer = lex.lex()
+    lexer.input(open(path).read())
+    while True:
+        token = lexer.token()
+        if not token:
+            lexer.lineno = 1
+            break
+        print(token)
 
