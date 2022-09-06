@@ -267,8 +267,7 @@ secondWindows.add_command(label='Errors window', command=showErrors)
 menuBar.add_cascade(label='Theme', menu=themeBar)
 menuBar.add_cascade(label='Windows', menu=secondWindows)
 
-menuBar.add_command(label="PATH", command=print_path)
-menuBar.add_command(label='Flush errors', command=delete)
+menuBar.add_command(label='FLUSH', command=delete)
 #_______________________________________________________________________________________________________________________
 
 main.config(menu=menuBar)
