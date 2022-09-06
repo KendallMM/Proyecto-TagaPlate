@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="tagaplate.py mejorado v2">
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="tagaplate.py mejorado v4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/semanticAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/semanticAnalyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/syntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/syntaxAnalyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tagaplate.py" beforeDir="false" afterPath="$PROJECT_DIR$/tagaplate.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +220,21 @@
       <option name="project" value="LOCAL" />
       <updated>1662431941122</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="tagaplate.py mejorado v3">
+      <created>1662433964845</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1662433964845</updated>
+    </task>
+    <task id="LOCAL-00011" summary="tagaplate.py mejorado v4">
+      <created>1662434368332</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1662434368332</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -244,6 +258,8 @@
     <MESSAGE value="tagaplate.py mejorado" />
     <MESSAGE value="tagaplate.py comentado" />
     <MESSAGE value="tagaplate.py mejorado v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="tagaplate.py mejorado v2" />
+    <MESSAGE value="tagaplate.py mejorado v3" />
+    <MESSAGE value="tagaplate.py mejorado v4" />
+    <option name="LAST_COMMIT_MESSAGE" value="tagaplate.py mejorado v4" />
   </component>
 </project>

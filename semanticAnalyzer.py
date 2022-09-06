@@ -24,46 +24,15 @@ class Null(Node):
         return id
 
 class Program(Node):
-    def __init__(self, son2, name):
-        self.name = name
-        self.son2 = son2
-
-    def print_op(self, ident):
-        self.son2.print_op(ident)
-        print(ident + "Node: " + self.name)
-
-    def translate(self):
-        global txt
-        id = update_id()
-        son2 = self.son2.translate()
-
-        txt += id + "[label= " + self.name + "]" + "\n\t"
-        txt += id + "->" + son2 + "\n\t"
-
-        return "digraph G {\n\t" + txt + "}"
-
-class BodyProgram1(Node):
     def __init__(self, son1, son2, name):
+        self.name = name
         self.son1 = son1
         self.son2 = son2
+
+class BodyProgram1(Node):
+    def __init__(self, son1, name):
+        self.son1 = son1
         self.name = name
-
-    def print_op(self, ident):
-        self.son1.print_op(ident)
-        self.son2.print_op(ident)
-        print(ident + "Node: " + self.name)
-
-    def translate(self):
-        global txt
-        id = update_id()
-        son1 = self.son1.translate()
-        son2 = self.son2.translate()
-
-        txt += id + "[label= " + self.name + "]" + "\n\t"
-        txt += id + "->" + son1 + "\n\t"
-        txt += id + "->" + son2 + "\n\t"
-
-        return id
 
 class BodyProgram2(Node):
     def __init__(self, son1, name):

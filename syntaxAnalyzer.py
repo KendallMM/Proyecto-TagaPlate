@@ -6,18 +6,15 @@ err = ''
 
 def p_program(p):
     '''program : COMMENT bodyprogram'''
-    #p[0] = Program(p[2], "Program")
-    #print(p[0])
+    p[0] = Program(p[1], p[2], "Program")
 
 def p_bodyprogram1(p):
     '''bodyprogram : procedure bodyprogram'''
-    #p[0] = BodyProgram1(p[1], p[2], "BodyProgram1")
-    print("bodyprogram1")
+    p[0] = BodyProgram1(p[1], "BodyProgram1")
 
 def p_bodyprogram2(p):
     '''bodyprogram : procedure'''
-    #p[0] = BodyProgram2(p[1], "BodyProgram2")
-    print("bodyprogram2")
+    p[0] = BodyProgram2(p[1], "BodyProgram2")
 
 def p_bodyprogram3(p):
     '''bodyprogram : COMMENT'''
@@ -45,7 +42,7 @@ def p_instructions2(p):
     print("Values instruction")
     
 def p_instructions3(p):
-    '''instructions : alterbody SEMICOLON instructions'''
+    '''instructions : ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON instructions'''
     print("Alter instruction")
 
 def p_instructions4(p):
@@ -103,9 +100,6 @@ def p_instructionsEmpty(p):
     '''instructions : empty'''
     print("instruccion nula")
 
-def p_alterbody(p):
-    '''alterbody : ALTER LPARENT ID COMMA operator COMMA value RPARENT'''
-
 def p_datatype1(p):
     '''datatype : NUMVAL'''
 
@@ -122,7 +116,7 @@ def p_value3(p):
     '''value : FALSE'''
 
 def p_value4(p):
-    '''value : alterbody'''
+    '''value : ALTER LPARENT ID COMMA operator COMMA value RPARENT'''
 
 def p_operator1(p):
     '''operator : ADD'''
