@@ -1,24 +1,25 @@
 import ply.yacc as yacc
 from lexicalAnalyzer import tokens
 from parseTree import *
+from semanticAnalyzer import *
 
 err = ''
 
 def p_program(p):
     '''program : COMMENT bodyprogram'''
-    p[0] = Program('Program', p[1], p[2])
+    p[0] = Program(p[1], p[2], 'Program')
 
 def p_bodyprogram1(p):
     '''bodyprogram : procedure bodyprogram'''
-    p[0] = BodyProgram('BodyProgram', p[1], p[2])
+    p[0] = BodyProgram1(p[1], p[2], 'BodyProgram1')
 
 def p_bodyprogram2(p):
     '''bodyprogram : procedure'''
-    p[0] = BodyProgram('BodyProgram', p[1], None)
+    p[0] = BodyProgram2(p[1], 'BodyProgram2')
 
 def p_bodyprogram3(p):
     '''bodyprogram : COMMENT'''
-    p[0] = BodyProgram('BodyProgram', p[1], None)
+    p[0] = BodyProgram3(p[1], 'BodyProgram3')
 
 def p_bodyprogramEmpty(p):
     '''bodyprogram : empty'''
@@ -26,19 +27,19 @@ def p_bodyprogramEmpty(p):
 
 def p_procedure1(p):
     '''procedure : PRINCIPAL LPARENT instructions RPARENT SEMICOLON'''
-    print("procedure1")
+    p[0] = Procedure1(p[1], p[2],p[3], p[4],p[5], 'Procedure1')
 
 def p_procedure2(p):
     '''procedure : PROCEDURE ID LPARENT instructions RPARENT SEMICOLON'''
-    print("procedure2")
+    p[0] = Procedure2(p[1], p[2],p[3], p[4],p[5],p[6], 'Procedure2')
 
 def p_instructions1(p):
     '''instructions : NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON instructions'''
-    print("New instruction")
+    p[0] = Instructions1(p[1], p[2],p[3], p[4],p[5],p[6],p[7],p[8],p[9], 'Instructions1')
 
 def p_instructions2(p):
     '''instructions : VALUES LPARENT ID COMMA value RPARENT SEMICOLON instructions'''
-    print("Values instruction")
+    p[0] = Instructions2(p[1], p[2],p[3], p[4],p[5],p[6],p[7],p[8], 'Instructions2')
     
 def p_instructions3(p):
     '''instructions : ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON instructions'''

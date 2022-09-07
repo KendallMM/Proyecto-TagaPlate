@@ -1,12 +1,12 @@
 txt = ""
-id = 0
+cont = 0
 
 def update_id():
-    global id
-    id += 1
-    return "%d" %id
+    global cont
+    cont += 1
+    return "%d" %cont
 
-class Node:
+class Node():
     pass
 
 class Null(Node):
@@ -19,7 +19,7 @@ class Null(Node):
     def translate(self):
         global txt
         id = update_id()
-        txt += id + "[label= Nulo]\n\t"
+        txt += id + "[label= "+"Nulo"+"]"+"\n\t"
 
         return id
 
@@ -28,32 +28,84 @@ class Program(Node):
         self.name = name
         self.son1 = son1
         self.son2 = son2
+    def print_op(self, ident):
+        self.son1.print_op(" "+ident)
+        self.son2.print_op(" " + ident)
+        print(ident + "Nodo: " + self.name)
+
+    def translate(self):
+        global txt
+        id = update_id()
+        son1 = self.son1.translate()
+        son2 = self.son2.translate()
+        txt += id + "[label= "+self.name+"]"+"\n\t"
+        txt += id + "->" + son1 + "\n\t"
+        txt += id + "->" + son2 + "\n\t"
+        return "TagaPlate {\n\t"+txt+"}"
 
 class BodyProgram1(Node):
-    def __init__(self, son1, name):
-        self.son1 = son1
+    def __init__(self, son1, son2, name):
         self.name = name
+        self.son1 = son1
+        self.son2 = son2
+
+    def imprimir(self, ident):
+        self.son1.imprimir(" " + ident)
+        self.son2.imprimir(" " + ident)
+
+        print
+        ident + "Nodo: " + self.name
+
+    def traducir(self):
+        global txt
+        id = update_id()
+
+        son1 = self.son1.traducir()
+        son2 = self.son2.traducir()
+
+        txt += id + "[label= " + self.name + "]" + "\n\t"
+        txt += id + " -> " + son1 + "\n\t"
+        txt += id + " -> " + son2 + "\n\t"
+
+        return id
 
 class BodyProgram2(Node):
     def __init__(self, son1, name):
         self.name = name
         self.son1 = son1
 
-    def print_op(self, ident):
-        self.son1.print_op(ident)
-        print(ident + "Node: " + self.name)
+    def imprimir(self, ident):
+        self.son1.imprimir(" " + ident)
+        print
+        ident + "Nodo: " + self.name
 
-    def translate(self):
+    def traducir(self):
         global txt
         id = update_id()
-        son1 = self.son1.translate()
-
+        son1 = self.son1.traducir()
         txt += id + "[label= " + self.name + "]" + "\n\t"
-        txt += id + "->" + son1 + "\n\t"
-
+        txt += id + " -> " + son1 + "\n\t"
         return id
 
 class BodyProgram3(Node):
+    def __init__(self, son1, name):
+        self.name = name
+        self.son1 = son1
+
+    def imprimir(self, ident):
+        self.son1.imprimir(" " + ident)
+        print
+        ident + "Nodo: " + self.name
+
+    def traducir(self):
+        global txt
+        id = update_id()
+        son1 = self.son1.traducir()
+        txt += id + "[label= " + self.name + "]" + "\n\t"
+        txt += id + " -> " + son1 + "\n\t"
+        return id
+
+"""class BodyProgramEmpty(Node):
     def __init__(self, name):
         self.name = name
 
@@ -63,19 +115,7 @@ class BodyProgram3(Node):
     def translate(self):
         global txt
         id = update_id()
-        return id
-
-class BodyProgramEmpty(Node):
-    def __init__(self, name):
-        self.name = name
-
-    def print_op(self, ident):
-        print(ident + "Node: " + self.name)
-
-    def translate(self):
-        global txt
-        id = update_id()
-        return id
+        return id"""
 
 class Procedure1(Node):
     def __init__(self, son3, name):
