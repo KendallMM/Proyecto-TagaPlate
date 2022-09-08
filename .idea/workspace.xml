@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="cambios varios">
-      <change beforePath="$PROJECT_DIR$/.idea/Proyecto-TagaPlate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Proyecto-TagaPlate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29_8_2022_21_46_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29_8_2022_21_46__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29_8_2022_23_10_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29_8_2022_23_10__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_8_2022_23_11_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_8_2022_23_11__Changes_.xml" beforeDir="false" />
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Se sigue avanzando el desarrollo del Analizador Semantico">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/semanticAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/semanticAnalyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/syntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/syntaxAnalyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/syntaxanalysis.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662437912956</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Se sigue avanzando el desarrollo del Analizador Semantico">
+      <created>1662520562534</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1662520562534</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -298,6 +295,7 @@
     <MESSAGE value="tagaplate.py mejorado v3" />
     <MESSAGE value="tagaplate.py mejorado v4" />
     <MESSAGE value="cambios varios" />
-    <option name="LAST_COMMIT_MESSAGE" value="cambios varios" />
+    <MESSAGE value="Se sigue avanzando el desarrollo del Analizador Semantico" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se sigue avanzando el desarrollo del Analizador Semantico" />
   </component>
 </project>
