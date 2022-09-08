@@ -217,6 +217,8 @@ def sintax_error_check():
         showErrors()
     else:
         pass
+    if (sx.errorCounter==-1):
+        w_errors("El código no presenta errores! :D")
 
 def delete():
     t.config(state='normal')

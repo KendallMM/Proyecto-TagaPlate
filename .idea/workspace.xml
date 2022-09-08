@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Se sigue avanzando el desarrollo del Analizador Semantico">
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Se continuo el desarrollo del analizador semantico">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/semanticAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/semanticAnalyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/syntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/syntaxAnalyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tagaplate.py" beforeDir="false" afterPath="$PROJECT_DIR$/tagaplate.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +56,7 @@
       <recent name="C:\Users\Usuario\Documents\GitHub\Proyecto-TagaPlate\TagaPlate Compiler" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.semanticAnalyzer">
+  <component name="RunManager" selected="Python.tagaplate">
     <configuration name="TagaPlate IDE" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Proyecto-TagaPlate" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -146,7 +148,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\Usuario\Documents\GitHub\Proyecto-TagaPlate\venv\Scripts\python.exe" />
+      <option name="SDK_HOME" value="/usr/bin/python3.8" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -268,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662520562534</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Se continuo el desarrollo del analizador semantico">
+      <created>1662607177796</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1662607177796</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -296,6 +305,7 @@
     <MESSAGE value="tagaplate.py mejorado v4" />
     <MESSAGE value="cambios varios" />
     <MESSAGE value="Se sigue avanzando el desarrollo del Analizador Semantico" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se sigue avanzando el desarrollo del Analizador Semantico" />
+    <MESSAGE value="Se continuo el desarrollo del analizador semantico" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se continuo el desarrollo del analizador semantico" />
   </component>
 </project>
