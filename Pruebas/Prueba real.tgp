@@ -1,0 +1,13 @@
+-- Este es un programa de prueba
+
+Principal(
+ New @var12(Num, 15);
+ While @var12 <= 87 (
+  Alter(@var12, ADD, 1);
+ );
+ CALL(@proc1);
+);
+
+Proc @proc1(
+ Hammer(N);
+);

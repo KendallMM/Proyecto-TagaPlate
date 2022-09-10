@@ -10,28 +10,22 @@ def p_program(p):
     #p[0] = Program(p[1], p[2], 'Program')
 
 def p_bodyprogram1(p):
-    '''bodyprogram : procedure bodyprogram'''
+    '''bodyprogram : procedures principalproc procedures'''
     #p[0] = BodyProgram1(p[1], p[2], 'BodyProgram1')
-
-def p_bodyprogram2(p):
-    '''bodyprogram : procedure'''
-    #p[0] = BodyProgram2(p[1], 'BodyProgram2')
-
-def p_bodyprogram3(p):
-    '''bodyprogram : COMMENT'''
-    #p[0] = BodyProgram3(p[1], 'BodyProgram3')
 
 def p_bodyprogramEmpty(p):
     '''bodyprogram : empty'''
     #p[0] = NullNode()
 
-def p_procedure1(p):
-    '''procedure : PRINCIPAL LPARENT instructions RPARENT SEMICOLON'''
-    #p[0] = Procedure1(p[1], p[2],p[3], p[4],p[5], 'Procedure1')
+def p_principalproc(p):
+    '''principalproc : PRINCIPAL LPARENT instructions RPARENT SEMICOLON'''
 
-def p_procedure2(p):
-    '''procedure : PROCEDURE ID LPARENT instructions RPARENT SEMICOLON'''
+def p_procedure1(p):
+    '''procedures : PROCEDURE ID LPARENT instructions RPARENT SEMICOLON'''
     #p[0] = Procedure2(p[1], p[2],p[3], p[4],p[5],p[6], 'Procedure2')
+
+def p_proceduresEmpty(p):
+    '''procedures : empty'''
 
 def p_instructions1(p):
     '''instructions : NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON instructions'''
@@ -94,7 +88,7 @@ def p_instructions15(p):
     #p[0] = Instructions15(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions15')
 
 def p_instructions16(p):
-    '''instructions : COMMENT instructions'''
+    '''instructions : instructions COMMENT'''
     #p[0] = Instructions16(p[1], p[2], 'Instructions16')
 
 def p_instructionsEmpty(p):
@@ -217,13 +211,24 @@ def p_istrue(p):
     '''istrue : VERT LPARENT ID RPARENT'''
     #p[0] = IsTrue(p[1],p[2],p[3],p[4], 'IsTrue')
 def p_printvalues1(p):
-    '''printvalues : STRING printvalues'''
+    '''printvalues : startvalue printvalues'''
     #p[0] = PrintValues1(p[1],p[2], 'PrintValues1')
+
 def p_printvalues2(p):
-    '''printvalues : COMMA ID printvalues'''
+    '''printvalues : COMMA STRING printvalues'''
     #p[0] = PrintValues2(p[1],p[2],p[3], 'PrintValues2')
+
+def p_printvalues3(p):
+    '''printvalues : COMMA ID printvalues'''
+
 def p_printvaluesEmpty(p):
     '''printvalues : empty'''
+
+def p_startvalue1(p):
+    '''startvalue : STRING'''
+
+def p_startvalue2(p):
+    '''startvalue : ID'''
 
 def p_empty(p):
     '''empty :'''

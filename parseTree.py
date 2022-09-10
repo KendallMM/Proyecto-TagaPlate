@@ -6,6 +6,7 @@ class NullNode(Node):
     def __init__(self):
         self.value = 'Nulo'
 
+
 class Program(Node):
     def __init__(self, value, son1, son2):
         self.value = value
