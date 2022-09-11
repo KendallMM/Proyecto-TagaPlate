@@ -152,7 +152,8 @@ def update_title():
         main.title('TagaPlate IDE (not saved)')
 
 def highlight_keywords(event):
-    words = {'New': 'blue',
+    words = {'Principal': 'yellow',
+             'New': 'blue',
              'True': 'blue',
              'False': 'blue',
              'While': 'blue',

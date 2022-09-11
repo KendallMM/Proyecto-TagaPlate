@@ -6,113 +6,113 @@ err = ''
 errorCounter=0
 
 def p_program(p):
-    '''program : COMMENT bodyprogram'''
-    #p[0] = Program(p[1], p[2], 'Program')
-
-def p_bodyprogram1(p):
-    '''bodyprogram : procedures principalproc procedures'''
-    #p[0] = BodyProgram1(p[1], p[2], 'BodyProgram1')
-
-def p_bodyprogramEmpty(p):
-    '''bodyprogram : empty'''
-    #p[0] = NullNode()
+    '''program : COMMENT principalproc procedures'''
+    p[0] = Program(p[1], p[2], p[3], 'Program')
 
 def p_principalproc(p):
     '''principalproc : PRINCIPAL LPARENT instructions RPARENT SEMICOLON'''
+    p[0] = PrincipalProc(p[1], p[2], p[3], p[4], p[5], 'Principal')
 
-def p_procedure1(p):
-    '''procedures : PROCEDURE ID LPARENT instructions RPARENT SEMICOLON'''
-    #p[0] = Procedure2(p[1], p[2],p[3], p[4],p[5],p[6], 'Procedure2')
+def p_procedures(p):
+    '''procedures : PROCEDURE ID LPARENT instructions RPARENT SEMICOLON procedures'''
+    p[0] = Procedures(p[1], p[2], p[3], p[4], p[5], p[6], p[7], 'Procedure')
 
 def p_proceduresEmpty(p):
     '''procedures : empty'''
+    p[0] = NullNode()
 
 def p_instructions1(p):
     '''instructions : NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON instructions'''
-    #p[0] = Instructions1(p[1], p[2],p[3], p[4],p[5],p[6],p[7],p[8],p[9], 'Instructions1')
+    p[0] = Instructions1(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], 'Instructions1')
 
 def p_instructions2(p):
     '''instructions : VALUES LPARENT ID COMMA value RPARENT SEMICOLON instructions'''
-    #p[0] = Instructions2(p[1], p[2],p[3], p[4],p[5],p[6],p[7],p[8], 'Instructions2')
+    p[0] = Instructions2(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], 'Instructions2')
     
 def p_instructions3(p):
     '''instructions : ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON instructions'''
-    #p[0] = Instructions3(p[1], p[2],p[3], p[4],p[5],p[6],p[7],p[8],p[9],p[10], 'Instructions3')
+    p[0] = Instructions3(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], 'Instructions3')
 
 def p_instructions4(p):
     '''instructions : ALTERB LPARENT value RPARENT SEMICOLON instructions'''
-    #p[0] = Instructions4(p[1], p[2],p[3], p[4],p[5],p[6], 'Instructions4')
+    p[0] = Instructions4(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions4')
 
 def p_instructions5(p):
     '''instructions : MOVR SEMICOLON instructions'''
-    #p[0] = Instructions5(p[1], p[2],p[3], 'Instructions5')
+    p[0] = Instructions5(p[1], p[2], p[3], 'Instructions5')
 
 def p_instructions6(p):
     '''instructions : MOVL SEMICOLON instructions'''
-    #p[0] = Instructions6(p[1], p[2],p[3], 'Instructions6')
+    p[0] = Instructions6(p[1], p[2], p[3], 'Instructions6')
 
 def p_instructions7(p):
     '''instructions : HAMMER LPARENT position RPARENT SEMICOLON instructions'''
-    #p[0] = Instructions7(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions7')
+    p[0] = Instructions7(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions7')
 
 def p_instructions8(p):
     '''instructions : STOP SEMICOLON instructions'''
-    #p[0] = Instructions8(p[1], p[2], p[3], 'Instructions8')
+    p[0] = Instructions8(p[1], p[2], p[3], 'Instructions8')
 
 def p_instructions9(p):
     '''instructions : REPEAT LPARENT repeat_instructions RPARENT SEMICOLON instructions'''
-    #p[0] = Instructions9(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions9')
+    p[0] = Instructions9(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions9')
 
 def p_instructions10(p):
     '''instructions : untilbody SEMICOLON instructions'''
-    #p[0] = Instructions10(p[1], p[2], p[3], 'Instructions10')
+    p[0] = Instructions10(p[1], p[2], p[3], 'Instructions10')
 
 def p_instructions11(p):
     '''instructions : whilebody SEMICOLON instructions'''
-    #p[0] = Instructions11(p[1], p[2], p[3], 'Instructions11')
+    p[0] = Instructions11(p[1], p[2], p[3], 'Instructions11')
 
 def p_instructions12(p):
     '''instructions : casebody SEMICOLON instructions'''
-    #p[0] = Instructions12(p[1], p[2], p[3], 'Instructions12')
+    p[0] = Instructions12(p[1], p[2], p[3], 'Instructions12')
 
 def p_instructions13(p):
     '''instructions : PRINT LPARENT printvalues RPARENT SEMICOLON instructions'''
-    #p[0] = Instructions13(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions13')
+    p[0] = Instructions13(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions13')
 
 def p_instructions14(p):
     '''instructions : istrue SEMICOLON instructions'''
-    #p[0] = Instructions14(p[1], p[2], p[3], 'Instructions14')
+    p[0] = Instructions14(p[1], p[2], p[3], 'Instructions14')
 
 def p_instructions15(p):
     '''instructions : CALL LPARENT ID RPARENT SEMICOLON instructions'''
-    #p[0] = Instructions15(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions15')
+    p[0] = Instructions15(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions15')
 
 def p_instructions16(p):
-    '''instructions : instructions COMMENT'''
-    #p[0] = Instructions16(p[1], p[2], 'Instructions16')
+    '''instructions : COMMENT'''
+    p[0] = Instructions16(p[1], 'Instructions16')
 
 def p_instructionsEmpty(p):
     '''instructions : empty'''
-    print("instruccion nula")
+    p[0] = NullNode()
 
 def p_datatype1(p):
     '''datatype : NUMVAL'''
-    #p[0] = DataType1(p[1], 'DataType1')
+    p[0] = DataType1(p[1], 'DataType1')
+
 def p_datatype2(p):
     '''datatype : BOOLVAL'''
-    #p[0] = DataType2(p[1], 'DataType2')
+    p[0] = DataType2(p[1], 'DataType2')
+
 def p_value1(p):
     '''value : NUMBER'''
-    #p[0] = Value1(p[1], 'Value1')
+    p[0] = Value1(p[1], 'Value1')
+
 def p_value2(p):
     '''value : TRUE'''
-    #p[0] = Value2(p[1], 'Value2')
+    p[0] = Value2(p[1], 'Value2')
+
 def p_value3(p):
     '''value : FALSE'''
-    #p[0] = Value3(p[1], 'Value3')
+    p[0] = Value3(p[1], 'Value3')
+
 def p_value4(p):
     '''value : ALTER LPARENT ID COMMA operator COMMA value RPARENT'''
-    #p[0] = Value4(p[1],p[2],p[3], p[4],p[5],p[6],p[7],p[8], 'Value4')
+    p[0] = Value4(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], 'Value4')
+
 def p_operator1(p):
     '''operator : ADD'''
     #p[0] = Operator1(p[1], 'Operator1')
@@ -210,15 +210,15 @@ def p_condition7(p):
 def p_istrue(p):
     '''istrue : VERT LPARENT ID RPARENT'''
     #p[0] = IsTrue(p[1],p[2],p[3],p[4], 'IsTrue')
-def p_printvalues1(p):
-    '''printvalues : startvalue printvalues'''
+def p_printstart(p):
+    '''printstart : startvalue printvalues'''
     #p[0] = PrintValues1(p[1],p[2], 'PrintValues1')
 
-def p_printvalues2(p):
+def p_printvalues1(p):
     '''printvalues : COMMA STRING printvalues'''
     #p[0] = PrintValues2(p[1],p[2],p[3], 'PrintValues2')
 
-def p_printvalues3(p):
+def p_printvalues2(p):
     '''printvalues : COMMA ID printvalues'''
 
 def p_printvaluesEmpty(p):
@@ -238,7 +238,7 @@ def p_error(p):
     global err
     global errorCounter
     errorCounter+1
-    if p.type:
+    if p:
         if p.type != 'COMMENT' and p.lineno == 1:
             err = "Sintax error on line 1: Missing expected initial comment."
         else:
