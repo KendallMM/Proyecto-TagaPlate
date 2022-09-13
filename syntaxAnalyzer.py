@@ -6,12 +6,13 @@ err = ''
 errorCounter=0
 
 def p_program(p):
-    '''program : COMMENT principalproc procedures'''
+    '''program : COMMENT principal procedures'''
     p[0] = Program(p[1], p[2], p[3], 'Program')
+    p[0].printtxt('\t')
 
-def p_principalproc(p):
-    '''principalproc : PRINCIPAL LPARENT instructions RPARENT SEMICOLON'''
-    p[0] = PrincipalProc(p[1], p[2], p[3], p[4], p[5], 'Principal')
+def p_principal(p):
+    '''principal : PRINCIPAL LPARENT instructions RPARENT SEMICOLON'''
+    p[0] = Principal(p[1], p[2], p[3], p[4], p[5], 'Principal')
 
 def p_procedures(p):
     '''procedures : PROCEDURE ID LPARENT instructions RPARENT SEMICOLON procedures'''
@@ -70,7 +71,7 @@ def p_instructions12(p):
     p[0] = Instructions12(p[1], p[2], p[3], 'Instructions12')
 
 def p_instructions13(p):
-    '''instructions : PRINT LPARENT printvalues RPARENT SEMICOLON instructions'''
+    '''instructions : PRINT LPARENT printstart RPARENT SEMICOLON instructions'''
     p[0] = Instructions13(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions13')
 
 def p_instructions14(p):

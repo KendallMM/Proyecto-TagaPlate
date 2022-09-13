@@ -1,5 +1,9 @@
 -- Prueba
 
+Principal(
+ New @var2(Num,5);
+);
+
 Proc @var1(
- New 
+ New @variable(Bool, True);
 );

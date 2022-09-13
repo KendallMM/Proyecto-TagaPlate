@@ -1,4 +1,4 @@
-tree_code = ''
+printxt = ''
 
 
 class Node:
@@ -9,6 +9,9 @@ class NullNode(Node):
     def __init__(self):
         self.name = 'Null'
 
+    def printtxt(self):
+        return self.name
+
 
 class Program(Node):
     def __init__(self, son1, son2, son3, name):
@@ -17,12 +20,20 @@ class Program(Node):
         self.son3 = son3
         self.name = name
 
-    def create(self):
-        global tree_code
-        tree_code += '[' + self.name + '\n\t'
+    def printtxt(self, ident1):
+        global printxt
+        printxt += '[' + self.name + '\n' + ident1
+
+        printxt += '[' + self.son1 + ']' + '\n' + ident1
+        printxt += '[' + self.son2.printtxt(ident1 + '\t', ident1) + '\n' + ident1
+        printxt += '[' + self.son3.printtxt(ident1 + '\t', ident1) + '\n'
+
+        printxt += ']'
+
+        print(printxt)
 
 
-class PrincipalProc(Node):
+class Principal(Node):
     def __init__(self, son1, son2, son3, son4, son5, name):
         self.son1 = son1
         self.son2 = son2
@@ -30,6 +41,18 @@ class PrincipalProc(Node):
         self.son4 = son4
         self.son5 = son5
         self.name = name
+
+    def printtxt(self, ident1, ident2):
+        text = self.name + '\n' + ident1
+
+        text += '[' + self.son1 + ']' + '\n' + ident1
+        text += '[' + self.son2 + ']' + '\n' + ident1
+        text += '[' + self.son3.printtxt(ident1 + '\t', ident1) + ']' + '\n' + ident1
+        text += '[' + self.son4 + ']' + '\n' + ident1
+        text += '[' + self.son5 + ']' + '\n'
+
+        text += ident2 + ']'
+        return text
 
 
 class Procedures(Node):
@@ -43,6 +66,19 @@ class Procedures(Node):
         self.son7 = son7
         self.name = name
 
+    def printtxt(self, ident1, ident2):
+        text = self.name + '\n' + ident1
+
+        text += '[' + self.son1 + ']' + '\n' + ident1
+        text += '[' + self.son2 + ']' + '\n' + ident1
+        text += '[' + self.son3 + ']' + '\n' + ident1
+        text += '[' + self.son4.printtxt(ident1 + '\t', ident1) + ']' + '\n' + ident1
+        text += '[' + self.son5 + ']' + '\n' + ident1
+        text += '[' + self.son6 + ']' + '\n' + ident1
+        text += '[' + self.son7.printtxt() + ']' + '\n'
+
+        text += ident2 + ']'
+        return text
 
 class Instructions1(Node):
     def __init__(self, son1, son2, son3, son4, son5, son6, son7, son8, son9, name):
@@ -57,6 +93,22 @@ class Instructions1(Node):
         self.son9 = son9
         self.name = name
 
+    def printtxt(self, ident1, ident2):
+        text = self.name + '\n' + ident1
+
+        text += '[' + self.son1 + ']' + '\n' + ident1
+        text += '[' + self.son2 + ']' + '\n' + ident1
+        text += '[' + self.son3 + ']' + '\n' + ident1
+        text += '[' + 'datatype' + ']' + '\n' + ident1
+        text += '[' + self.son5 + ']' + '\n' + ident1
+        text += '[' + 'value' + ']' + '\n' + ident1
+        text += '[' + self.son7 + ']' + '\n' + ident1
+        text += '[' + self.son8 + ']' + '\n' + ident1
+        text += '[' + self.son9.printtxt() + ']' + '\n'
+
+        text += ident2 + ']'
+        return text
+
 
 class Instructions2(Node):
     def __init__(self, son1, son2, son3, son4, son5, son6, son7, son8, name):
@@ -69,6 +121,20 @@ class Instructions2(Node):
         self.son7 = son7
         self.son8 = son8
         self.name = name
+
+    def printtxt(self, ident1, ident2):
+        text = self.name + '\n' + ident1
+
+        text += '[' + self.son1 + ']' + '\n' + ident1
+        text += '[' + self.son2 + ']' + '\n' + ident1
+        text += '[' + self.son3 + ']' + '\n' + ident1
+        text += '[' + 'instructions' + ']' + '\n' + ident1
+        text += '[' + self.son5 + ']' + '\n' + ident1
+        text += '[' + self.son6 + ']' + '\n' + ident1
+        text += '[' + self.son7.printtxt() + ']' + '\n'
+
+        text += ident2 + ']'
+        return text
 
 
 class Instructions3(Node):
