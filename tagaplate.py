@@ -59,6 +59,7 @@ def new_file():
         file.close()
         gpath = path
         lineText.on_key_release('<Enter>')
+        sx.root = None
     saved = True
     update_title()
 
@@ -76,6 +77,7 @@ def open_file():
         file.close()
         lineText.on_key_release('<Enter>')
         highlight_keywords('<Enter>')
+        sx.root = None
     else:
         print("No file selected")
     saved = True
@@ -152,7 +154,7 @@ def update_title():
         main.title('TagaPlate IDE (not saved)')
 
 def highlight_keywords(event):
-    words = {'Principal': 'red',
+    words = {'@Principal': 'orange',
              'New': 'blue',
              'True': 'blue',
              'False': 'blue',
@@ -244,6 +246,10 @@ textEditor.bind('<Key>', highlight_keywords)
 lineText = LineNumber(main, textEditor, width=1)
 lineText.pack(side=tk.LEFT)
 
+def tree():
+    sx.tree_text = '\n'
+    sx.root.printtxt('\t')
+
 #___________________________________________ IDE Menu Management _______________________________________________________
 
 menuBar = tk.Menu(main)
@@ -265,11 +271,12 @@ themeBar.add_command(label='Light', command=set_light)
 
 secondWindows = tk.Menu(menuBar, tearoff=0)
 secondWindows.add_command(label='Errors window', command=showErrors)
-#secondWindows.add_command(label='Prints window', command=set_light)
+secondWindows.add_command(label='Prints window')
 
 menuBar.add_cascade(label='Theme', menu=themeBar)
 menuBar.add_cascade(label='Windows', menu=secondWindows)
 
+menuBar.add_command(label='Tree', command=tree)
 menuBar.add_command(label='FLUSH', command=delete)
 #_______________________________________________________________________________________________________________________
 

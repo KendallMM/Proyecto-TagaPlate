@@ -9,8 +9,6 @@ tokens = ['PRINCIPAL', 'ID', 'NUMBER', 'ADD', 'SUB', 'MUL', 'DIV', 'NEW', 'CALL'
           'RPARENT', 'COMMENT', 'NORTH', 'SOUTH', 'EAST', 'WEST', 'BREAK', 'STRING']
 
 t_ignore = ' \t'
-t_PRINCIPAL = r'Principal'
-t_ID = r'@[a-zA-Z0-9_#]{2,9}'
 t_NUMBER = r'[0-9]+'
 t_ADD = r'ADD'
 t_SUB = r'SUB'
@@ -56,6 +54,12 @@ t_COMMA = r'\,'
 t_SEMICOLON = r'\;'
 t_STRING = r'\".*\"'
 t_COMMENT = r'--.*'
+
+def t_ID(t):
+    r'@[a-zA-Z0-9_#]{2,9}'
+    if t.value == '@Principal':
+        t.type = 'PRINCIPAL'
+    return t
 
 def t_newline(t):
     r'\n+'

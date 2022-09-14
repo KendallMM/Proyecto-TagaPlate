@@ -3,16 +3,25 @@ from lexicalAnalyzer import tokens
 from parseTree import *
 
 err = ''
-errorCounter=0
+errorCounter = 0
+root = None
 
 def p_program(p):
-    '''program : COMMENT principal procedures'''
-    p[0] = Program(p[1], p[2], p[3], 'Program')
-    p[0].printtxt('\t')
+    '''program : COMMENT procedures principal procedures'''
+    p[0] = Program(p[1], p[2], p[3], p[4], 'Program')
+    global root
+    root = p[0]
 
 def p_principal(p):
     '''principal : PRINCIPAL LPARENT instructions RPARENT SEMICOLON'''
     p[0] = Principal(p[1], p[2], p[3], p[4], p[5], 'Principal')
+
+def p_principalEmpty(p):
+    '''principal : empty'''
+    global err, errorCounter
+    err = "Principal Method Not Found!"
+    errorCounter = errorCounter + 2
+    p[0] = NullNode()
 
 def p_procedures(p):
     '''procedures : PROCEDURE ID LPARENT instructions RPARENT SEMICOLON procedures'''
@@ -213,23 +222,27 @@ def p_istrue(p):
     #p[0] = IsTrue(p[1],p[2],p[3],p[4], 'IsTrue')
 def p_printstart(p):
     '''printstart : startvalue printvalues'''
-    #p[0] = PrintValues1(p[1],p[2], 'PrintValues1')
+    p[0] = PrintStart(p[1],p[2], 'PrintStart')
 
 def p_printvalues1(p):
     '''printvalues : COMMA STRING printvalues'''
-    #p[0] = PrintValues2(p[1],p[2],p[3], 'PrintValues2')
+    p[0] = PrintValues1(p[1],p[2],p[3], 'PrintValues1')
 
 def p_printvalues2(p):
     '''printvalues : COMMA ID printvalues'''
+    p[0] = PrintValues2(p[1], p[2], p[3], 'PrintValues2')
 
 def p_printvaluesEmpty(p):
     '''printvalues : empty'''
+    p[0] = NullNode()
 
 def p_startvalue1(p):
     '''startvalue : STRING'''
+    p[0] = StartValue1(p[1], 'StartValue1')
 
 def p_startvalue2(p):
     '''startvalue : ID'''
+    p[0] = StartValue2(p[1], 'StartValue2')
 
 def p_empty(p):
     '''empty :'''

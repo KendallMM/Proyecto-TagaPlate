@@ -1,0 +1,5 @@
+-- Prueba sin principal
+
+Proc @hello1(
+ PrintValues("Hello World");
+);

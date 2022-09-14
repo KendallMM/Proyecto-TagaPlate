@@ -1,9 +1,30 @@
 -- Prueba
 
-Principal(
+@Principal(
  New @var2(Num,5);
+ Values(@var2,10);
+ Alter(@var2, SUB, 3);
+ While @var2 >= 0 (
+  New @id1(Num,0);
+  New @opened(Bool, False);
+  Case When (isTrue(@opened)) Then (
+   CALL(@ham_move);
+  )
+  Else (
+   Values(@opened, True);
+  ); 
+ );
 );
 
-Proc @var1(
- New @variable(Bool, True);
+Proc @ham_move(
+ New @counter1(Num, 0);
+ Until(
+  MoveRight;
+  MoveLeft;
+  Hammer(S);
+  Alter(@counter1, ADD, 1);
+ )@counter < 100;
 );
+
+
+
