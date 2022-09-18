@@ -1,4 +1,8 @@
+import re
+
 tree_text = '\n'
+initialized_variables = []
+err = ''
 
 
 class Node:
@@ -43,6 +47,7 @@ class Principal(Node):
         self.son4 = son4
         self.son5 = son5
         self.name = name
+        self.initialized_variables = []
 
     def printtxt(self, ident1, ident2):
         text = self.name + '\n' + ident1
@@ -56,6 +61,9 @@ class Principal(Node):
         text += ident2 + ']'
         return text
 
+    def initialize(self, name, typo, value):
+        self.initialized_variables.append([name, typo, value])
+
 
 class Procedures(Node):
     def __init__(self, son1, son2, son3, son4, son5, son6, son7, name):
@@ -67,6 +75,7 @@ class Procedures(Node):
         self.son6 = son6
         self.son7 = son7
         self.name = name
+        self.initialized_variables = []
 
     def printtxt(self, ident1, ident2):
         text = self.name + '\n' + ident1
@@ -95,6 +104,7 @@ class Instructions1(Node):
         self.son8 = son8
         self.son9 = son9
         self.name = name
+        self.semantics()
 
     def printtxt(self, ident1, ident2):
         text = self.name + '\n' + ident1
@@ -111,6 +121,16 @@ class Instructions1(Node):
 
         text += ident2 + ']'
         return text
+
+    def semantics(self):
+        global err
+        #Valor asignado
+        print(self.son4.son1)
+        print(self.son6.son1)
+        if self.son4.son1 == 'Num' and (self.son6.son1 == 'True' or self.son6.son1 == 'False'):
+            err = 'Semantic error: Boolean value cannot be assigned to numeric variable'
+        elif self.son4.son1 == 'Bool' and re.search('\d+', self.son6.son1):
+            err = 'Semantic error: Number value cannot be assigned to boolean variable'
 
 
 class Instructions2(Node):
@@ -140,6 +160,10 @@ class Instructions2(Node):
         text += ident2 + ']'
         return text
 
+    def semantics(self):
+        global err
+
+
 
 class Instructions3(Node):
     def __init__(self, son1, son2, son3, son4, son5, son6, son7, son8, son9, son10, name):
@@ -154,6 +178,7 @@ class Instructions3(Node):
         self.son9 = son9
         self.son10 = son10
         self.name = name
+        self.semantics()
 
     def printtxt(self, ident1, ident2):
         text = self.name + '\n' + ident1
@@ -172,6 +197,11 @@ class Instructions3(Node):
         text += ident2 + ']'
         return text
 
+    #def semantics(self):
+     #   global err
+      #  if self.son7.son1 == 'True' or self.son7.son1 == 'False':
+       #     err = 'Semantic error: Cannot operate boolean value in Alter function.'
+
 
 class Instructions4(Node):
     def __init__(self, son1, son2, son3, son4, son5, son6, name):
@@ -182,6 +212,7 @@ class Instructions4(Node):
         self.son5 = son5
         self.son6 = son6
         self.name = name
+        self.semantics()
 
     def printtxt(self, ident1, ident2):
         text = self.name + '\n' + ident1
@@ -195,6 +226,11 @@ class Instructions4(Node):
 
         text += ident2 + ']'
         return text
+
+    def semantics(self):
+        global err
+        if re.search('\d+', self.son3.son1):
+            err = 'Semantic error: Cannot operate numeric value in AlterB function.'
 
 
 class Instructions5(Node):

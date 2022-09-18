@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Build parse tree">
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Parse tree finished">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pruebas/Prueba2.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba2.tgp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexicalAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/lexicalAnalyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pruebas/Prueba real.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba real.tgp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parseTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/parseTree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsetab.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/syntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/syntaxAnalyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tagaplate.py" beforeDir="false" afterPath="$PROJECT_DIR$/tagaplate.py" afterDir="false" />
     </list>
-    <list id="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" name="Changes by kendall" comment="">
-      <change beforePath="$PROJECT_DIR$/syntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/syntaxAnalyzer.py" afterDir="false" />
-    </list>
+    <list id="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" name="Changes by kendall" comment="Changes by kendall" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,55 +31,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/syntaxAnalyzer.py">
-      <ranges>
-        <range start1="5" end1="6" start2="5" end2="7" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
-        <range start1="8" end1="11" start2="9" end2="13" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
-        <range start1="15" end1="15" start2="17" end2="24" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
-        <range start1="118" end1="119" start2="127" end2="129" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="121" end1="122" start2="131" end2="133" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="124" end1="125" start2="135" end2="137" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="127" end1="128" start2="139" end2="141" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="130" end1="131" start2="143" end2="145" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="133" end1="134" start2="147" end2="149" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="136" end1="137" start2="151" end2="153" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="139" end1="140" start2="155" end2="157" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="142" end1="143" start2="159" end2="161" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="145" end1="146" start2="163" end2="164" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="148" end1="149" start2="166" end2="169" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="151" end1="152" start2="171" end2="173" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="154" end1="155" start2="175" end2="177" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="157" end1="158" start2="179" end2="181" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="160" end1="161" start2="183" end2="185" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="163" end1="164" start2="187" end2="189" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="166" end1="167" start2="191" end2="193" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="169" end1="170" start2="195" end2="197" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="172" end1="173" start2="199" end2="201" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="175" end1="176" start2="203" end2="205" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="178" end1="179" start2="207" end2="209" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="181" end1="182" start2="211" end2="213" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="184" end1="185" start2="215" end2="217" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="187" end1="189" start2="219" end2="220" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="191" end1="192" start2="222" end2="223" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="194" end1="195" start2="225" end2="226" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="197" end1="198" start2="228" end2="229" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="200" end1="201" start2="231" end2="232" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="203" end1="204" start2="234" end2="235" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="206" end1="207" start2="237" end2="238" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="209" end1="210" start2="240" end2="241" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="212" end1="213" start2="243" end2="244" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="215" end1="216" start2="246" end2="247" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
-        <range start1="219" end1="220" start2="250" end2="251" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
-        <range start1="223" end1="223" start2="254" end2="255" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
-        <range start1="226" end1="226" start2="258" end2="259" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
-        <range start1="229" end1="229" start2="262" end2="263" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
-        <range start1="232" end1="232" start2="266" end2="267" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
-        <range start1="240" end1="241" start2="275" end2="276" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-        <range start1="251" end1="256" start2="286" end2="286" changelist="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -162,7 +108,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="/usr/bin/python3.8" />
+      <option name="SDK_HOME" value="C:\Users\Usuario\Documents\GitHub\Proyecto-TagaPlate\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -354,7 +300,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663048564191</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Parse tree finished">
+      <created>1663126414270</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1663126414270</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Changes by kendall">
+      <created>1663126430226</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1663126430226</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -386,6 +346,8 @@
     <MESSAGE value="fix sintax analysis for print function" />
     <MESSAGE value="Add classes to parse tree" />
     <MESSAGE value="Build parse tree" />
-    <option name="LAST_COMMIT_MESSAGE" value="Build parse tree" />
+    <MESSAGE value="Parse tree finished" />
+    <MESSAGE value="Changes by kendall" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by kendall" />
   </component>
 </project>

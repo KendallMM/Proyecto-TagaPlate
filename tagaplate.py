@@ -5,6 +5,7 @@ from tkinter.filedialog import askopenfilename, asksaveasfilename
 from tkinter import messagebox
 import lexicalAnalyzer as lx
 import syntaxAnalyzer as sx
+import parseTree as prs
 
 # GLOBAL VARIABLES
 gpath = ''
@@ -14,6 +15,7 @@ err_row = 1
 # MAIN WINDOW
 main = tk.Tk()
 main.title("TagaPlate IDE")
+
 
 # _________________________________________ Line Number Class __________________________________________________________
 
@@ -40,7 +42,8 @@ class LineNumber(tk.Text):
         saved = False
         update_title()
 
-#____________________________________ File Functions ___________________________________________________________________
+
+# ____________________________________ File Functions ___________________________________________________________________
 
 def new_file():
     global gpath, saved
@@ -60,6 +63,7 @@ def new_file():
         gpath = path
         lineText.on_key_release('<Enter>')
         sx.root = None
+        prs.err = ''
     saved = True
     update_title()
 
@@ -78,6 +82,7 @@ def open_file():
         lineText.on_key_release('<Enter>')
         highlight_keywords('<Enter>')
         sx.root = None
+        prs.err = ''
     else:
         print("No file selected")
     saved = True
@@ -102,11 +107,14 @@ def save_as():
         gpath = path
         saved = True
         update_title()
+        prs.err = ''
     else:
         saved = False
         print("No file selected")
 
-#________________________________________ Compile and Run Functions ____________________________________________________
+
+# ________________________________________ Compile and Run Functions ____________________________________________________
+
 
 def compile():
     global gpath, saved
@@ -115,8 +123,10 @@ def compile():
     else:
         lx.lexical_analisis(gpath)
         lexical_error_check()
-        sx.sintax_analisis(gpath)
-        sintax_error_check()
+        sx.syntax_analysis(gpath)
+        syntax_error_check()
+        semantic_error_check()
+
 
 def compile_aux():
     if ask_to_save() == 'yes':
@@ -124,13 +134,15 @@ def compile_aux():
         compile()
     else:
         w_errors("Can't compile without saving file")
-        showErrors()
+        show_errors()
         tk.messagebox.showinfo('Uncompiled', "Can't compile without saving file", icon='warning')
+
 
 def ask_to_save():
     return tk.messagebox.askquestion('Save first', 'Do you want to save your file?', icon='warning')
 
-#____________________________________________ Print Management Functions _______________________________________________
+
+# ____________________________________________ Print Management Functions _______________________________________________
 
 def print_path():
     if gpath == '':
@@ -138,13 +150,16 @@ def print_path():
     else:
         print(gpath)
 
-#__________________________________________ IDE Modifier Functions _____________________________________________________
+
+# __________________________________________ IDE Modifier Functions _____________________________________________________
 
 def set_dark():
     textEditor.config(background='black', foreground='white')
 
+
 def set_light():
     textEditor.config(background='white', foreground='black')
+
 
 def update_title():
     global saved
@@ -152,6 +167,7 @@ def update_title():
         main.title('TagaPlate IDE')
     else:
         main.title('TagaPlate IDE (not saved)')
+
 
 def highlight_keywords(event):
     words = {'@Principal': 'orange',
@@ -178,65 +194,80 @@ def highlight_keywords(event):
              'PrintValues': 'red',
              'CALL': 'red'}
     for k, c in words.items():
-        startIndex = '1.0'
+        start_index = '1.0'
         while True:
-            startIndex = textEditor.search(k, startIndex, tk.END)
-            if startIndex:
-                endIndex = textEditor.index('%s+%dc' % (startIndex, (len(k))))
-                textEditor.tag_add(k, startIndex, endIndex)
+            start_index = textEditor.search(k, start_index, tk.END)
+            if start_index:
+                end_index = textEditor.index('%s+%dc' % (start_index, (len(k))))
+                textEditor.tag_add(k, start_index, end_index)
                 textEditor.tag_config(k, foreground=c)
-                startIndex = endIndex
+                start_index = end_index
             else:
                 break
 
+
 # _________________________________________ Error Management Functions _________________________________________________
 
-def showErrors():
+def show_errors():
     lx.err = ''
     sx.err = ''
     errorW.deiconify()
 
-def exitErrors():
+
+def exit_errors():
     errorW.withdraw()
 
-def w_errors(messageError):
+
+def w_errors(err_msg):
     global err_row
     t.config(state='normal')
-    t.insert(str(err_row) + '.0', messageError+"\n")
+    t.insert(str(err_row) + '.0', err_msg + "\n")
     err_row += 1
     t.pack()
     t.config(state='disabled')
 
+
 def lexical_error_check():
     if lx.err != '':
         w_errors(lx.err)
-        showErrors()
+        show_errors()
     else:
         pass
 
-def sintax_error_check():
+
+def syntax_error_check():
     if sx.err != '':
         w_errors(sx.err)
-        showErrors()
+        show_errors()
     else:
         pass
-    if (sx.errorCounter==-1):
+    if (sx.errorCounter == -1):
         w_errors("El código no presenta errores! :D")
+
+
+def semantic_error_check():
+    if prs.err != '':
+        w_errors(prs.err)
+        show_errors()
+    else:
+        pass
+
 
 def delete():
     t.config(state='normal')
     t.delete('1.0', tk.END)
     t.config(state='disabled')
 
+
 errorW = tk.Toplevel(main)
 errorW.title("TagaPlate - Errors")
 errorW.geometry("500x300")
-errorW.protocol("WM_DELETE_WINDOW", exitErrors)
+errorW.protocol("WM_DELETE_WINDOW", exit_errors)
 errorW.withdraw()
 t = tk.Text(errorW)
 t.config(foreground='red', state='disabled')
 
-#________________________________________ IDE Editor ___________________________________________________________________
+# ________________________________________ IDE Editor ___________________________________________________________________
 
 textEditor = tk.Text()
 textEditor.config(background='white', foreground='black')
@@ -246,11 +277,13 @@ textEditor.bind('<Key>', highlight_keywords)
 lineText = LineNumber(main, textEditor, width=1)
 lineText.pack(side=tk.LEFT)
 
-def tree():
-    sx.tree_text = '\n'
-    sx.root.printtxt('\t')
 
-#___________________________________________ IDE Menu Management _______________________________________________________
+def tree():
+    if sx.root:
+        sx.root.printtxt('\t')
+
+
+# ___________________________________________ IDE Menu Management _______________________________________________________
 
 menuBar = tk.Menu(main)
 
@@ -262,7 +295,7 @@ menuBar.add_cascade(label='File', menu=fileBar)
 
 runBar = tk.Menu(menuBar, tearoff=0)
 runBar.add_command(label='Compile', command=compile)
-runBar.add_command(label='Compile and Run', command=delete)
+runBar.add_command(label='Compile and Run')
 menuBar.add_cascade(label='Run', menu=runBar)
 
 themeBar = tk.Menu(menuBar, tearoff=0)
@@ -270,7 +303,7 @@ themeBar.add_command(label='Dark', command=set_dark)
 themeBar.add_command(label='Light', command=set_light)
 
 secondWindows = tk.Menu(menuBar, tearoff=0)
-secondWindows.add_command(label='Errors window', command=showErrors)
+secondWindows.add_command(label='Errors window', command=show_errors)
 secondWindows.add_command(label='Prints window')
 
 menuBar.add_cascade(label='Theme', menu=themeBar)
@@ -278,7 +311,7 @@ menuBar.add_cascade(label='Windows', menu=secondWindows)
 
 menuBar.add_command(label='Tree', command=tree)
 menuBar.add_command(label='FLUSH', command=delete)
-#_______________________________________________________________________________________________________________________
+# _______________________________________________________________________________________________________________________
 
 main.config(menu=menuBar)
 main.mainloop()
