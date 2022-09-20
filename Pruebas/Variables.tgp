@@ -8,11 +8,15 @@ Proc @uio(
  New @bu1(Bool, True);
  New @as(Num,12);
  New @opo34(Bool,False);
+ CALL(@io35);
 );
 
 Proc @io35(
  New @mko12(Num,90);
  New @op19(Num,16);
+ CALL(@op19);
 );
+
+
 
 

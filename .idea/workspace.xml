@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Analisis semantico terminado">
-      <change afterPath="$PROJECT_DIR$/RunOperations.py" afterDir="false" />
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Errores de declaracion de variables">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pruebas/Prueba real.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba real.tgp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pruebas/Prueba sin principal.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba sin principal.tgp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexicalAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/LexicalAnalyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parseTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/ParseTree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ParseTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/ParseTree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/SyntaxAnalyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsetab.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/syntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/SyntaxAnalyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tagaplate.py" beforeDir="false" afterPath="$PROJECT_DIR$/TagaPlate.py" afterDir="false" />
     </list>
     <list id="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" name="Changes by kendall" comment="Changes by kendall" />
     <option name="SHOW_DIALOG" value="false" />
@@ -332,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663643523132</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Errores de declaracion de variables">
+      <created>1663654766921</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1663654766921</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -368,6 +371,7 @@
     <MESSAGE value="Changes by kendall" />
     <MESSAGE value="semanticas de linea" />
     <MESSAGE value="Analisis semantico terminado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Analisis semantico terminado" />
+    <MESSAGE value="Errores de declaracion de variables" />
+    <option name="LAST_COMMIT_MESSAGE" value="Errores de declaracion de variables" />
   </component>
 </project>

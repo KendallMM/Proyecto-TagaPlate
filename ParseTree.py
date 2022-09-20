@@ -1,7 +1,10 @@
 import re
 
 tree_text = '\n'
+
 init_procs = []
+called_procs = []
+
 global_vars = []
 local_vars = []
 err = ''
@@ -58,11 +61,12 @@ class NullNode(Node):
 
 
 class Program(Node):
-    def __init__(self, son1, son2, son3, son4, name):
+    def __init__(self, son1, son2, son3, son4, son5, name):
         self.son1 = son1
         self.son2 = son2
         self.son3 = son3
         self.son4 = son4
+        self.son5 = son5
         self.name = name
 
     def printtxt(self, ident1):
@@ -72,7 +76,8 @@ class Program(Node):
         tree_text += '[' + self.son1 + ']' + '\n' + ident1
         tree_text += '[' + self.son2.printtxt(ident1 + '\t', ident1) + '\n' + ident1
         tree_text += '[' + self.son3.printtxt(ident1 + '\t', ident1) + '\n' + ident1
-        tree_text += '[' + self.son4.printtxt(ident1 + '\t', ident1) + '\n'
+        tree_text += '[' + self.son4.printtxt(ident1 + '\t', ident1) + '\n' + ident1
+        tree_text += '[' + self.son5.printtxt(ident1 + '\t', ident1) + '\n'
 
         tree_text += ']'
 
@@ -539,7 +544,8 @@ class Instructions15(Node):
         self.son6 = son6
         self.son7 = son7
         self.name = name
-        self.semantics()
+        global called_procs
+        called_procs.append(self.son3)
 
     def printtxt(self, ident1, ident2):
         text = self.name + '\n' + ident1
@@ -554,10 +560,6 @@ class Instructions15(Node):
 
         text += ident2 + ']'
         return text
-
-    def semantics(self):
-        check_procedure(self.son3)
-        print(init_procs)
 
 
 class Commentary1(Node):
@@ -1333,3 +1335,16 @@ class StartValue2(Node):
 
         text += ident2 + ']'
         return text
+
+
+class EndNode(Node):
+    def __init__(self):
+        global init_procs
+        print(init_procs)
+        self.semantics()
+
+    def semantics(self):
+        global called_procs
+        for p in called_procs:
+            check_procedure(p)
+

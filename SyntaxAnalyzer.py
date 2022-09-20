@@ -8,8 +8,8 @@ root = None
 
 
 def p_program(p):
-    '''program : COMMENT procedures principal procedures'''
-    p[0] = Program(p[1], p[2], p[3], p[4], 'Program')
+    '''program : COMMENT procedures principal procedures end'''
+    p[0] = Program(p[1], p[2], p[3], p[4], p[5], 'Program')
     global root
     root = p[0]
 
@@ -343,6 +343,9 @@ def p_startvalue2(p):
     '''startvalue : ID'''
     p[0] = StartValue2(p[1], 'StartValue2')
 
+def p_end(p):
+    '''end : empty'''
+    p[0] = EndNode()
 
 def p_empty(p):
     '''empty :'''

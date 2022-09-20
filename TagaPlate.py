@@ -123,6 +123,9 @@ def reset_file():
     sx.err = ''
     prs.err = ''
     prs.global_vars.clear()
+    prs.local_vars.clear()
+    prs.init_procs.clear()
+    prs.called_procs.clear()
 
 
 # ________________________________________ Compile and Run Functions ____________________________________________________
