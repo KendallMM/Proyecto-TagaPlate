@@ -1,6 +1,6 @@
 import ply.yacc as yacc
-from lexicalAnalyzer import tokens
-from parseTree import *
+from LexicalAnalyzer import tokens
+from ParseTree import *
 
 err = ''
 errorCounter = 0

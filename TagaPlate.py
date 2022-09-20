@@ -3,14 +3,19 @@
 import tkinter as tk
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 from tkinter import messagebox
-import lexicalAnalyzer as lx
-import syntaxAnalyzer as sx
-import parseTree as prs
+import LexicalAnalyzer as lx
+import SyntaxAnalyzer as sx
+import ParseTree as prs
+import RunOperations as rops
 
 # GLOBAL VARIABLES
 gpath = ''
 saved = False
 err_row = 1
+pr_row = 1
+
+runnable = False
+compilation_errors = 0
 
 # MAIN WINDOW
 main = tk.Tk()
@@ -58,7 +63,8 @@ def new_file():
         file.write(welcome)
         textEditor.delete('1.0', tk.END)
         textEditor.insert('1.0', welcome)
-        delete()
+        delete_errors()
+        delete_prints()
         file.close()
         gpath = path
         lineText.on_key_release('<Enter>')
@@ -75,7 +81,8 @@ def open_file():
         code = file.read()
         textEditor.delete('1.0', tk.END)
         textEditor.insert('1.0', code)
-        delete()
+        delete_errors()
+        delete_prints()
         gpath = path
         file.close()
         lineText.on_key_release('<Enter>')
@@ -115,22 +122,29 @@ def reset_file():
     lx.err = ''
     sx.err = ''
     prs.err = ''
-    prs.init_vars.clear()
+    prs.global_vars.clear()
 
 
 # ________________________________________ Compile and Run Functions ____________________________________________________
 
 
 def compile():
-    global gpath, saved
+    global gpath, saved, compilation_errors, runnable
     if (gpath == '') or (gpath != '' and not saved):
         compile_aux()
     else:
+        compilation_errors = 0
+        runnable = False
+        prs.global_vars.clear()
+        prs.init_procs.clear()
         lx.lexical_analisis(gpath)
         lexical_error_check()
         sx.syntax_analysis(gpath)
         syntax_error_check()
         semantic_error_check()
+        print('Errors during compilation: ' + str(compilation_errors))
+        if compilation_errors == 0:
+            runnable = True
 
 
 def compile_aux():
@@ -141,6 +155,13 @@ def compile_aux():
         w_errors("Can't compile without saving file")
         show_errors()
         tk.messagebox.showinfo('Uncompiled', "Can't compile without saving file", icon='warning')
+
+
+def run():
+    global runnable
+    compile()
+    if runnable:
+        rops.start()
 
 
 def ask_to_save():
@@ -233,7 +254,9 @@ def w_errors(err_msg):
 
 
 def lexical_error_check():
+    global compilation_errors
     if lx.err != '':
+        compilation_errors += 1
         w_errors(lx.err)
         show_errors()
     else:
@@ -241,7 +264,9 @@ def lexical_error_check():
 
 
 def syntax_error_check():
+    global compilation_errors
     if sx.err != '':
+        compilation_errors += 1
         w_errors(sx.err)
         show_errors()
     else:
@@ -249,14 +274,16 @@ def syntax_error_check():
 
 
 def semantic_error_check():
+    global compilation_errors
     if prs.err != '':
+        compilation_errors += 1
         w_errors(prs.err)
         show_errors()
     else:
         pass
 
 
-def delete():
+def delete_errors():
     t.config(state='normal')
     t.delete('1.0', tk.END)
     t.config(state='disabled')
@@ -270,6 +297,40 @@ errorW.withdraw()
 t = tk.Text(errorW)
 t.config(foreground='red', state='disabled')
 
+#_________________________________________ Print Management Functions ___________________________________________________
+
+def show_prints():
+    printsW.deiconify()
+
+
+def exit_prints():
+    printsW.withdraw()
+
+
+def set_print_text(string):
+    global pr_row
+    t2.config(state='normal')
+    t2.insert(str(pr_row) + '.0', string + '\n')
+    pr_row += 1
+    t2.pack()
+    t2.config(state='disabled')
+
+
+def delete_prints():
+    t2.config(state='normal')
+    t2.delete('1.0', tk.END)
+    t2.config(state='disabled')
+
+
+printsW = tk.Toplevel(main)
+printsW.title("TagaPlate - Prints")
+printsW.geometry("500x300")
+printsW.protocol("WM_DELETE_WINDOW", exit_prints)
+printsW.withdraw()
+t2 = tk.Text(printsW)
+t2.config(foreground='green', state='disabled')
+
+
 # ________________________________________ IDE Editor ___________________________________________________________________
 
 textEditor = tk.Text()
@@ -279,11 +340,6 @@ textEditor.bind('<Key>', highlight_keywords)
 
 lineText = LineNumber(main, textEditor, width=1)
 lineText.pack(side=tk.LEFT)
-
-
-def tree():
-    if sx.root:
-        sx.root.printtxt('\t')
 
 
 # ___________________________________________ IDE Menu Management _______________________________________________________
@@ -298,22 +354,17 @@ menuBar.add_cascade(label='File', menu=fileBar)
 
 runBar = tk.Menu(menuBar, tearoff=0)
 runBar.add_command(label='Compile', command=compile)
-runBar.add_command(label='Compile and Run')
+runBar.add_command(label='Compile and Run', command=run)
 menuBar.add_cascade(label='Run', menu=runBar)
 
 themeBar = tk.Menu(menuBar, tearoff=0)
 themeBar.add_command(label='Dark', command=set_dark)
 themeBar.add_command(label='Light', command=set_light)
 
-secondWindows = tk.Menu(menuBar, tearoff=0)
-secondWindows.add_command(label='Errors window', command=show_errors)
-secondWindows.add_command(label='Prints window')
+menuBar.add_command(label='Errors', command=show_errors)
+menuBar.add_command(label='Prints', command=show_prints)
 
 menuBar.add_cascade(label='Theme', menu=themeBar)
-menuBar.add_cascade(label='Windows', menu=secondWindows)
-
-menuBar.add_command(label='Tree', command=tree)
-menuBar.add_command(label='FLUSH', command=delete)
 # _______________________________________________________________________________________________________________________
 
 main.config(menu=menuBar)

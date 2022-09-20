@@ -1,12 +1,13 @@
 -- Este es un programa de prueba
 
 @Principal(
- New @var1(Bool, True);
+ New @var1(Num, 17);
 );
 
 Proc @proc1(
  Alter(@var1, ADD, 13);
 )
+
 
 
 

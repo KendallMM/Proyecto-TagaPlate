@@ -1,0 +1,21 @@
+-- Prueba run
+
+@Principal(
+ New @prueba(Num,10);
+ New @hola(Num,12);
+ CALL(@proc1);
+);
+
+Proc @proc1(
+ Alter(@prueba, SUB, 1);
+ MoveLeft;
+);
+
+Proc @as(
+ New @xyz(Num, 12);
+ Values(@xyz, 19);
+ Values(@hola, 1);
+);
+
+
+

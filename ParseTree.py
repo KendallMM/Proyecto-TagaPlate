@@ -2,16 +2,24 @@ import re
 
 tree_text = '\n'
 init_procs = []
-init_vars = []
+global_vars = []
+local_vars = []
 err = ''
 
 
 def check_variable(var_name):
     # Check if variable exists
-    global err, init_vars
+    global err, global_vars, local_vars
     flag = False
     current = []
-    for var in init_vars:
+    for var in global_vars:
+        if var_name == var[0]:
+            flag = True
+            current.append(var[0])
+            current.append(var[1])
+            current.append(var[2])
+            break
+    for var in local_vars:
         if var_name == var[0]:
             flag = True
             current.append(var[0])
@@ -80,8 +88,9 @@ class Principal(Node):
         self.son5 = son5
         self.name = name
 
-        global init_vars
-        init_vars.clear()
+        global global_vars, local_vars
+        global_vars += local_vars
+        local_vars.clear()
 
     def printtxt(self, ident1, ident2):
         text = self.name + '\n' + ident1
@@ -107,8 +116,8 @@ class Procedures(Node):
         self.son7 = son7
         self.name = name
 
-        global init_vars, init_procs
-        init_vars.clear()
+        global local_vars, init_procs
+        local_vars.clear()
         init_procs.append(self.son2)
 
     def printtxt(self, ident1, ident2):
@@ -159,7 +168,7 @@ class Instructions1(Node):
         return text
 
     def semantics(self):
-        global err, init_vars
+        global err, proc_type, global_vars, local_vars
 
         # Valor asignado
         if self.son4.son1 == 'Num' and (self.son6.son1 == 'True' or self.son6.son1 == 'False'):
@@ -168,11 +177,19 @@ class Instructions1(Node):
             err = 'Semantic error: Number value cannot be assigned to boolean variable'
 
         # Variable con igual nombre
-        for v in init_vars:
-            if self.son2 == v[0]:
-                err = 'Semantic error: Variable ' + self.son2 + ' defined more than once.'
+        flag = False
+        for g in global_vars:
+            if self.son2 == g[0]:
+                err = 'Semantic error: Variable ' + self.son2 + ' defined multiple times.'
+                flag = True
                 break
-        init_vars.append([self.son2, self.son4.son1, self.son6.son1])
+        for l in local_vars:
+            if self.son2 == l[0]:
+                err = 'Semantic error: Variable ' + self.son2 + ' defined multiple times.'
+                flag = True
+                break
+        if not flag:
+            local_vars.append([self.son2, self.son4.son1, self.son6.son1])
 
 
 class Instructions2(Node):
@@ -209,10 +226,11 @@ class Instructions2(Node):
         global err
         current = check_variable(self.son3)
         # Check if variable type matches with value
-        if current[1] == 'Bool' and re.search('\d+', self.son5.son1):
-            err = 'Semantic error: Number value cannot be assigned to boolean variable'
-        elif current[1] == 'Num' and (self.son5.son1 == 'True' or self.son5.son1 == 'False'):
-            err = 'Semantic error: Boolean value cannot be assigned to numeric variable'
+        if current:
+            if current[1] == 'Bool' and re.search('\d+', self.son5.son1):
+                err = 'Semantic error: Number value cannot be assigned to boolean variable'
+            elif current[1] == 'Num' and (self.son5.son1 == 'True' or self.son5.son1 == 'False'):
+                err = 'Semantic error: Boolean value cannot be assigned to numeric variable'
 
 
 class Instructions3(Node):
@@ -252,10 +270,11 @@ class Instructions3(Node):
     def semantics(self):
         global err
         current = check_variable(self.son3)
-        if current[1] == 'Bool':
-            err = 'Semantic error: Cannot operate boolean type variable.'
-        elif self.son7.son1 == 'True' or self.son7.son1 == 'False':
-            err = 'Semantic error: Cannot operate boolean value.'
+        if current:
+            if current[1] == 'Bool':
+                err = 'Semantic error: Cannot operate boolean type variable.'
+            elif self.son7.son1 == 'True' or self.son7.son1 == 'False':
+                err = 'Semantic error: Cannot operate boolean value.'
 
 
 class Instructions4(Node):
@@ -287,8 +306,9 @@ class Instructions4(Node):
     def semantics(self):
         global err
         current = check_variable(self.son3)
-        if current[1] == 'Num':
-            err = 'Semantic error: AlterB cannot operate numeric variable.'
+        if current:
+            if current[1] == 'Num':
+                err = 'Semantic error: AlterB cannot operate numeric variable.'
 
 
 class Instructions5(Node):
@@ -537,6 +557,7 @@ class Instructions15(Node):
 
     def semantics(self):
         check_procedure(self.son3)
+        print(init_procs)
 
 
 class Commentary1(Node):
@@ -654,11 +675,11 @@ class Value4(Node):
     def semantics(self):
         global err
         current = check_variable(self.son3)
-        print(current)
-        if current[1] == 'Bool':
-            err = 'Semantic error: Cannot operate boolean type variable.'
-        elif self.son7.son1 == 'True' or self.son7.son1 == 'False':
-            err = 'Semantic error: Cannot operate boolean value.'
+        if current:
+            if current[1] == 'Bool':
+                err = 'Semantic error: Cannot operate boolean type variable.'
+            elif self.son7.son1 == 'True' or self.son7.son1 == 'False':
+                err = 'Semantic error: Cannot operate boolean value.'
 
 
 class Operator1(Node):
@@ -1087,10 +1108,11 @@ class Condition1(Node):
         global err
         current1 = check_variable(self.son1)
         current2 = check_variable(self.son3)
-        if current1[1] == 'True' or current1[1] == 'False':
-            err = 'Semantic error: Cannot compare boolean variable ' + current1[0] + '.'
-        if current2[1] == 'True' or current2[1] == 'False':
-            err = 'Semantic error: Cannot compare boolean variable ' + current2[0] + '.'
+        if current1 and current2:
+            if current1[1] == 'True' or current1[1] == 'False':
+                err = 'Semantic error: Cannot compare boolean variable ' + current1[0] + '.'
+            if current2[1] == 'True' or current2[1] == 'False':
+                err = 'Semantic error: Cannot compare boolean variable ' + current2[0] + '.'
 
 
 class Condition2(Node):
@@ -1112,9 +1134,8 @@ class Condition2(Node):
         return text
 
     def semantics(self):
-        global err, init_vars
+        global err, global_vars
         current = check_variable(self.son1)
-        print(current)
         if current:
             if current[1] == 'True' or current[1] == 'False':
                 err = 'Semantic error: Cannot compare boolean variable ' + current[0] + '.'
@@ -1141,8 +1162,9 @@ class Condition3(Node):
     def semantics(self):
         global err
         current = check_variable(self.son3)
-        if current[1] == 'True' or current[1] == 'False':
-            err = 'Semantic error: Cannot compare boolean variable ' + current[0] + '.'
+        if current:
+            if current[1] == 'True' or current[1] == 'False':
+                err = 'Semantic error: Cannot compare boolean variable ' + current[0] + '.'
 
 
 class Condition4(Node):
@@ -1228,8 +1250,9 @@ class IsTrue(Node):
     def semantics(self):
         global err
         current = check_variable(self.son3)
-        if current[1] == 'Num':
-            err = 'Semantic error: Variable in IsTrue cannot be numeric.'
+        if current:
+            if current[1] == 'Num':
+                err = 'Semantic error: Variable in IsTrue cannot be numeric.'
 
 
 class PrintStart(Node):

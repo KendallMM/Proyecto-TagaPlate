@@ -1,15 +1,30 @@
 -- Prueba sin principal
 
 @Principal(
- New @var1(Bool,False);
- New @varia(Num, 12);
- Alter(@varia, ADD, 12);
- AlterB(@varia);
+ New @var1(Num, 12);
+ New @var2(Bool,True);
+ New @jeje(Num, 14);
+ Alter(@var1, ADD, 16);
+ PrintValues("Hello World", 19, "Otro string");
 );
 
-Proc @hello1(
- PrintValues("Hello World");
+Proc @hel(
+ New @hola(Bool,False);
+ Alter(@var1, ADD, 1);
 );
+
+Proc @hub(
+ New @yu(Bool,True);
+);
+
+
+
+
+
+
+
+
+
 
 
 
