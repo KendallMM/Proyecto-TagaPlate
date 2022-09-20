@@ -62,8 +62,7 @@ def new_file():
         file.close()
         gpath = path
         lineText.on_key_release('<Enter>')
-        sx.root = None
-        prs.err = ''
+        reset_file()
     saved = True
     update_title()
 
@@ -81,8 +80,7 @@ def open_file():
         file.close()
         lineText.on_key_release('<Enter>')
         highlight_keywords('<Enter>')
-        sx.root = None
-        prs.err = ''
+        reset_file()
     else:
         print("No file selected")
     saved = True
@@ -107,10 +105,17 @@ def save_as():
         gpath = path
         saved = True
         update_title()
-        prs.err = ''
+        reset_file()
     else:
         saved = False
         print("No file selected")
+
+
+def reset_file():
+    lx.err = ''
+    sx.err = ''
+    prs.err = ''
+    prs.init_vars.clear()
 
 
 # ________________________________________ Compile and Run Functions ____________________________________________________
@@ -241,8 +246,6 @@ def syntax_error_check():
         show_errors()
     else:
         pass
-    if (sx.errorCounter == -1):
-        w_errors("El código no presenta errores! :D")
 
 
 def semantic_error_check():

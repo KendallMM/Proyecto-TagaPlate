@@ -1,13 +1,18 @@
 -- Este es un programa de prueba
 
 @Principal(
- New @var1(Bool, False);
- Alter(@var1, ADD, 1);
- AlterB(False);
- While 1 >= True (
-  -- Algo
- );
+ New @var1(Bool, True);
 );
+
+Proc @proc1(
+ Alter(@var1, ADD, 13);
+)
+
+
+
+
+
+
 
 
 

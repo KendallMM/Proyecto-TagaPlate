@@ -22,7 +22,7 @@ def p_principal(p):
 def p_principalEmpty(p):
     '''principal : empty'''
     global err, errorCounter
-    err = "Principal Method Not Found!"
+    err = "Syntax error: Principal method not found."
     errorCounter = errorCounter + 2
     p[0] = NullNode()
 
@@ -38,89 +38,92 @@ def p_proceduresEmpty(p):
 
 
 def p_instructions1(p):
-    '''instructions : NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON instructions'''
-    p[0] = Instructions1(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], 'Instructions1')
+    '''instructions : instructions NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary'''
+    p[0] = Instructions1(p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[1], 'Instructions1')
 
 
 def p_instructions2(p):
-    '''instructions : VALUES LPARENT ID COMMA value RPARENT SEMICOLON instructions'''
-    p[0] = Instructions2(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], 'Instructions2')
+    '''instructions : instructions VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary'''
+    p[0] = Instructions2(p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[1], 'Instructions2')
 
 
 def p_instructions3(p):
-    '''instructions : ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON instructions'''
-    p[0] = Instructions3(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], 'Instructions3')
+    '''instructions : instructions ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary'''
+    p[0] = Instructions3(p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[1], 'Instructions3')
 
 
 def p_instructions4(p):
-    '''instructions : ALTERB LPARENT value RPARENT SEMICOLON instructions'''
-    p[0] = Instructions4(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions4')
+    '''instructions : instructions ALTERB LPARENT ID RPARENT SEMICOLON commentary'''
+    p[0] = Instructions4(p[2], p[3], p[4], p[5], p[6], p[7], p[1], 'Instructions4')
 
 
 def p_instructions5(p):
-    '''instructions : MOVR SEMICOLON instructions'''
-    p[0] = Instructions5(p[1], p[2], p[3], 'Instructions5')
+    '''instructions : instructions MOVR SEMICOLON commentary'''
+    p[0] = Instructions5(p[2], p[3], p[4], p[1], 'Instructions5')
 
 
 def p_instructions6(p):
-    '''instructions : MOVL SEMICOLON instructions'''
-    p[0] = Instructions6(p[1], p[2], p[3], 'Instructions6')
+    '''instructions : instructions MOVL SEMICOLON commentary'''
+    p[0] = Instructions6(p[2], p[3], p[4], p[1], 'Instructions6')
 
 
 def p_instructions7(p):
-    '''instructions : HAMMER LPARENT position RPARENT SEMICOLON instructions'''
-    p[0] = Instructions7(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions7')
+    '''instructions : instructions HAMMER LPARENT position RPARENT SEMICOLON commentary'''
+    p[0] = Instructions7(p[2], p[3], p[4], p[5], p[6], p[7], p[1], 'Instructions7')
 
 
 def p_instructions8(p):
-    '''instructions : STOP SEMICOLON instructions'''
-    p[0] = Instructions8(p[1], p[2], p[3], 'Instructions8')
+    '''instructions : instructions STOP SEMICOLON commentary'''
+    p[0] = Instructions8(p[2], p[3], p[4], p[1], 'Instructions8')
 
 
 def p_instructions9(p):
-    '''instructions : REPEAT LPARENT repeat_instructions RPARENT SEMICOLON instructions'''
-    p[0] = Instructions9(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions9')
+    '''instructions : instructions REPEAT LPARENT repeat_instructions RPARENT SEMICOLON commentary'''
+    p[0] = Instructions9(p[2], p[3], p[4], p[5], p[6], p[7], p[1], 'Instructions9')
 
 
 def p_instructions10(p):
-    '''instructions : untilbody SEMICOLON instructions'''
-    p[0] = Instructions10(p[1], p[2], p[3], 'Instructions10')
+    '''instructions : instructions untilbody SEMICOLON commentary'''
+    p[0] = Instructions10(p[2], p[3], p[4], p[1], 'Instructions10')
 
 
 def p_instructions11(p):
-    '''instructions : whilebody SEMICOLON instructions'''
-    p[0] = Instructions11(p[1], p[2], p[3], 'Instructions11')
+    '''instructions : instructions whilebody SEMICOLON commentary'''
+    p[0] = Instructions11(p[2], p[3], p[4], p[1], 'Instructions11')
 
 
 def p_instructions12(p):
-    '''instructions : casebody SEMICOLON instructions'''
-    p[0] = Instructions12(p[1], p[2], p[3], 'Instructions12')
+    '''instructions : instructions casebody SEMICOLON commentary'''
+    p[0] = Instructions12(p[2], p[3], p[4], p[1], 'Instructions12')
 
 
 def p_instructions13(p):
-    '''instructions : PRINT LPARENT printstart RPARENT SEMICOLON instructions'''
-    p[0] = Instructions13(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions13')
+    '''instructions : instructions PRINT LPARENT printstart RPARENT SEMICOLON commentary'''
+    p[0] = Instructions13(p[2], p[3], p[4], p[5], p[6], p[7], p[1], 'Instructions13')
 
 
 def p_instructions14(p):
-    '''instructions : istrue SEMICOLON instructions'''
-    p[0] = Instructions14(p[1], p[2], p[3], 'Instructions14')
+    '''instructions : instructions istrue SEMICOLON commentary'''
+    p[0] = Instructions14(p[2], p[3], p[4], p[1], 'Instructions14')
 
 
 def p_instructions15(p):
-    '''instructions : CALL LPARENT ID RPARENT SEMICOLON instructions'''
-    p[0] = Instructions15(p[1], p[2], p[3], p[4], p[5], p[6], 'Instructions15')
-
-
-def p_instructions16(p):
-    '''instructions : COMMENT'''
-    p[0] = Instructions16(p[1], 'Instructions16')
+    '''instructions : instructions CALL LPARENT ID RPARENT SEMICOLON commentary'''
+    p[0] = Instructions15(p[2], p[3], p[4], p[5], p[6], p[7], p[1], 'Instructions15')
 
 
 def p_instructionsEmpty(p):
     '''instructions : empty'''
     p[0] = NullNode()
 
+
+def p_commentary1(p):
+    '''commentary : COMMENT'''
+    p[0] = Commentary1(p[1], 'Commentary1')
+
+def p_commentary2(p):
+    '''commentary : empty'''
+    p[0] = NullNode()
 
 def p_datatype1(p):
     '''datatype : NUMVAL'''
@@ -352,15 +355,14 @@ def p_error(p):
     errorCounter = errorCounter + 2
     if p:
         if p.type != 'COMMENT' and p.lineno == 1:
-            err = "Sintax error on line 1: Missing expected initial comment."
+            err = "Syntax error on line 1: Missing expected initial comment."
         else:
-            err = "Sintax error on line %d: %s does not match %s position." % (p.lineno, p.value, p.type)
+            err = "Syntax error on line %d: %s does not match %s position." % (p.lineno, p.value, p.type)
 
 
 def syntax_analysis(path):
     global errorCounter
     parser = yacc.yacc('LALR')
     result = parser.parse(open(path).read())
-    print(result)
     if (errorCounter == 0):
         errorCounter = -1

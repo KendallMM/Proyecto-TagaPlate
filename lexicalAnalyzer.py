@@ -55,20 +55,24 @@ t_SEMICOLON = r'\;'
 t_STRING = r'\".*\"'
 t_COMMENT = r'--.*'
 
+
 def t_ID(t):
     r'@[a-zA-Z0-9_#]{2,9}'
     if t.value == '@Principal':
         t.type = 'PRINCIPAL'
     return t
 
+
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+
 
 def t_error(t):
     global err
     err = "Lexical Error: Illegal character '%s' in line '%d'" % (t.value[0], t.lexer.lineno)
     t.lexer.skip(len(t.value))
+
 
 def lexical_analisis(path):
     lexer = lex.lex()
@@ -78,5 +82,4 @@ def lexical_analisis(path):
         if not token:
             lexer.lineno = 1
             break
-        print(token)
 

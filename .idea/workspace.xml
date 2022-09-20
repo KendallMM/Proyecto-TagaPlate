@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Parse tree finished">
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="semanticas de linea">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pruebas/Prueba real.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba real.tgp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pruebas/Prueba sin principal.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba sin principal.tgp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pruebas/Prueba2.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba2.tgp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lexicalAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/lexicalAnalyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parseTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/parseTree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsetab.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/syntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/syntaxAnalyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tagaplate.py" beforeDir="false" afterPath="$PROJECT_DIR$/tagaplate.py" afterDir="false" />
     </list>
@@ -314,7 +319,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663126430226</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="semanticas de linea">
+      <created>1663469560479</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1663469560479</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -348,6 +360,7 @@
     <MESSAGE value="Build parse tree" />
     <MESSAGE value="Parse tree finished" />
     <MESSAGE value="Changes by kendall" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by kendall" />
+    <MESSAGE value="semanticas de linea" />
+    <option name="LAST_COMMIT_MESSAGE" value="semanticas de linea" />
   </component>
 </project>

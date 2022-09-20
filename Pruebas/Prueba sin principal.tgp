@@ -1,5 +1,24 @@
 -- Prueba sin principal
 
+@Principal(
+ New @var1(Bool,False);
+ New @varia(Num, 12);
+ Alter(@varia, ADD, 12);
+ AlterB(@varia);
+);
+
 Proc @hello1(
  PrintValues("Hello World");
 );
+
+
+
+
+
+
+
+
+
+
+
+
