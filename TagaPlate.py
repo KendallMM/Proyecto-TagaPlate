@@ -6,7 +6,6 @@ from tkinter import messagebox
 import LexicalAnalyzer as lx
 import SyntaxAnalyzer as sx
 import ParseTree as prs
-import RunOperations as rops
 
 # GLOBAL VARIABLES
 gpath = ''
@@ -164,7 +163,8 @@ def run():
     global runnable
     compile()
     if runnable:
-        rops.start()
+        print('run')
+
 
 
 def ask_to_save():
@@ -303,6 +303,7 @@ t.config(foreground='red', state='disabled')
 #_________________________________________ Print Management Functions ___________________________________________________
 
 def show_prints():
+    #rops.txt = ''
     printsW.deiconify()
 
 

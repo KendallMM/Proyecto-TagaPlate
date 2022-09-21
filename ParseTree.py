@@ -280,6 +280,8 @@ class Instructions3(Node):
                 err = 'Semantic error: Cannot operate boolean type variable.'
             elif self.son7.son1 == 'True' or self.son7.son1 == 'False':
                 err = 'Semantic error: Cannot operate boolean value.'
+            elif self.son5.son1 == 'DIV' and self.son7.son1 == '0':
+                err = 'Semantic error: Cannot divide by zero.'
 
 
 class Instructions4(Node):
@@ -1339,8 +1341,6 @@ class StartValue2(Node):
 
 class EndNode(Node):
     def __init__(self):
-        global init_procs
-        print(init_procs)
         self.semantics()
 
     def semantics(self):

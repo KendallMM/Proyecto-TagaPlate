@@ -14,8 +14,10 @@ Proc @uio(
 Proc @io35(
  New @mko12(Num,90);
  New @op19(Num,16);
- CALL(@op19);
+ CALL(@uio);
 );
+
+
 
 
 

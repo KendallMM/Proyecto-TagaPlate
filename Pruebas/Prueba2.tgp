@@ -1,13 +1,5 @@
 -- Prueba
 
-Proc @ham_move(
- New @counter1(Num, 0);
- Until (
-  MoveRight;
-  Alter(@counter1, ADD, 1);
- ) @counter1 < 100;
-);
-
 @Principal(
  New @var2(Num,5);
  Values(@var2,10);
@@ -23,6 +15,15 @@ Proc @ham_move(
   ); 
  );
 );
+
+Proc @ham_move(
+ New @counter1(Num, 0);
+ Until (
+  MoveRight;
+  Alter(@counter1, ADD, 1);
+ ) @counter1 < 100;
+); 
+
 
 
 

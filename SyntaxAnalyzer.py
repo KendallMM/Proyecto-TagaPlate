@@ -4,14 +4,14 @@ from ParseTree import *
 
 err = ''
 errorCounter = 0
-root = None
+sem_tree = None
 
 
 def p_program(p):
     '''program : COMMENT procedures principal procedures end'''
     p[0] = Program(p[1], p[2], p[3], p[4], p[5], 'Program')
-    global root
-    root = p[0]
+    global sem_tree
+    sem_tree = p[0]
 
 
 def p_principal(p):
