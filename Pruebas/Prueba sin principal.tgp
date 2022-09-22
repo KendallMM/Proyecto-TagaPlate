@@ -2,7 +2,7 @@
 
 @Principal(
  New @var1(Num, 12);
- New @var2(Bool,True);
+ Values(@var1, 19);
  New @jeje(Num, 14);
  Alter(@var1, ADD, 16);
  PrintValues("Hello World", 19, "Otro string");
@@ -16,6 +16,7 @@ Proc @hel(
 Proc @hub(
  New @yu(Bool,True);
 );
+
 
 
 

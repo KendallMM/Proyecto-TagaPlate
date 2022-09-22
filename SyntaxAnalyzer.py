@@ -45,11 +45,17 @@ def p_instructions1(p):
 def p_instructions2(p):
     '''instructions : instructions VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary'''
     p[0] = Instructions2(p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[1], 'Instructions2')
+    global children
+    children = len(p) - 1
+    print(children)
 
 
 def p_instructions3(p):
     '''instructions : instructions ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary'''
     p[0] = Instructions3(p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[1], 'Instructions3')
+    global children
+    children = len(p) - 1
+    print(children)
 
 
 def p_instructions4(p):

@@ -162,22 +162,27 @@ def compile_aux():
 def run():
     global runnable
     compile()
-    if runnable:
-        print('run')
+    runnable_tree = sx.sem_tree.son3.son3
+    counter = 0
+    if runnable and runnable_tree:
+        while runnable_tree.nexxt.name != 'Null':
+            counter += 1
+            runnable_tree = runnable_tree.nexxt
+        return run_aux(sx.sem_tree.son3.son3, counter)
 
+
+def run_aux(func, counter):
+    if counter == 0:
+        print(func.name)
+        return
+    else:
+        counter -= 1
+        func = func.nexxt
+        return run_aux(func, counter)
 
 
 def ask_to_save():
     return tk.messagebox.askquestion('Save first', 'Do you want to save your file?', icon='warning')
-
-
-# ____________________________________________ Print Management Functions _______________________________________________
-
-def print_path():
-    if gpath == '':
-        print("Empty")
-    else:
-        print(gpath)
 
 
 # __________________________________________ IDE Modifier Functions _____________________________________________________
