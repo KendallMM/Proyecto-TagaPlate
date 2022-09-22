@@ -6,6 +6,7 @@ from tkinter import messagebox
 import LexicalAnalyzer as lx
 import SyntaxAnalyzer as sx
 import ParseTree as prs
+import RunOperations as run_ops
 
 # GLOBAL VARIABLES
 gpath = ''
@@ -164,17 +165,24 @@ def run():
     compile()
     runnable_tree = sx.sem_tree.son3.son3
     counter = 0
+    run_ops.print_txt = ''
+    delete_prints()
     if runnable and runnable_tree:
         while runnable_tree.nexxt.name != 'Null':
             counter += 1
             runnable_tree = runnable_tree.nexxt
-        return run_aux(sx.sem_tree.son3.son3, counter)
+        return run_aux(sx.sem_tree.son3.son3, counter, counter)
 
 
-def run_aux(func, counter):
-    if counter == 0:
-        print(func.name)
+def run_aux(func, counter, instructions):
+    if instructions == 0:
+        run_ops.execute(func)
+        write_printer()
         return
+    if counter == 0:
+        run_ops.execute(func)
+        write_printer()
+        return run_aux(sx.sem_tree.son3.son3, instructions - 1, instructions - 1)
     else:
         counter -= 1
         func = func.nexxt
@@ -308,13 +316,20 @@ t.config(foreground='red', state='disabled')
 #_________________________________________ Print Management Functions ___________________________________________________
 
 def show_prints():
-    #rops.txt = ''
     printsW.deiconify()
 
 
 def exit_prints():
     printsW.withdraw()
 
+
+def write_printer():
+    if run_ops.print_txt != '':
+        set_print_text(run_ops.print_txt)
+        show_prints()
+        run_ops.print_txt = ''
+    else:
+        pass
 
 def set_print_text(string):
     global pr_row

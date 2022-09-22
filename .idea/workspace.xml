@@ -4,16 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Semantica terminada">
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ParseTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/ParseTree.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pruebas/Prueba sin principal.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba sin principal.tgp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pruebas/Variables.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Variables.tgp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RunOperations.py" beforeDir="false" afterPath="$PROJECT_DIR$/RunOperations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SyntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/SyntaxAnalyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TagaPlate.py" beforeDir="false" afterPath="$PROJECT_DIR$/TagaPlate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsetab.py" afterDir="false" />
     </list>
-    <list id="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" name="Changes by kendall" comment="Changes by kendall" />
+    <list id="a7a8f410-996f-4d70-98a8-bc5f5cae8358" name="Changes by kendall" comment="">
+      <change beforePath="$PROJECT_DIR$/TagaPlate.py" beforeDir="false" afterPath="$PROJECT_DIR$/TagaPlate.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +36,20 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/TagaPlate.py">
+      <ranges>
+        <range start1="8" end1="8" start2="8" end2="9" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
+        <range start1="166" end1="166" start2="167" end2="169" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
+        <range start1="170" end1="171" start2="173" end2="174" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
+        <range start1="173" end1="174" start2="176" end2="181" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
+        <range start1="175" end1="177" start2="182" end2="185" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
+        <range start1="180" end1="181" start2="188" end2="191" changelist="a7a8f410-996f-4d70-98a8-bc5f5cae8358" />
+        <range start1="310" end1="311" start2="320" end2="320" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
+        <range start1="317" end1="317" start2="326" end2="334" changelist="ba0523e4-c17a-499c-8c9d-9960f72ac75a" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -372,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663725361885</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="update">
+      <created>1663822810366</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1663822810366</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -410,6 +434,7 @@
     <MESSAGE value="Analisis semantico terminado" />
     <MESSAGE value="Errores de declaracion de variables" />
     <MESSAGE value="Semantica terminada" />
-    <option name="LAST_COMMIT_MESSAGE" value="Semantica terminada" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
 </project>

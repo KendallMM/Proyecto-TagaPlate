@@ -1259,58 +1259,6 @@ class IsTrue(Node):
                 err = 'Semantic error: Variable in IsTrue cannot be numeric.'
 
 
-class PrintStart(Node):
-    def __init__(self, son1, son2, name):
-        self.name = name
-        self.son1 = son1
-        self.son2 = son2
-
-    def printtxt(self, ident1, ident2):
-        text = self.name + '\n' + ident1
-
-        text += '[' + self.son1.printtxt(ident1 + '\t', ident1) + '\n' + ident1
-        text += '[' + self.son2.printtxt(ident1 + '\t', ident1) + '\n'
-
-        text += ident2 + ']'
-        return text
-
-
-class PrintValues1(Node):
-    def __init__(self, son1, son2, son3, name):
-        self.name = name
-        self.son1 = son1
-        self.son2 = son2
-        self.son3 = son3
-
-    def printtxt(self, ident1, ident2):
-        text = self.name + '\n' + ident1
-
-        text += '[' + self.son1 + ']' + '\n' + ident1
-        text += '[' + self.son2 + ']' + '\n' + ident1
-        text += '[' + self.son3.printtxt(ident1 + '\t', ident1) + ']' + '\n'
-
-        text += ident2 + ']'
-        return text
-
-
-class PrintValues2(Node):
-    def __init__(self, son1, son2, son3, name):
-        self.name = name
-        self.son1 = son1
-        self.son2 = son2
-        self.son3 = son3
-
-    def printtxt(self, ident1, ident2):
-        text = self.name + '\n' + ident1
-
-        text += '[' + self.son1 + ']' + '\n' + ident1
-        text += '[' + self.son2 + ']' + '\n' + ident1
-        text += '[' + self.son3.printtxt(ident1 + '\t', ident1) + '\n'
-
-        text += ident2 + ']'
-        return text
-
-
 class StartValue1(Node):
     def __init__(self, son1, name):
         self.name = name

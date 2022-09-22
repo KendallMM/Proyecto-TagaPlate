@@ -104,7 +104,7 @@ def p_instructions12(p):
 
 
 def p_instructions13(p):
-    '''instructions : instructions PRINT LPARENT printstart RPARENT SEMICOLON commentary'''
+    '''instructions : instructions PRINT LPARENT startvalue RPARENT SEMICOLON commentary'''
     p[0] = Instructions13(p[2], p[3], p[4], p[5], p[6], p[7], p[1], 'Instructions13')
 
 
@@ -318,26 +318,6 @@ def p_condition7(p):
 def p_istrue(p):
     '''istrue : VERT LPARENT ID RPARENT'''
     p[0] = IsTrue(p[1], p[2], p[3], p[4], 'IsTrue')
-
-
-def p_printstart(p):
-    '''printstart : startvalue printvalues'''
-    p[0] = PrintStart(p[1], p[2], 'PrintStart')
-
-
-def p_printvalues1(p):
-    '''printvalues : COMMA STRING printvalues'''
-    p[0] = PrintValues1(p[1], p[2], p[3], 'PrintValues1')
-
-
-def p_printvalues2(p):
-    '''printvalues : COMMA ID printvalues'''
-    p[0] = PrintValues2(p[1], p[2], p[3], 'PrintValues2')
-
-
-def p_printvaluesEmpty(p):
-    '''printvalues : empty'''
-    p[0] = NullNode()
 
 
 def p_startvalue1(p):

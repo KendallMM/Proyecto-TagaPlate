@@ -4,8 +4,9 @@
  New @var1(Num, 12);
  Values(@var1, 19);
  New @jeje(Num, 14);
- Alter(@var1, ADD, 16);
- PrintValues("Hello World", 19, "Otro string");
+ Alter(@jeje, ADD, 100);
+ PrintValues("Hello");
+ PrintValues(@jeje);
 );
 
 Proc @hel(
@@ -16,6 +17,11 @@ Proc @hel(
 Proc @hub(
  New @yu(Bool,True);
 );
+
+
+
+
+
 
 
 
