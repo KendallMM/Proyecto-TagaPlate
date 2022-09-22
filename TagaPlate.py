@@ -186,7 +186,7 @@ def run_aux(func, counter, instructions):
     else:
         counter -= 1
         func = func.nexxt
-        return run_aux(func, counter)
+        return run_aux(func, counter, instructions)
 
 
 def ask_to_save():
