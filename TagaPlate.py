@@ -211,8 +211,6 @@ def execute(function):
         return stop()
     elif function.name == 'Instructions10':
         return until_function(function.son1.son5, function.son1.son3)
-    elif function.name == 'Instructions11':
-        return while1(function.son1.son2, function.son1.son4)
     elif function.name == 'Instructions12':
         if function.son1.name == 'CaseBody1':
             return case1(function.son1.son4, function.son1.son8, function.son1.son10)
@@ -222,8 +220,8 @@ def execute(function):
         return printer(function.son3)
     elif function.name == 'Instructions14':
         return is_true(function.son1.son3)
-    elif function.name == 'Instructions15':
-        return call_function(function.son3, sx.sem_tree.son2, sx.sem_tree.son4)
+    elif function.name == 'Instructions11':
+        While(function.son1.son2, function.son1.son4)
     else:
         pass
 
@@ -362,15 +360,6 @@ def is_true(name):
             pass
 
 
-def call_function(proc_name, left, right):
-    if proc_name == left.son2:
-        return recursive_execution(left.son4, left.son4, function_counter(left.son4), function_counter(left.son4))
-    if proc_name == right.son2:
-        return recursive_execution(right.son4, right.son4, function_counter(right.son4), function_counter(right.son4))
-    else:
-        return call_function(proc_name, left.nexxt, right.nexxt)
-
-
 def find_condition(condition):
     num1 = 0
     num2 = 0
@@ -389,35 +378,37 @@ def find_condition(condition):
     return num1, num2
 
 
-def while1(condition, instructions):
-    values = find_condition(condition)
+def While(condition, instructions):
     count = function_counter(instructions)
-    if condition.son2.son1 == '>':
-        while values[0] > values[1]:
+    if (condition.name == "Condition7"):
+        while is_true(condition.son1.son3):
             recursive_execution(instructions, instructions, count, count)
-            values = find_condition(condition)
-    if condition.son2.son1 == '<':
-        while values[0] < values[1]:
-            recursive_execution(instructions, instructions, count, count)
-            values = find_condition(condition)
-    if condition.son2.son1 == '>=':
-        while values[0] >= values[1]:
-            recursive_execution(instructions, instructions, count, count)
-            values = find_condition(condition)
-    if condition.son2.son1 == '<=':
-        while values[0] <= values[1]:
-            recursive_execution(instructions, instructions, count, count)
-            values = find_condition(condition)
-    if condition.son2.son1 == '==':
-        while values[0] == values[1]:
-            recursive_execution(instructions, instructions, count, count)
-            values = find_condition(condition)
-    if condition.son2.son1 == '<>':
-        while values[0] != values[1]:
-            recursive_execution(instructions, instructions, count, count)
-            values = find_condition(condition)
-
-
+    else:
+        values = find_condition(condition)
+        if condition.son2.son1 == '>':
+            while values[0] > values[1]:
+                recursive_execution(instructions, instructions, count, count)
+                values = find_condition(condition)
+        if condition.son2.son1 == '<':
+            while values[0] < values[1]:
+                recursive_execution(instructions, instructions, count, count)
+                values = find_condition(condition)
+        if condition.son2.son1 == '>=':
+            while values[0] >= values[1]:
+                recursive_execution(instructions, instructions, count, count)
+                values = find_condition(condition)
+        if condition.son2.son1 == '<=':
+            while values[0] <= values[1]:
+                recursive_execution(instructions, instructions, count, count)
+                values = find_condition(condition)
+        if condition.son2.son1 == '==':
+            while values[0] == values[1]:
+                recursive_execution(instructions, instructions, count, count)
+                values = find_condition(condition)
+        if condition.son2.son1 == '<>':
+            while values[0] != values[1]:
+                recursive_execution(instructions, instructions, count, count)
+                values = find_condition(condition)
 
 def ask_to_save():
     return tk.messagebox.askquestion('Save first', 'Do you want to save your file?', icon='warning')

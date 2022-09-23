@@ -1,27 +1,24 @@
 -- Comentario
 
-Proc @xyz(
- PrintValues("Este es el procedimiento de arriba");
- PrintValues(@var);
-);
-
 @Principal(
- New @counter(Num,100);
- New @var(Num, 0);
- While @var <= @counter (
-  CALL(@xyz);
-  CALL(@deb21);
-  Alter(@var, ADD, 1);
+ New @bu1(Bool, False);
+ New @as(Num,12);
+ New @otra(Num,13);
+ New @opo3(Num,13);
+ Case When (isTrue(@bu1)) Then (
+  New @kiki(Bool, True);
+  AlterB(@kiki);
+  AlterB(@kiki);
+  PrintValues(@kiki);
+  PrintValues("Hola hola");  
+ )
+ Case When (isTrue(@bu1)) Then (
+  PrintValues("else");
+ )
+ Else (
+  PrintValues("Jeje");
  );
 );
-
-Proc @deb21(
- PrintValues("Este es deb");
-);
-
-
-
-
 
 
 
