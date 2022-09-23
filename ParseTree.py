@@ -972,23 +972,21 @@ class CaseBody1(Node):
         return text
 
 
-class CaseBody2(Node):
-    def __init__(self, son1, son2, son3, son4, son5, name):
+class CaseElse1(Node):
+    def __init__(self, son1, son2, son3, son4, name):
         self.name = name
         self.son1 = son1
         self.son2 = son2
         self.son3 = son3
         self.son4 = son4
-        self.son5 = son5
 
     def printtxt(self, ident1, ident2):
         text = self.name + '\n' + ident1
 
-        text += '[' + self.son1.printtxt(ident1 + '\t', ident1) + '\n' + ident1
+        text += '[' + self.son1 + '\n' + ident1
         text += '[' + self.son2 + ']' + '\n' + ident1
-        text += '[' + self.son3 + ']' + '\n' + ident1
-        text += '[' + self.son4.printtxt(ident1 + '\t', ident1) + '\n' + ident1
-        text += '[' + self.son5 + ']' + '\n'
+        text += '[' + self.son3.printtxt(ident1 + '\t', ident1) + ']' + '\n' + ident1
+        text += '[' + self.son4 + ']' + '\n'
 
         text += ident2 + ']'
         return text

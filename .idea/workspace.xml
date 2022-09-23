@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="run operations">
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="funciones auxiliares">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ParseTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/ParseTree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pruebas/Prueba run v2.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba run v2.tgp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pruebas/Prueba2.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba2.tgp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pruebas/Variables.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Variables.tgp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RunOperations.py" beforeDir="false" afterPath="$PROJECT_DIR$/RunOperations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RunOperations.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SyntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/SyntaxAnalyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TagaPlate.py" beforeDir="false" afterPath="$PROJECT_DIR$/TagaPlate.py" afterDir="false" />
     </list>
     <list id="a7a8f410-996f-4d70-98a8-bc5f5cae8358" name="Changes by kendall" comment="Changes by kendall" />
     <option name="SHOW_DIALOG" value="false" />
@@ -392,7 +392,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663826135832</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="funciones auxiliares">
+      <created>1663906780468</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1663906780469</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -407,7 +414,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Create tokens" />
     <MESSAGE value="Analizador léxico finalizado" />
     <MESSAGE value="Analizador léxico finalizado v2" />
     <MESSAGE value="sintactico empezado" />
@@ -432,6 +438,7 @@
     <MESSAGE value="update" />
     <MESSAGE value="run operations" />
     <MESSAGE value="Changes by kendall" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by kendall" />
+    <MESSAGE value="funciones auxiliares" />
+    <option name="LAST_COMMIT_MESSAGE" value="funciones auxiliares" />
   </component>
 </project>

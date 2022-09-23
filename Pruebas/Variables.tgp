@@ -5,15 +5,17 @@
  New @as(Num,12);
  New @otra(Num,18);
  New @opo3(Num,13);
- PrintValues("Prueba");
- Case When (14 > @as) Then (
+ Case When (@otra > @as) Then (
   New @kiki(Bool, True);
   AlterB(@kiki);
-  PrintValues("Hola hola");
   AlterB(@kiki);
   PrintValues(@kiki);
+  PrintValues("Hola hola");  
  );
 );
+
+
+
 
 
 

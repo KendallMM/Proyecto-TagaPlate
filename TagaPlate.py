@@ -6,7 +6,6 @@ from tkinter import messagebox
 import LexicalAnalyzer as lx
 import SyntaxAnalyzer as sx
 import ParseTree as prs
-import RunOperations as run_ops
 
 # GLOBAL VARIABLES
 gpath = ''
@@ -16,6 +15,7 @@ pr_row = 1
 
 runnable = False
 compilation_errors = 0
+print_txt = ''
 
 # MAIN WINDOW
 main = tk.Tk()
@@ -161,32 +161,182 @@ def compile_aux():
 
 
 def run():
-    global runnable
+    global runnable, print_txt
     compile()
     runnable_tree = sx.sem_tree.son3.son3
-    counter = 0
-    run_ops.print_txt = ''
+    print_txt = ''
     delete_prints()
     if runnable and runnable_tree:
-        while runnable_tree.nexxt.name != 'Null':
-            counter += 1
-            runnable_tree = runnable_tree.nexxt
-        return run_aux(sx.sem_tree.son3.son3, counter, counter)
+        counter = function_counter(runnable_tree)
+        return recursive_execution(runnable_tree, runnable_tree, counter, counter)
 
 
-def run_aux(func, counter, instructions):
+def function_counter(function):
+    counter = 0
+    while function.nexxt.name != 'Null':
+        counter += 1
+        function = function.nexxt
+    return counter
+
+
+def recursive_execution(first, func, counter, instructions):
     if instructions == 0:
-        run_ops.execute(func)
+        execute(func)
         write_printer()
         return
     if counter == 0:
-        run_ops.execute(func)
+        execute(func)
         write_printer()
-        return run_aux(sx.sem_tree.son3.son3, instructions - 1, instructions - 1)
+        return recursive_execution(first, first, instructions - 1, instructions - 1)
     else:
         counter -= 1
         func = func.nexxt
-        return run_aux(func, counter, instructions)
+        return recursive_execution(first, func, counter, instructions)
+
+
+def execute(function):
+    if function.name == 'Instructions2':
+        return values(function.son3, function.son5.son1)
+    elif function.name == 'Instructions3':
+        return alter(function.son3, function.son5.son1, function.son7.son1)
+    elif function.name == 'Instructions4':
+        return alter_b(function.son3)
+    elif function.name == 'Instructions5':
+        return move_right()
+    elif function.name == 'Instructions6':
+        return move_left()
+    elif function.name == 'Instructions7':
+        return hammer(function.son3.son1)
+    elif function.name == 'Instructions8':
+        return stop()
+    elif function.name == 'Instructions12':
+        if function.son1.name == 'CaseBody1':
+            return case1(function.son1.son4, function.son1.son8)
+        elif function.son1.name == 'CaseBody3':
+            return case3(function.son1.son2, function.son1.son3.son2, function.son1.son3.son5)
+    elif function.name == 'Instructions13':
+        return printer(function.son3)
+    elif function.name == 'Instructions14':
+        return is_true(function.son1.son3)
+    else:
+        pass
+
+
+def values(name, value):
+    for v in sx.global_vars:
+        if v[0] == name:
+            v[2] = value
+
+
+def alter(name, op, value):
+    for v in sx.global_vars:
+        if v[0] == name:
+            if op == 'ADD':
+                v[2] = str(int(v[2]) + int(value))
+                return v
+            elif op == 'SUB':
+                v[2] = str(int(v[2]) - int(value))
+                return v
+            elif op == 'MUL':
+                v[2] = str(int(v[2]) * int(value))
+                return v
+            elif op == 'DIV':
+                v[2] = str(int(v[2]) / int(value))
+                return v
+
+
+def alter_b(name):
+    for v in sx.global_vars:
+        if v[0] == name:
+            if v[2] == 'True':
+                v[2] = 'False'
+                return v
+            else:
+                v[2] = 'True'
+                return v
+
+
+def move_right():
+    print('Parte de Marco')
+
+
+def move_left():
+    print('Parte de Marco')
+
+
+def hammer(pos):
+    if pos == 'N':
+        print('Marco norte')
+    elif pos == 'S':
+        print('Marco sur')
+    elif pos == 'E':
+        print('Marco este')
+    elif pos == 'O':
+        print('Marco oeste')
+
+
+def stop():
+    print('Parte Marco')
+
+
+def case1(condition, instructions):
+    numbers = find_condition(condition)
+    count = function_counter(instructions)
+    if condition.son2.son1 == '>' and numbers[0] > numbers[1]:
+        return recursive_execution(instructions, instructions, count, count)
+    elif condition.son2.son1 == '<' and numbers[0] < numbers[1]:
+        return recursive_execution(instructions, instructions, count, count)
+    elif condition.son2.son1 == '>=' and numbers[0] >= numbers[1]:
+        return recursive_execution(instructions, instructions, count, count)
+    elif condition.son2.son1 == '<=' and numbers[0] <= numbers[1]:
+        return recursive_execution(instructions, instructions, count, count)
+    elif condition.son2.son1 == '==' and numbers[0] == numbers[1]:
+        return recursive_execution(instructions, instructions, count, count)
+    elif condition.son2.son1 == '<>' and numbers[0] != numbers[1]:
+        return recursive_execution(instructions, instructions, count, count)
+
+
+def case3(name, value, instructions):
+    print('Hola')
+
+
+def printer(args):
+    global print_txt
+    if args.son1[0] == "\"":
+        print_txt = args.son1
+    else:
+        for v in sx.global_vars:
+            if v[0] == args.son1:
+                print_txt = v[2]
+
+
+def is_true(name):
+    for v in sx.global_vars:
+        if v[0] == name:
+            if v[2] == 'True':
+                return True
+            elif v[2] == 'False':
+                return False
+        else:
+            pass
+
+
+def find_condition(condition):
+    num1 = 0
+    num2 = 0
+    try:
+        num1 = int(condition.son1)
+    except:
+        for x in sx.global_vars:
+            if x[0] == condition.son1:
+                num1 = int(x[2])
+    try:
+        num2 = int(condition.son3)
+    except:
+        for y in sx.global_vars:
+            if y[0] == condition.son3:
+                num2 = int(y[2])
+    return num1, num2
 
 
 def ask_to_save():
@@ -324,12 +474,14 @@ def exit_prints():
 
 
 def write_printer():
-    if run_ops.print_txt != '':
-        set_print_text(run_ops.print_txt)
+    global print_txt
+    if print_txt != '':
+        set_print_text(print_txt)
         show_prints()
-        run_ops.print_txt = ''
+        print_txt = ''
     else:
         pass
+
 
 def set_print_text(string):
     global pr_row
