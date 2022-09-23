@@ -1,21 +1,20 @@
 -- Comentario
 
-Proc @uio(
- New @op19(Num, 12);
-);
-
 @Principal(
  New @bu1(Bool, False);
  New @as(Num,12);
- New @opo34(Bool,False);
- CALL(@io35);
+ New @otra(Num,18);
+ New @opo3(Num,13);
+ PrintValues("Prueba");
+ Case When (14 > @as) Then (
+  New @kiki(Bool, True);
+  AlterB(@kiki);
+  PrintValues("Hola hola");
+  AlterB(@kiki);
+  PrintValues(@kiki);
+ );
 );
 
-Proc @io35(
- New @mko12(Num,90);
- New @op19(Num,16);
- CALL(@uio);
-);
 
 
 

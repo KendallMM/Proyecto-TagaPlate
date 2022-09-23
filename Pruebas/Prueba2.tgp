@@ -4,6 +4,11 @@
  New @var2(Num,5);
  Values(@var2,10);
  Alter(@var2, SUB, 3);
+ PrintValues(@var2);
+ New @bool(Bool, True);
+ PrintValues(@bool);
+ AlterB(@bool);
+ PrintValues(@bool);
  While @var2 >= 0 (
   New @id1(Num,0);
   New @opened(Bool, False);
@@ -23,6 +28,7 @@ Proc @ham_move(
   Alter(@counter1, ADD, 1);
  ) @counter1 < 100;
 ); 
+
 
 
 

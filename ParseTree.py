@@ -1113,9 +1113,9 @@ class Condition1(Node):
         current1 = check_variable(self.son1)
         current2 = check_variable(self.son3)
         if current1 and current2:
-            if current1[1] == 'True' or current1[1] == 'False':
+            if current1[1] == 'Bool':
                 err = 'Semantic error: Cannot compare boolean variable ' + current1[0] + '.'
-            if current2[1] == 'True' or current2[1] == 'False':
+            if current2[1] == 'Bool':
                 err = 'Semantic error: Cannot compare boolean variable ' + current2[0] + '.'
 
 
@@ -1141,7 +1141,7 @@ class Condition2(Node):
         global err, global_vars
         current = check_variable(self.son1)
         if current:
-            if current[1] == 'True' or current[1] == 'False':
+            if current[1] == 'Bool':
                 err = 'Semantic error: Cannot compare boolean variable ' + current[0] + '.'
 
 
@@ -1167,7 +1167,7 @@ class Condition3(Node):
         global err
         current = check_variable(self.son3)
         if current:
-            if current[1] == 'True' or current[1] == 'False':
+            if current[1] == 'Bool':
                 err = 'Semantic error: Cannot compare boolean variable ' + current[0] + '.'
 
 
@@ -1177,6 +1177,7 @@ class Condition4(Node):
         self.son1 = son1
         self.son2 = son2
         self.son3 = son3
+        self.semantics()
 
     def printtxt(self, ident1, ident2):
         text = self.name + '\n' + ident1
@@ -1188,11 +1189,27 @@ class Condition4(Node):
         text += ident2 + ']'
         return text
 
+    def semantics(self):
+        global err
+        if int(self.son1) > int(self.son3) and (self.son2.son1 == '>' or self.son2.son1 == '>='):
+            err = 'Semantic error: Condition is always true.'
+        elif int(self.son1) < int(self.son3) and (self.son2.son1 == '>' or self.son2.son1 == '>='):
+            err = 'Semantic error: Condition is always false.'
+        elif int(self.son1) < int(self.son3) and (self.son2.son1 == '<' or self.son2.son1 == '<='):
+            err = 'Semantic error: Condition is always true.'
+        elif int(self.son1) > int(self.son3) and (self.son2.son1 == '<' or self.son2.son1 == '<='):
+            err = 'Semantic error: Condition is always false.'
+        elif int(self.son1) == int(self.son3) and (self.son2.son1 == '=='):
+            err = 'Semantic error: Condition is always true.'
+        elif int(self.son1) != int(self.son3) and (self.son2.son1 == '=='):
+            err = 'Semantic error: Condition is always false.'
+
 
 class Condition5(Node):
     def __init__(self, son1, name):
         self.name = name
         self.son1 = son1
+        self.semantics()
 
     def printtxt(self, ident1, ident2):
         text = self.name + '\n' + ident1
@@ -1201,12 +1218,17 @@ class Condition5(Node):
 
         text += ident2 + ']'
         return text
+
+    def semantics(self):
+        global err
+        err = 'Semantic error: Condition is always ' + self.son1
 
 
 class Condition6(Node):
     def __init__(self, son1, name):
         self.name = name
         self.son1 = son1
+        self.semantics()
 
     def printtxt(self, ident1, ident2):
         text = self.name + '\n' + ident1
@@ -1215,6 +1237,10 @@ class Condition6(Node):
 
         text += ident2 + ']'
         return text
+
+    def semantics(self):
+        global err
+        err = 'Semantic error: Condition is always ' + self.son1
 
 
 class Condition7(Node):

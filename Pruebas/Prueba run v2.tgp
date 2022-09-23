@@ -3,7 +3,9 @@
 @Principal (
  New @var2(Bool, True);
  AlterB(@var2);
+ isTrue(@var2);
 );
+
 
 
 
