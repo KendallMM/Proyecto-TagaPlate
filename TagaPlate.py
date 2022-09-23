@@ -180,7 +180,6 @@ def function_counter(function):
 
 
 def recursive_execution(first, func, counter, instructions):
-    print(first.nexxt.nexxt.name)
     if instructions == 0:
         execute(func)
         write_printer()
@@ -323,7 +322,7 @@ def case1(condition, instructions, next_case):
     elif next_case.name != 'NullNode':
         if next_case.name == 'CaseBody1':
             return case1(next_case.son4, next_case.son8, next_case.son10)
-        elif next_case.name == 'CaseBody2' and next_case.son1.name == 'CaseElse1':
+        elif next_case.name == 'CaseBody2' and next_case.son1.name == 'CaseElse1' and next_case.son1.name != 'NullNode':
             return recursive_execution(next_case.son1.son3, next_case.son1.son3, count, count)
 
 

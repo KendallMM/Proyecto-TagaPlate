@@ -11,10 +11,17 @@
   AlterB(@kiki);
   PrintValues(@kiki);
   PrintValues("Hola hola");  
- ) Else (
-  PrintValues("Este es el else");
+ )
+ Case When (@opo3 <> 13) Then (
+  PrintValues("else");
+ )
+ Else (
+  PrintValues("Jeje");
  );
 );
+
+
+
 
 
 
