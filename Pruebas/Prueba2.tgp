@@ -2,32 +2,23 @@
 
 @Principal(
  New @var2(Num,5);
- Values(@var2,10);
- Alter(@var2, SUB, 3);
- PrintValues(@var2);
- New @bool(Bool, True);
- PrintValues(@bool);
- AlterB(@bool);
- PrintValues(@bool);
- While @var2 >= 0 (
-  New @id1(Num,0);
-  New @opened(Bool, False);
-  Case When (isTrue(@opened)) Then (
-   CALL(@ham_move);
-  )
-  Else (
-   Values(@opened, True);
-  ); 
+ New @var1(Num,5);
+ While @var2 == @var1(
+  PrintValues("1");
+  PrintValues("2");
+  PrintValues("3");
+  Alter(@var1, ADD, 1);
  );
 );
 
-Proc @ham_move(
- New @counter1(Num, 0);
- Until (
-  MoveRight;
-  Alter(@counter1, ADD, 1);
- ) @counter1 < 100;
-); 
+
+
+
+
+
+
+
+
 
 
 

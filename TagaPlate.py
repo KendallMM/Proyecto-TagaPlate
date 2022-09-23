@@ -180,6 +180,7 @@ def function_counter(function):
 
 
 def recursive_execution(first, func, counter, instructions):
+    print(first.nexxt.nexxt.name)
     if instructions == 0:
         execute(func)
         write_printer()
@@ -218,6 +219,8 @@ def execute(function):
         return printer(function.son3)
     elif function.name == 'Instructions14':
         return is_true(function.son1.son3)
+    elif function.name == 'Instructions11':
+        return while1(function.son1.son2, function.son1.son4)
     else:
         pass
 
@@ -337,6 +340,35 @@ def find_condition(condition):
             if y[0] == condition.son3:
                 num2 = int(y[2])
     return num1, num2
+
+def while1(condition, instructions):
+    values = find_condition(condition)
+    count = function_counter(instructions)
+    if condition.son2.son1 == '>':
+        while values[0] > values[1]:
+            recursive_execution(instructions, instructions, count, count)
+            values = find_condition(condition)
+    if condition.son2.son1 == '<':
+        while values[0] < values[1]:
+            recursive_execution(instructions, instructions, count, count)
+            values = find_condition(condition)
+    if condition.son2.son1 == '>=':
+        while values[0] >= values[1]:
+            recursive_execution(instructions, instructions, count, count)
+            values = find_condition(condition)
+    if condition.son2.son1 == '<=':
+        while values[0] <= values[1]:
+            recursive_execution(instructions, instructions, count, count)
+            values = find_condition(condition)
+    if condition.son2.son1 == '==':
+        while values[0] == values[1]:
+            recursive_execution(instructions, instructions, count, count)
+            values = find_condition(condition)
+    if condition.son2.son1 == '<>':
+        while values[0] != values[1]:
+            recursive_execution(instructions, instructions, count, count)
+            values = find_condition(condition)
+
 
 
 def ask_to_save():
