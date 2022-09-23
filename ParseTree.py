@@ -111,14 +111,14 @@ class Principal(Node):
 
 
 class Procedures(Node):
-    def __init__(self, son1, son2, son3, son4, son5, son6, son7, name):
+    def __init__(self, son1, son2, son3, son4, son5, son6, nexxt, name):
         self.son1 = son1
         self.son2 = son2
         self.son3 = son3
         self.son4 = son4
         self.son5 = son5
         self.son6 = son6
-        self.son7 = son7
+        self.nexxt = nexxt
         self.name = name
 
         global local_vars, init_procs
@@ -134,7 +134,7 @@ class Procedures(Node):
         text += '[' + self.son4.printtxt(ident1 + '\t', ident1) + '\n' + ident1
         text += '[' + self.son5 + ']' + '\n' + ident1
         text += '[' + self.son6 + ']' + '\n' + ident1
-        text += '[' + self.son7.printtxt(ident1 + '\t', ident1) + '\n'
+        text += '[' + self.nexxt.printtxt(ident1 + '\t', ident1) + '\n'
 
         text += ident2 + ']'
         return text

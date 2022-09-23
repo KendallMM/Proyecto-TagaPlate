@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Else arreglado">
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="isTrue arreglado">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ParseTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/ParseTree.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pruebas/Variables.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Variables.tgp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TagaPlate.py" beforeDir="false" afterPath="$PROJECT_DIR$/TagaPlate.py" afterDir="false" />
     </list>
@@ -438,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663913648319</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="isTrue arreglado">
+      <created>1663914789463</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1663914789463</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -453,7 +461,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Sintactico terminado v2" />
     <MESSAGE value="semanticAnalyzer.py sin terminar" />
     <MESSAGE value="tagaplate.py mejorado" />
     <MESSAGE value="tagaplate.py comentado" />
@@ -478,6 +485,7 @@
     <MESSAGE value="todo en TagaPlate.py" />
     <MESSAGE value="Else listo" />
     <MESSAGE value="Else arreglado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Else arreglado" />
+    <MESSAGE value="isTrue arreglado" />
+    <option name="LAST_COMMIT_MESSAGE" value="isTrue arreglado" />
   </component>
 </project>
