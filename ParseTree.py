@@ -883,16 +883,20 @@ class Position4(Node):
 
 
 class RepeatInstructions(Node):
-    def __init__(self, son1, son2, name):
+    def __init__(self, son1, son2, son3, son4, name):
         self.name = name
         self.son1 = son1
         self.son2 = son2
+        self.son3 = son3
+        self.nexxt = son4
 
     def printtxt(self, ident1, ident2):
         text = self.name + '\n' + ident1
 
         text += '[' + self.son1.printtxt(ident1 + '\t', ident1) + '\n' + ident1
         text += '[' + self.son2 + ']' + '\n'
+        text += '[' + self.son3 + ']' + '\n'
+        text += '[' + self.nexxt.printtxt(ident1 + '\t', ident1) + '\n'
 
         text += ident2 + ']'
         return text

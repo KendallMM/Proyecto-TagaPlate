@@ -46,7 +46,7 @@ Rule 40    position -> NORTH
 Rule 41    position -> SOUTH
 Rule 42    position -> EAST
 Rule 43    position -> WEST
-Rule 44    repeat_instructions -> instructions BREAK
+Rule 44    repeat_instructions -> instructions BREAK SEMICOLON commentary
 Rule 45    untilbody -> UNTIL LPARENT instructions RPARENT condition
 Rule 46    whilebody -> WHILE condition LPARENT instructions RPARENT
 Rule 47    casebody -> CASE WHEN LPARENT condition RPARENT THEN LPARENT instructions RPARENT casebody
@@ -107,7 +107,7 @@ PRINT                : 18
 PROCEDURE            : 4
 REPEAT               : 14
 RPARENT              : 2 4 6 7 8 9 12 14 18 20 29 45 46 47 47 49 52 53 54 63
-SEMICOLON            : 2 4 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+SEMICOLON            : 2 4 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 44
 SOUTH                : 41
 STOP                 : 13
 STRING               : 64
@@ -126,7 +126,7 @@ Nonterminals, with rules where they appear
 
 case_else            : 48
 casebody             : 17 47
-commentary           : 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+commentary           : 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 44
 comparator           : 56 57 58 59
 condition            : 45 46 47
 datatype             : 6
@@ -820,7 +820,7 @@ state 50
 state 51
 
     (14) instructions -> instructions REPEAT LPARENT . repeat_instructions RPARENT SEMICOLON commentary
-    (44) repeat_instructions -> . instructions BREAK
+    (44) repeat_instructions -> . instructions BREAK SEMICOLON commentary
     (6) instructions -> . instructions NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
     (7) instructions -> . instructions VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary
     (8) instructions -> . instructions ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary
@@ -1404,7 +1404,7 @@ state 83
 
 state 84
 
-    (44) repeat_instructions -> instructions . BREAK
+    (44) repeat_instructions -> instructions . BREAK SEMICOLON commentary
     (6) instructions -> instructions . NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
     (7) instructions -> instructions . VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary
     (8) instructions -> instructions . ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary
@@ -1937,30 +1937,30 @@ state 117
 
 state 118
 
-    (44) repeat_instructions -> instructions BREAK .
+    (44) repeat_instructions -> instructions BREAK . SEMICOLON commentary
 
-    RPARENT         reduce using rule 44 (repeat_instructions -> instructions BREAK .)
+    SEMICOLON       shift and go to state 147
 
 
 state 119
 
     (14) instructions -> instructions REPEAT LPARENT repeat_instructions RPARENT . SEMICOLON commentary
 
-    SEMICOLON       shift and go to state 147
+    SEMICOLON       shift and go to state 148
 
 
 state 120
 
     (18) instructions -> instructions PRINT LPARENT startvalue RPARENT . SEMICOLON commentary
 
-    SEMICOLON       shift and go to state 148
+    SEMICOLON       shift and go to state 149
 
 
 state 121
 
     (20) instructions -> instructions CALL LPARENT ID RPARENT . SEMICOLON commentary
 
-    SEMICOLON       shift and go to state 149
+    SEMICOLON       shift and go to state 150
 
 
 state 122
@@ -1981,7 +1981,7 @@ state 122
     FALSE           shift and go to state 63
     VERT            shift and go to state 38
 
-    condition                      shift and go to state 150
+    condition                      shift and go to state 151
     istrue                         shift and go to state 64
 
 state 123
@@ -2012,7 +2012,7 @@ state 123
     (50) case_else -> . empty
     (67) empty -> .
 
-    RPARENT         shift and go to state 151
+    RPARENT         shift and go to state 152
     NEW             shift and go to state 19
     VALUES          shift and go to state 20
     ALTER           shift and go to state 21
@@ -2078,28 +2078,28 @@ state 128
 
     (47) casebody -> CASE WHEN LPARENT condition . RPARENT THEN LPARENT instructions RPARENT casebody
 
-    RPARENT         shift and go to state 152
+    RPARENT         shift and go to state 153
 
 
 state 129
 
     (52) innercasebody -> WHEN NUMBER . THEN LPARENT instructions RPARENT innercasebody
 
-    THEN            shift and go to state 153
+    THEN            shift and go to state 154
 
 
 state 130
 
     (53) innercasebody -> WHEN TRUE . THEN LPARENT instructions RPARENT innercasebody
 
-    THEN            shift and go to state 154
+    THEN            shift and go to state 155
 
 
 state 131
 
     (54) innercasebody -> WHEN FALSE . THEN LPARENT instructions RPARENT innercasebody
 
-    THEN            shift and go to state 155
+    THEN            shift and go to state 156
 
 
 state 132
@@ -2131,13 +2131,13 @@ state 134
     FALSE           shift and go to state 138
     ALTER           shift and go to state 139
 
-    value                          shift and go to state 156
+    value                          shift and go to state 157
 
 state 135
 
     (7) instructions -> instructions VALUES LPARENT ID COMMA value . RPARENT SEMICOLON commentary
 
-    RPARENT         shift and go to state 157
+    RPARENT         shift and go to state 158
 
 
 state 136
@@ -2165,14 +2165,14 @@ state 139
 
     (29) value -> ALTER . LPARENT ID COMMA operator COMMA value RPARENT
 
-    LPARENT         shift and go to state 158
+    LPARENT         shift and go to state 159
 
 
 state 140
 
     (8) instructions -> instructions ALTER LPARENT ID COMMA operator . COMMA value RPARENT SEMICOLON commentary
 
-    COMMA           shift and go to state 159
+    COMMA           shift and go to state 160
 
 
 state 141
@@ -2231,7 +2231,7 @@ state 145
     SEMICOLON       reduce using rule 67 (empty -> .)
     BREAK           reduce using rule 67 (empty -> .)
 
-    commentary                     shift and go to state 160
+    commentary                     shift and go to state 161
     empty                          shift and go to state 76
 
 state 146
@@ -2262,74 +2262,25 @@ state 146
     SEMICOLON       reduce using rule 67 (empty -> .)
     BREAK           reduce using rule 67 (empty -> .)
 
-    commentary                     shift and go to state 161
+    commentary                     shift and go to state 162
     empty                          shift and go to state 76
 
 state 147
 
-    (14) instructions -> instructions REPEAT LPARENT repeat_instructions RPARENT SEMICOLON . commentary
+    (44) repeat_instructions -> instructions BREAK SEMICOLON . commentary
     (22) commentary -> . COMMENT
     (23) commentary -> . empty
     (67) empty -> .
 
     COMMENT         shift and go to state 75
     RPARENT         reduce using rule 67 (empty -> .)
-    NEW             reduce using rule 67 (empty -> .)
-    VALUES          reduce using rule 67 (empty -> .)
-    ALTER           reduce using rule 67 (empty -> .)
-    ALTERB          reduce using rule 67 (empty -> .)
-    MOVR            reduce using rule 67 (empty -> .)
-    MOVL            reduce using rule 67 (empty -> .)
-    HAMMER          reduce using rule 67 (empty -> .)
-    STOP            reduce using rule 67 (empty -> .)
-    REPEAT          reduce using rule 67 (empty -> .)
-    PRINT           reduce using rule 67 (empty -> .)
-    CALL            reduce using rule 67 (empty -> .)
-    UNTIL           reduce using rule 67 (empty -> .)
-    WHILE           reduce using rule 67 (empty -> .)
-    CASE            reduce using rule 67 (empty -> .)
-    VERT            reduce using rule 67 (empty -> .)
-    ELSE            reduce using rule 67 (empty -> .)
-    SEMICOLON       reduce using rule 67 (empty -> .)
-    BREAK           reduce using rule 67 (empty -> .)
-
-    commentary                     shift and go to state 162
-    empty                          shift and go to state 76
-
-state 148
-
-    (18) instructions -> instructions PRINT LPARENT startvalue RPARENT SEMICOLON . commentary
-    (22) commentary -> . COMMENT
-    (23) commentary -> . empty
-    (67) empty -> .
-
-    COMMENT         shift and go to state 75
-    RPARENT         reduce using rule 67 (empty -> .)
-    NEW             reduce using rule 67 (empty -> .)
-    VALUES          reduce using rule 67 (empty -> .)
-    ALTER           reduce using rule 67 (empty -> .)
-    ALTERB          reduce using rule 67 (empty -> .)
-    MOVR            reduce using rule 67 (empty -> .)
-    MOVL            reduce using rule 67 (empty -> .)
-    HAMMER          reduce using rule 67 (empty -> .)
-    STOP            reduce using rule 67 (empty -> .)
-    REPEAT          reduce using rule 67 (empty -> .)
-    PRINT           reduce using rule 67 (empty -> .)
-    CALL            reduce using rule 67 (empty -> .)
-    UNTIL           reduce using rule 67 (empty -> .)
-    WHILE           reduce using rule 67 (empty -> .)
-    CASE            reduce using rule 67 (empty -> .)
-    VERT            reduce using rule 67 (empty -> .)
-    ELSE            reduce using rule 67 (empty -> .)
-    SEMICOLON       reduce using rule 67 (empty -> .)
-    BREAK           reduce using rule 67 (empty -> .)
 
     commentary                     shift and go to state 163
     empty                          shift and go to state 76
 
-state 149
+state 148
 
-    (20) instructions -> instructions CALL LPARENT ID RPARENT SEMICOLON . commentary
+    (14) instructions -> instructions REPEAT LPARENT repeat_instructions RPARENT SEMICOLON . commentary
     (22) commentary -> . COMMENT
     (23) commentary -> . empty
     (67) empty -> .
@@ -2358,70 +2309,132 @@ state 149
     commentary                     shift and go to state 164
     empty                          shift and go to state 76
 
+state 149
+
+    (18) instructions -> instructions PRINT LPARENT startvalue RPARENT SEMICOLON . commentary
+    (22) commentary -> . COMMENT
+    (23) commentary -> . empty
+    (67) empty -> .
+
+    COMMENT         shift and go to state 75
+    RPARENT         reduce using rule 67 (empty -> .)
+    NEW             reduce using rule 67 (empty -> .)
+    VALUES          reduce using rule 67 (empty -> .)
+    ALTER           reduce using rule 67 (empty -> .)
+    ALTERB          reduce using rule 67 (empty -> .)
+    MOVR            reduce using rule 67 (empty -> .)
+    MOVL            reduce using rule 67 (empty -> .)
+    HAMMER          reduce using rule 67 (empty -> .)
+    STOP            reduce using rule 67 (empty -> .)
+    REPEAT          reduce using rule 67 (empty -> .)
+    PRINT           reduce using rule 67 (empty -> .)
+    CALL            reduce using rule 67 (empty -> .)
+    UNTIL           reduce using rule 67 (empty -> .)
+    WHILE           reduce using rule 67 (empty -> .)
+    CASE            reduce using rule 67 (empty -> .)
+    VERT            reduce using rule 67 (empty -> .)
+    ELSE            reduce using rule 67 (empty -> .)
+    SEMICOLON       reduce using rule 67 (empty -> .)
+    BREAK           reduce using rule 67 (empty -> .)
+
+    commentary                     shift and go to state 165
+    empty                          shift and go to state 76
+
 state 150
+
+    (20) instructions -> instructions CALL LPARENT ID RPARENT SEMICOLON . commentary
+    (22) commentary -> . COMMENT
+    (23) commentary -> . empty
+    (67) empty -> .
+
+    COMMENT         shift and go to state 75
+    RPARENT         reduce using rule 67 (empty -> .)
+    NEW             reduce using rule 67 (empty -> .)
+    VALUES          reduce using rule 67 (empty -> .)
+    ALTER           reduce using rule 67 (empty -> .)
+    ALTERB          reduce using rule 67 (empty -> .)
+    MOVR            reduce using rule 67 (empty -> .)
+    MOVL            reduce using rule 67 (empty -> .)
+    HAMMER          reduce using rule 67 (empty -> .)
+    STOP            reduce using rule 67 (empty -> .)
+    REPEAT          reduce using rule 67 (empty -> .)
+    PRINT           reduce using rule 67 (empty -> .)
+    CALL            reduce using rule 67 (empty -> .)
+    UNTIL           reduce using rule 67 (empty -> .)
+    WHILE           reduce using rule 67 (empty -> .)
+    CASE            reduce using rule 67 (empty -> .)
+    VERT            reduce using rule 67 (empty -> .)
+    ELSE            reduce using rule 67 (empty -> .)
+    SEMICOLON       reduce using rule 67 (empty -> .)
+    BREAK           reduce using rule 67 (empty -> .)
+
+    commentary                     shift and go to state 166
+    empty                          shift and go to state 76
+
+state 151
 
     (45) untilbody -> UNTIL LPARENT instructions RPARENT condition .
 
     SEMICOLON       reduce using rule 45 (untilbody -> UNTIL LPARENT instructions RPARENT condition .)
 
 
-state 151
+state 152
 
     (46) whilebody -> WHILE condition LPARENT instructions RPARENT .
 
     SEMICOLON       reduce using rule 46 (whilebody -> WHILE condition LPARENT instructions RPARENT .)
 
 
-state 152
+state 153
 
     (47) casebody -> CASE WHEN LPARENT condition RPARENT . THEN LPARENT instructions RPARENT casebody
 
-    THEN            shift and go to state 165
-
-
-state 153
-
-    (52) innercasebody -> WHEN NUMBER THEN . LPARENT instructions RPARENT innercasebody
-
-    LPARENT         shift and go to state 166
+    THEN            shift and go to state 167
 
 
 state 154
 
-    (53) innercasebody -> WHEN TRUE THEN . LPARENT instructions RPARENT innercasebody
-
-    LPARENT         shift and go to state 167
-
-
-state 155
-
-    (54) innercasebody -> WHEN FALSE THEN . LPARENT instructions RPARENT innercasebody
+    (52) innercasebody -> WHEN NUMBER THEN . LPARENT instructions RPARENT innercasebody
 
     LPARENT         shift and go to state 168
 
 
+state 155
+
+    (53) innercasebody -> WHEN TRUE THEN . LPARENT instructions RPARENT innercasebody
+
+    LPARENT         shift and go to state 169
+
+
 state 156
 
-    (6) instructions -> instructions NEW ID LPARENT datatype COMMA value . RPARENT SEMICOLON commentary
+    (54) innercasebody -> WHEN FALSE THEN . LPARENT instructions RPARENT innercasebody
 
-    RPARENT         shift and go to state 169
+    LPARENT         shift and go to state 170
 
 
 state 157
 
-    (7) instructions -> instructions VALUES LPARENT ID COMMA value RPARENT . SEMICOLON commentary
+    (6) instructions -> instructions NEW ID LPARENT datatype COMMA value . RPARENT SEMICOLON commentary
 
-    SEMICOLON       shift and go to state 170
+    RPARENT         shift and go to state 171
 
 
 state 158
 
-    (29) value -> ALTER LPARENT . ID COMMA operator COMMA value RPARENT
+    (7) instructions -> instructions VALUES LPARENT ID COMMA value RPARENT . SEMICOLON commentary
 
-    ID              shift and go to state 171
+    SEMICOLON       shift and go to state 172
 
 
 state 159
+
+    (29) value -> ALTER LPARENT . ID COMMA operator COMMA value RPARENT
+
+    ID              shift and go to state 173
+
+
+state 160
 
     (8) instructions -> instructions ALTER LPARENT ID COMMA operator COMMA . value RPARENT SEMICOLON commentary
     (26) value -> . NUMBER
@@ -2434,9 +2447,9 @@ state 159
     FALSE           shift and go to state 138
     ALTER           shift and go to state 139
 
-    value                          shift and go to state 172
+    value                          shift and go to state 174
 
-state 160
+state 161
 
     (9) instructions -> instructions ALTERB LPARENT ID RPARENT SEMICOLON commentary .
 
@@ -2461,7 +2474,7 @@ state 160
     BREAK           reduce using rule 9 (instructions -> instructions ALTERB LPARENT ID RPARENT SEMICOLON commentary .)
 
 
-state 161
+state 162
 
     (12) instructions -> instructions HAMMER LPARENT position RPARENT SEMICOLON commentary .
 
@@ -2486,7 +2499,14 @@ state 161
     BREAK           reduce using rule 12 (instructions -> instructions HAMMER LPARENT position RPARENT SEMICOLON commentary .)
 
 
-state 162
+state 163
+
+    (44) repeat_instructions -> instructions BREAK SEMICOLON commentary .
+
+    RPARENT         reduce using rule 44 (repeat_instructions -> instructions BREAK SEMICOLON commentary .)
+
+
+state 164
 
     (14) instructions -> instructions REPEAT LPARENT repeat_instructions RPARENT SEMICOLON commentary .
 
@@ -2511,7 +2531,7 @@ state 162
     BREAK           reduce using rule 14 (instructions -> instructions REPEAT LPARENT repeat_instructions RPARENT SEMICOLON commentary .)
 
 
-state 163
+state 165
 
     (18) instructions -> instructions PRINT LPARENT startvalue RPARENT SEMICOLON commentary .
 
@@ -2536,7 +2556,7 @@ state 163
     BREAK           reduce using rule 18 (instructions -> instructions PRINT LPARENT startvalue RPARENT SEMICOLON commentary .)
 
 
-state 164
+state 166
 
     (20) instructions -> instructions CALL LPARENT ID RPARENT SEMICOLON commentary .
 
@@ -2561,102 +2581,16 @@ state 164
     BREAK           reduce using rule 20 (instructions -> instructions CALL LPARENT ID RPARENT SEMICOLON commentary .)
 
 
-state 165
+state 167
 
     (47) casebody -> CASE WHEN LPARENT condition RPARENT THEN . LPARENT instructions RPARENT casebody
 
-    LPARENT         shift and go to state 173
+    LPARENT         shift and go to state 175
 
-
-state 166
-
-    (52) innercasebody -> WHEN NUMBER THEN LPARENT . instructions RPARENT innercasebody
-    (6) instructions -> . instructions NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
-    (7) instructions -> . instructions VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary
-    (8) instructions -> . instructions ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary
-    (9) instructions -> . instructions ALTERB LPARENT ID RPARENT SEMICOLON commentary
-    (10) instructions -> . instructions MOVR SEMICOLON commentary
-    (11) instructions -> . instructions MOVL SEMICOLON commentary
-    (12) instructions -> . instructions HAMMER LPARENT position RPARENT SEMICOLON commentary
-    (13) instructions -> . instructions STOP SEMICOLON commentary
-    (14) instructions -> . instructions REPEAT LPARENT repeat_instructions RPARENT SEMICOLON commentary
-    (15) instructions -> . instructions untilbody SEMICOLON commentary
-    (16) instructions -> . instructions whilebody SEMICOLON commentary
-    (17) instructions -> . instructions casebody SEMICOLON commentary
-    (18) instructions -> . instructions PRINT LPARENT startvalue RPARENT SEMICOLON commentary
-    (19) instructions -> . instructions istrue SEMICOLON commentary
-    (20) instructions -> . instructions CALL LPARENT ID RPARENT SEMICOLON commentary
-    (21) instructions -> . empty
-    (67) empty -> .
-
-    RPARENT         reduce using rule 67 (empty -> .)
-    NEW             reduce using rule 67 (empty -> .)
-    VALUES          reduce using rule 67 (empty -> .)
-    ALTER           reduce using rule 67 (empty -> .)
-    ALTERB          reduce using rule 67 (empty -> .)
-    MOVR            reduce using rule 67 (empty -> .)
-    MOVL            reduce using rule 67 (empty -> .)
-    HAMMER          reduce using rule 67 (empty -> .)
-    STOP            reduce using rule 67 (empty -> .)
-    REPEAT          reduce using rule 67 (empty -> .)
-    PRINT           reduce using rule 67 (empty -> .)
-    CALL            reduce using rule 67 (empty -> .)
-    UNTIL           reduce using rule 67 (empty -> .)
-    WHILE           reduce using rule 67 (empty -> .)
-    CASE            reduce using rule 67 (empty -> .)
-    VERT            reduce using rule 67 (empty -> .)
-    ELSE            reduce using rule 67 (empty -> .)
-    SEMICOLON       reduce using rule 67 (empty -> .)
-
-    instructions                   shift and go to state 174
-    empty                          shift and go to state 16
-
-state 167
-
-    (53) innercasebody -> WHEN TRUE THEN LPARENT . instructions RPARENT innercasebody
-    (6) instructions -> . instructions NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
-    (7) instructions -> . instructions VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary
-    (8) instructions -> . instructions ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary
-    (9) instructions -> . instructions ALTERB LPARENT ID RPARENT SEMICOLON commentary
-    (10) instructions -> . instructions MOVR SEMICOLON commentary
-    (11) instructions -> . instructions MOVL SEMICOLON commentary
-    (12) instructions -> . instructions HAMMER LPARENT position RPARENT SEMICOLON commentary
-    (13) instructions -> . instructions STOP SEMICOLON commentary
-    (14) instructions -> . instructions REPEAT LPARENT repeat_instructions RPARENT SEMICOLON commentary
-    (15) instructions -> . instructions untilbody SEMICOLON commentary
-    (16) instructions -> . instructions whilebody SEMICOLON commentary
-    (17) instructions -> . instructions casebody SEMICOLON commentary
-    (18) instructions -> . instructions PRINT LPARENT startvalue RPARENT SEMICOLON commentary
-    (19) instructions -> . instructions istrue SEMICOLON commentary
-    (20) instructions -> . instructions CALL LPARENT ID RPARENT SEMICOLON commentary
-    (21) instructions -> . empty
-    (67) empty -> .
-
-    RPARENT         reduce using rule 67 (empty -> .)
-    NEW             reduce using rule 67 (empty -> .)
-    VALUES          reduce using rule 67 (empty -> .)
-    ALTER           reduce using rule 67 (empty -> .)
-    ALTERB          reduce using rule 67 (empty -> .)
-    MOVR            reduce using rule 67 (empty -> .)
-    MOVL            reduce using rule 67 (empty -> .)
-    HAMMER          reduce using rule 67 (empty -> .)
-    STOP            reduce using rule 67 (empty -> .)
-    REPEAT          reduce using rule 67 (empty -> .)
-    PRINT           reduce using rule 67 (empty -> .)
-    CALL            reduce using rule 67 (empty -> .)
-    UNTIL           reduce using rule 67 (empty -> .)
-    WHILE           reduce using rule 67 (empty -> .)
-    CASE            reduce using rule 67 (empty -> .)
-    VERT            reduce using rule 67 (empty -> .)
-    ELSE            reduce using rule 67 (empty -> .)
-    SEMICOLON       reduce using rule 67 (empty -> .)
-
-    instructions                   shift and go to state 175
-    empty                          shift and go to state 16
 
 state 168
 
-    (54) innercasebody -> WHEN FALSE THEN LPARENT . instructions RPARENT innercasebody
+    (52) innercasebody -> WHEN NUMBER THEN LPARENT . instructions RPARENT innercasebody
     (6) instructions -> . instructions NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
     (7) instructions -> . instructions VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary
     (8) instructions -> . instructions ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary
@@ -2699,12 +2633,98 @@ state 168
 
 state 169
 
-    (6) instructions -> instructions NEW ID LPARENT datatype COMMA value RPARENT . SEMICOLON commentary
+    (53) innercasebody -> WHEN TRUE THEN LPARENT . instructions RPARENT innercasebody
+    (6) instructions -> . instructions NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
+    (7) instructions -> . instructions VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary
+    (8) instructions -> . instructions ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary
+    (9) instructions -> . instructions ALTERB LPARENT ID RPARENT SEMICOLON commentary
+    (10) instructions -> . instructions MOVR SEMICOLON commentary
+    (11) instructions -> . instructions MOVL SEMICOLON commentary
+    (12) instructions -> . instructions HAMMER LPARENT position RPARENT SEMICOLON commentary
+    (13) instructions -> . instructions STOP SEMICOLON commentary
+    (14) instructions -> . instructions REPEAT LPARENT repeat_instructions RPARENT SEMICOLON commentary
+    (15) instructions -> . instructions untilbody SEMICOLON commentary
+    (16) instructions -> . instructions whilebody SEMICOLON commentary
+    (17) instructions -> . instructions casebody SEMICOLON commentary
+    (18) instructions -> . instructions PRINT LPARENT startvalue RPARENT SEMICOLON commentary
+    (19) instructions -> . instructions istrue SEMICOLON commentary
+    (20) instructions -> . instructions CALL LPARENT ID RPARENT SEMICOLON commentary
+    (21) instructions -> . empty
+    (67) empty -> .
 
-    SEMICOLON       shift and go to state 177
+    RPARENT         reduce using rule 67 (empty -> .)
+    NEW             reduce using rule 67 (empty -> .)
+    VALUES          reduce using rule 67 (empty -> .)
+    ALTER           reduce using rule 67 (empty -> .)
+    ALTERB          reduce using rule 67 (empty -> .)
+    MOVR            reduce using rule 67 (empty -> .)
+    MOVL            reduce using rule 67 (empty -> .)
+    HAMMER          reduce using rule 67 (empty -> .)
+    STOP            reduce using rule 67 (empty -> .)
+    REPEAT          reduce using rule 67 (empty -> .)
+    PRINT           reduce using rule 67 (empty -> .)
+    CALL            reduce using rule 67 (empty -> .)
+    UNTIL           reduce using rule 67 (empty -> .)
+    WHILE           reduce using rule 67 (empty -> .)
+    CASE            reduce using rule 67 (empty -> .)
+    VERT            reduce using rule 67 (empty -> .)
+    ELSE            reduce using rule 67 (empty -> .)
+    SEMICOLON       reduce using rule 67 (empty -> .)
 
+    instructions                   shift and go to state 177
+    empty                          shift and go to state 16
 
 state 170
+
+    (54) innercasebody -> WHEN FALSE THEN LPARENT . instructions RPARENT innercasebody
+    (6) instructions -> . instructions NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
+    (7) instructions -> . instructions VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary
+    (8) instructions -> . instructions ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary
+    (9) instructions -> . instructions ALTERB LPARENT ID RPARENT SEMICOLON commentary
+    (10) instructions -> . instructions MOVR SEMICOLON commentary
+    (11) instructions -> . instructions MOVL SEMICOLON commentary
+    (12) instructions -> . instructions HAMMER LPARENT position RPARENT SEMICOLON commentary
+    (13) instructions -> . instructions STOP SEMICOLON commentary
+    (14) instructions -> . instructions REPEAT LPARENT repeat_instructions RPARENT SEMICOLON commentary
+    (15) instructions -> . instructions untilbody SEMICOLON commentary
+    (16) instructions -> . instructions whilebody SEMICOLON commentary
+    (17) instructions -> . instructions casebody SEMICOLON commentary
+    (18) instructions -> . instructions PRINT LPARENT startvalue RPARENT SEMICOLON commentary
+    (19) instructions -> . instructions istrue SEMICOLON commentary
+    (20) instructions -> . instructions CALL LPARENT ID RPARENT SEMICOLON commentary
+    (21) instructions -> . empty
+    (67) empty -> .
+
+    RPARENT         reduce using rule 67 (empty -> .)
+    NEW             reduce using rule 67 (empty -> .)
+    VALUES          reduce using rule 67 (empty -> .)
+    ALTER           reduce using rule 67 (empty -> .)
+    ALTERB          reduce using rule 67 (empty -> .)
+    MOVR            reduce using rule 67 (empty -> .)
+    MOVL            reduce using rule 67 (empty -> .)
+    HAMMER          reduce using rule 67 (empty -> .)
+    STOP            reduce using rule 67 (empty -> .)
+    REPEAT          reduce using rule 67 (empty -> .)
+    PRINT           reduce using rule 67 (empty -> .)
+    CALL            reduce using rule 67 (empty -> .)
+    UNTIL           reduce using rule 67 (empty -> .)
+    WHILE           reduce using rule 67 (empty -> .)
+    CASE            reduce using rule 67 (empty -> .)
+    VERT            reduce using rule 67 (empty -> .)
+    ELSE            reduce using rule 67 (empty -> .)
+    SEMICOLON       reduce using rule 67 (empty -> .)
+
+    instructions                   shift and go to state 178
+    empty                          shift and go to state 16
+
+state 171
+
+    (6) instructions -> instructions NEW ID LPARENT datatype COMMA value RPARENT . SEMICOLON commentary
+
+    SEMICOLON       shift and go to state 179
+
+
+state 172
 
     (7) instructions -> instructions VALUES LPARENT ID COMMA value RPARENT SEMICOLON . commentary
     (22) commentary -> . COMMENT
@@ -2732,24 +2752,24 @@ state 170
     SEMICOLON       reduce using rule 67 (empty -> .)
     BREAK           reduce using rule 67 (empty -> .)
 
-    commentary                     shift and go to state 178
+    commentary                     shift and go to state 180
     empty                          shift and go to state 76
 
-state 171
+state 173
 
     (29) value -> ALTER LPARENT ID . COMMA operator COMMA value RPARENT
 
-    COMMA           shift and go to state 179
+    COMMA           shift and go to state 181
 
 
-state 172
+state 174
 
     (8) instructions -> instructions ALTER LPARENT ID COMMA operator COMMA value . RPARENT SEMICOLON commentary
 
-    RPARENT         shift and go to state 180
+    RPARENT         shift and go to state 182
 
 
-state 173
+state 175
 
     (47) casebody -> CASE WHEN LPARENT condition RPARENT THEN LPARENT . instructions RPARENT casebody
     (6) instructions -> . instructions NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
@@ -2789,120 +2809,12 @@ state 173
     ELSE            reduce using rule 67 (empty -> .)
     SEMICOLON       reduce using rule 67 (empty -> .)
 
-    instructions                   shift and go to state 181
+    instructions                   shift and go to state 183
     empty                          shift and go to state 16
-
-state 174
-
-    (52) innercasebody -> WHEN NUMBER THEN LPARENT instructions . RPARENT innercasebody
-    (6) instructions -> instructions . NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
-    (7) instructions -> instructions . VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary
-    (8) instructions -> instructions . ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary
-    (9) instructions -> instructions . ALTERB LPARENT ID RPARENT SEMICOLON commentary
-    (10) instructions -> instructions . MOVR SEMICOLON commentary
-    (11) instructions -> instructions . MOVL SEMICOLON commentary
-    (12) instructions -> instructions . HAMMER LPARENT position RPARENT SEMICOLON commentary
-    (13) instructions -> instructions . STOP SEMICOLON commentary
-    (14) instructions -> instructions . REPEAT LPARENT repeat_instructions RPARENT SEMICOLON commentary
-    (15) instructions -> instructions . untilbody SEMICOLON commentary
-    (16) instructions -> instructions . whilebody SEMICOLON commentary
-    (17) instructions -> instructions . casebody SEMICOLON commentary
-    (18) instructions -> instructions . PRINT LPARENT startvalue RPARENT SEMICOLON commentary
-    (19) instructions -> instructions . istrue SEMICOLON commentary
-    (20) instructions -> instructions . CALL LPARENT ID RPARENT SEMICOLON commentary
-    (45) untilbody -> . UNTIL LPARENT instructions RPARENT condition
-    (46) whilebody -> . WHILE condition LPARENT instructions RPARENT
-    (47) casebody -> . CASE WHEN LPARENT condition RPARENT THEN LPARENT instructions RPARENT casebody
-    (48) casebody -> . case_else
-    (51) casebody -> . CASE ID innercasebody
-    (63) istrue -> . VERT LPARENT ID RPARENT
-    (49) case_else -> . ELSE LPARENT instructions RPARENT
-    (50) case_else -> . empty
-    (67) empty -> .
-
-    RPARENT         shift and go to state 182
-    NEW             shift and go to state 19
-    VALUES          shift and go to state 20
-    ALTER           shift and go to state 21
-    ALTERB          shift and go to state 22
-    MOVR            shift and go to state 23
-    MOVL            shift and go to state 24
-    HAMMER          shift and go to state 25
-    STOP            shift and go to state 26
-    REPEAT          shift and go to state 27
-    PRINT           shift and go to state 31
-    CALL            shift and go to state 33
-    UNTIL           shift and go to state 34
-    WHILE           shift and go to state 35
-    CASE            shift and go to state 36
-    VERT            shift and go to state 38
-    ELSE            shift and go to state 39
-    SEMICOLON       reduce using rule 67 (empty -> .)
-
-    untilbody                      shift and go to state 28
-    whilebody                      shift and go to state 29
-    casebody                       shift and go to state 30
-    istrue                         shift and go to state 32
-    case_else                      shift and go to state 37
-    empty                          shift and go to state 40
-
-state 175
-
-    (53) innercasebody -> WHEN TRUE THEN LPARENT instructions . RPARENT innercasebody
-    (6) instructions -> instructions . NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
-    (7) instructions -> instructions . VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary
-    (8) instructions -> instructions . ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary
-    (9) instructions -> instructions . ALTERB LPARENT ID RPARENT SEMICOLON commentary
-    (10) instructions -> instructions . MOVR SEMICOLON commentary
-    (11) instructions -> instructions . MOVL SEMICOLON commentary
-    (12) instructions -> instructions . HAMMER LPARENT position RPARENT SEMICOLON commentary
-    (13) instructions -> instructions . STOP SEMICOLON commentary
-    (14) instructions -> instructions . REPEAT LPARENT repeat_instructions RPARENT SEMICOLON commentary
-    (15) instructions -> instructions . untilbody SEMICOLON commentary
-    (16) instructions -> instructions . whilebody SEMICOLON commentary
-    (17) instructions -> instructions . casebody SEMICOLON commentary
-    (18) instructions -> instructions . PRINT LPARENT startvalue RPARENT SEMICOLON commentary
-    (19) instructions -> instructions . istrue SEMICOLON commentary
-    (20) instructions -> instructions . CALL LPARENT ID RPARENT SEMICOLON commentary
-    (45) untilbody -> . UNTIL LPARENT instructions RPARENT condition
-    (46) whilebody -> . WHILE condition LPARENT instructions RPARENT
-    (47) casebody -> . CASE WHEN LPARENT condition RPARENT THEN LPARENT instructions RPARENT casebody
-    (48) casebody -> . case_else
-    (51) casebody -> . CASE ID innercasebody
-    (63) istrue -> . VERT LPARENT ID RPARENT
-    (49) case_else -> . ELSE LPARENT instructions RPARENT
-    (50) case_else -> . empty
-    (67) empty -> .
-
-    RPARENT         shift and go to state 183
-    NEW             shift and go to state 19
-    VALUES          shift and go to state 20
-    ALTER           shift and go to state 21
-    ALTERB          shift and go to state 22
-    MOVR            shift and go to state 23
-    MOVL            shift and go to state 24
-    HAMMER          shift and go to state 25
-    STOP            shift and go to state 26
-    REPEAT          shift and go to state 27
-    PRINT           shift and go to state 31
-    CALL            shift and go to state 33
-    UNTIL           shift and go to state 34
-    WHILE           shift and go to state 35
-    CASE            shift and go to state 36
-    VERT            shift and go to state 38
-    ELSE            shift and go to state 39
-    SEMICOLON       reduce using rule 67 (empty -> .)
-
-    untilbody                      shift and go to state 28
-    whilebody                      shift and go to state 29
-    casebody                       shift and go to state 30
-    istrue                         shift and go to state 32
-    case_else                      shift and go to state 37
-    empty                          shift and go to state 40
 
 state 176
 
-    (54) innercasebody -> WHEN FALSE THEN LPARENT instructions . RPARENT innercasebody
+    (52) innercasebody -> WHEN NUMBER THEN LPARENT instructions . RPARENT innercasebody
     (6) instructions -> instructions . NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
     (7) instructions -> instructions . VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary
     (8) instructions -> instructions . ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary
@@ -2956,6 +2868,114 @@ state 176
 
 state 177
 
+    (53) innercasebody -> WHEN TRUE THEN LPARENT instructions . RPARENT innercasebody
+    (6) instructions -> instructions . NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
+    (7) instructions -> instructions . VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary
+    (8) instructions -> instructions . ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary
+    (9) instructions -> instructions . ALTERB LPARENT ID RPARENT SEMICOLON commentary
+    (10) instructions -> instructions . MOVR SEMICOLON commentary
+    (11) instructions -> instructions . MOVL SEMICOLON commentary
+    (12) instructions -> instructions . HAMMER LPARENT position RPARENT SEMICOLON commentary
+    (13) instructions -> instructions . STOP SEMICOLON commentary
+    (14) instructions -> instructions . REPEAT LPARENT repeat_instructions RPARENT SEMICOLON commentary
+    (15) instructions -> instructions . untilbody SEMICOLON commentary
+    (16) instructions -> instructions . whilebody SEMICOLON commentary
+    (17) instructions -> instructions . casebody SEMICOLON commentary
+    (18) instructions -> instructions . PRINT LPARENT startvalue RPARENT SEMICOLON commentary
+    (19) instructions -> instructions . istrue SEMICOLON commentary
+    (20) instructions -> instructions . CALL LPARENT ID RPARENT SEMICOLON commentary
+    (45) untilbody -> . UNTIL LPARENT instructions RPARENT condition
+    (46) whilebody -> . WHILE condition LPARENT instructions RPARENT
+    (47) casebody -> . CASE WHEN LPARENT condition RPARENT THEN LPARENT instructions RPARENT casebody
+    (48) casebody -> . case_else
+    (51) casebody -> . CASE ID innercasebody
+    (63) istrue -> . VERT LPARENT ID RPARENT
+    (49) case_else -> . ELSE LPARENT instructions RPARENT
+    (50) case_else -> . empty
+    (67) empty -> .
+
+    RPARENT         shift and go to state 185
+    NEW             shift and go to state 19
+    VALUES          shift and go to state 20
+    ALTER           shift and go to state 21
+    ALTERB          shift and go to state 22
+    MOVR            shift and go to state 23
+    MOVL            shift and go to state 24
+    HAMMER          shift and go to state 25
+    STOP            shift and go to state 26
+    REPEAT          shift and go to state 27
+    PRINT           shift and go to state 31
+    CALL            shift and go to state 33
+    UNTIL           shift and go to state 34
+    WHILE           shift and go to state 35
+    CASE            shift and go to state 36
+    VERT            shift and go to state 38
+    ELSE            shift and go to state 39
+    SEMICOLON       reduce using rule 67 (empty -> .)
+
+    untilbody                      shift and go to state 28
+    whilebody                      shift and go to state 29
+    casebody                       shift and go to state 30
+    istrue                         shift and go to state 32
+    case_else                      shift and go to state 37
+    empty                          shift and go to state 40
+
+state 178
+
+    (54) innercasebody -> WHEN FALSE THEN LPARENT instructions . RPARENT innercasebody
+    (6) instructions -> instructions . NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
+    (7) instructions -> instructions . VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary
+    (8) instructions -> instructions . ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary
+    (9) instructions -> instructions . ALTERB LPARENT ID RPARENT SEMICOLON commentary
+    (10) instructions -> instructions . MOVR SEMICOLON commentary
+    (11) instructions -> instructions . MOVL SEMICOLON commentary
+    (12) instructions -> instructions . HAMMER LPARENT position RPARENT SEMICOLON commentary
+    (13) instructions -> instructions . STOP SEMICOLON commentary
+    (14) instructions -> instructions . REPEAT LPARENT repeat_instructions RPARENT SEMICOLON commentary
+    (15) instructions -> instructions . untilbody SEMICOLON commentary
+    (16) instructions -> instructions . whilebody SEMICOLON commentary
+    (17) instructions -> instructions . casebody SEMICOLON commentary
+    (18) instructions -> instructions . PRINT LPARENT startvalue RPARENT SEMICOLON commentary
+    (19) instructions -> instructions . istrue SEMICOLON commentary
+    (20) instructions -> instructions . CALL LPARENT ID RPARENT SEMICOLON commentary
+    (45) untilbody -> . UNTIL LPARENT instructions RPARENT condition
+    (46) whilebody -> . WHILE condition LPARENT instructions RPARENT
+    (47) casebody -> . CASE WHEN LPARENT condition RPARENT THEN LPARENT instructions RPARENT casebody
+    (48) casebody -> . case_else
+    (51) casebody -> . CASE ID innercasebody
+    (63) istrue -> . VERT LPARENT ID RPARENT
+    (49) case_else -> . ELSE LPARENT instructions RPARENT
+    (50) case_else -> . empty
+    (67) empty -> .
+
+    RPARENT         shift and go to state 186
+    NEW             shift and go to state 19
+    VALUES          shift and go to state 20
+    ALTER           shift and go to state 21
+    ALTERB          shift and go to state 22
+    MOVR            shift and go to state 23
+    MOVL            shift and go to state 24
+    HAMMER          shift and go to state 25
+    STOP            shift and go to state 26
+    REPEAT          shift and go to state 27
+    PRINT           shift and go to state 31
+    CALL            shift and go to state 33
+    UNTIL           shift and go to state 34
+    WHILE           shift and go to state 35
+    CASE            shift and go to state 36
+    VERT            shift and go to state 38
+    ELSE            shift and go to state 39
+    SEMICOLON       reduce using rule 67 (empty -> .)
+
+    untilbody                      shift and go to state 28
+    whilebody                      shift and go to state 29
+    casebody                       shift and go to state 30
+    istrue                         shift and go to state 32
+    case_else                      shift and go to state 37
+    empty                          shift and go to state 40
+
+state 179
+
     (6) instructions -> instructions NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON . commentary
     (22) commentary -> . COMMENT
     (23) commentary -> . empty
@@ -2982,10 +3002,10 @@ state 177
     SEMICOLON       reduce using rule 67 (empty -> .)
     BREAK           reduce using rule 67 (empty -> .)
 
-    commentary                     shift and go to state 185
+    commentary                     shift and go to state 187
     empty                          shift and go to state 76
 
-state 178
+state 180
 
     (7) instructions -> instructions VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary .
 
@@ -3010,7 +3030,7 @@ state 178
     BREAK           reduce using rule 7 (instructions -> instructions VALUES LPARENT ID COMMA value RPARENT SEMICOLON commentary .)
 
 
-state 179
+state 181
 
     (29) value -> ALTER LPARENT ID COMMA . operator COMMA value RPARENT
     (30) operator -> . ADD
@@ -3023,16 +3043,16 @@ state 179
     MUL             shift and go to state 143
     DIV             shift and go to state 144
 
-    operator                       shift and go to state 186
+    operator                       shift and go to state 188
 
-state 180
+state 182
 
     (8) instructions -> instructions ALTER LPARENT ID COMMA operator COMMA value RPARENT . SEMICOLON commentary
 
-    SEMICOLON       shift and go to state 187
+    SEMICOLON       shift and go to state 189
 
 
-state 181
+state 183
 
     (47) casebody -> CASE WHEN LPARENT condition RPARENT THEN LPARENT instructions . RPARENT casebody
     (6) instructions -> instructions . NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary
@@ -3060,7 +3080,7 @@ state 181
     (50) case_else -> . empty
     (67) empty -> .
 
-    RPARENT         shift and go to state 188
+    RPARENT         shift and go to state 190
     NEW             shift and go to state 19
     VALUES          shift and go to state 20
     ALTER           shift and go to state 21
@@ -3086,39 +3106,9 @@ state 181
     case_else                      shift and go to state 37
     empty                          shift and go to state 40
 
-state 182
-
-    (52) innercasebody -> WHEN NUMBER THEN LPARENT instructions RPARENT . innercasebody
-    (52) innercasebody -> . WHEN NUMBER THEN LPARENT instructions RPARENT innercasebody
-    (53) innercasebody -> . WHEN TRUE THEN LPARENT instructions RPARENT innercasebody
-    (54) innercasebody -> . WHEN FALSE THEN LPARENT instructions RPARENT innercasebody
-    (55) innercasebody -> . empty
-    (67) empty -> .
-
-    WHEN            shift and go to state 106
-    SEMICOLON       reduce using rule 67 (empty -> .)
-
-    innercasebody                  shift and go to state 189
-    empty                          shift and go to state 107
-
-state 183
-
-    (53) innercasebody -> WHEN TRUE THEN LPARENT instructions RPARENT . innercasebody
-    (52) innercasebody -> . WHEN NUMBER THEN LPARENT instructions RPARENT innercasebody
-    (53) innercasebody -> . WHEN TRUE THEN LPARENT instructions RPARENT innercasebody
-    (54) innercasebody -> . WHEN FALSE THEN LPARENT instructions RPARENT innercasebody
-    (55) innercasebody -> . empty
-    (67) empty -> .
-
-    WHEN            shift and go to state 106
-    SEMICOLON       reduce using rule 67 (empty -> .)
-
-    innercasebody                  shift and go to state 190
-    empty                          shift and go to state 107
-
 state 184
 
-    (54) innercasebody -> WHEN FALSE THEN LPARENT instructions RPARENT . innercasebody
+    (52) innercasebody -> WHEN NUMBER THEN LPARENT instructions RPARENT . innercasebody
     (52) innercasebody -> . WHEN NUMBER THEN LPARENT instructions RPARENT innercasebody
     (53) innercasebody -> . WHEN TRUE THEN LPARENT instructions RPARENT innercasebody
     (54) innercasebody -> . WHEN FALSE THEN LPARENT instructions RPARENT innercasebody
@@ -3132,6 +3122,36 @@ state 184
     empty                          shift and go to state 107
 
 state 185
+
+    (53) innercasebody -> WHEN TRUE THEN LPARENT instructions RPARENT . innercasebody
+    (52) innercasebody -> . WHEN NUMBER THEN LPARENT instructions RPARENT innercasebody
+    (53) innercasebody -> . WHEN TRUE THEN LPARENT instructions RPARENT innercasebody
+    (54) innercasebody -> . WHEN FALSE THEN LPARENT instructions RPARENT innercasebody
+    (55) innercasebody -> . empty
+    (67) empty -> .
+
+    WHEN            shift and go to state 106
+    SEMICOLON       reduce using rule 67 (empty -> .)
+
+    innercasebody                  shift and go to state 192
+    empty                          shift and go to state 107
+
+state 186
+
+    (54) innercasebody -> WHEN FALSE THEN LPARENT instructions RPARENT . innercasebody
+    (52) innercasebody -> . WHEN NUMBER THEN LPARENT instructions RPARENT innercasebody
+    (53) innercasebody -> . WHEN TRUE THEN LPARENT instructions RPARENT innercasebody
+    (54) innercasebody -> . WHEN FALSE THEN LPARENT instructions RPARENT innercasebody
+    (55) innercasebody -> . empty
+    (67) empty -> .
+
+    WHEN            shift and go to state 106
+    SEMICOLON       reduce using rule 67 (empty -> .)
+
+    innercasebody                  shift and go to state 193
+    empty                          shift and go to state 107
+
+state 187
 
     (6) instructions -> instructions NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary .
 
@@ -3156,14 +3176,14 @@ state 185
     BREAK           reduce using rule 6 (instructions -> instructions NEW ID LPARENT datatype COMMA value RPARENT SEMICOLON commentary .)
 
 
-state 186
+state 188
 
     (29) value -> ALTER LPARENT ID COMMA operator . COMMA value RPARENT
 
-    COMMA           shift and go to state 192
+    COMMA           shift and go to state 194
 
 
-state 187
+state 189
 
     (8) instructions -> instructions ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON . commentary
     (22) commentary -> . COMMENT
@@ -3191,10 +3211,10 @@ state 187
     SEMICOLON       reduce using rule 67 (empty -> .)
     BREAK           reduce using rule 67 (empty -> .)
 
-    commentary                     shift and go to state 193
+    commentary                     shift and go to state 195
     empty                          shift and go to state 76
 
-state 188
+state 190
 
     (47) casebody -> CASE WHEN LPARENT condition RPARENT THEN LPARENT instructions RPARENT . casebody
     (47) casebody -> . CASE WHEN LPARENT condition RPARENT THEN LPARENT instructions RPARENT casebody
@@ -3208,32 +3228,32 @@ state 188
     ELSE            shift and go to state 39
     SEMICOLON       reduce using rule 67 (empty -> .)
 
-    casebody                       shift and go to state 194
+    casebody                       shift and go to state 196
     case_else                      shift and go to state 37
     empty                          shift and go to state 40
 
-state 189
+state 191
 
     (52) innercasebody -> WHEN NUMBER THEN LPARENT instructions RPARENT innercasebody .
 
     SEMICOLON       reduce using rule 52 (innercasebody -> WHEN NUMBER THEN LPARENT instructions RPARENT innercasebody .)
 
 
-state 190
+state 192
 
     (53) innercasebody -> WHEN TRUE THEN LPARENT instructions RPARENT innercasebody .
 
     SEMICOLON       reduce using rule 53 (innercasebody -> WHEN TRUE THEN LPARENT instructions RPARENT innercasebody .)
 
 
-state 191
+state 193
 
     (54) innercasebody -> WHEN FALSE THEN LPARENT instructions RPARENT innercasebody .
 
     SEMICOLON       reduce using rule 54 (innercasebody -> WHEN FALSE THEN LPARENT instructions RPARENT innercasebody .)
 
 
-state 192
+state 194
 
     (29) value -> ALTER LPARENT ID COMMA operator COMMA . value RPARENT
     (26) value -> . NUMBER
@@ -3246,9 +3266,9 @@ state 192
     FALSE           shift and go to state 138
     ALTER           shift and go to state 139
 
-    value                          shift and go to state 195
+    value                          shift and go to state 197
 
-state 193
+state 195
 
     (8) instructions -> instructions ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary .
 
@@ -3273,21 +3293,21 @@ state 193
     BREAK           reduce using rule 8 (instructions -> instructions ALTER LPARENT ID COMMA operator COMMA value RPARENT SEMICOLON commentary .)
 
 
-state 194
+state 196
 
     (47) casebody -> CASE WHEN LPARENT condition RPARENT THEN LPARENT instructions RPARENT casebody .
 
     SEMICOLON       reduce using rule 47 (casebody -> CASE WHEN LPARENT condition RPARENT THEN LPARENT instructions RPARENT casebody .)
 
 
-state 195
+state 197
 
     (29) value -> ALTER LPARENT ID COMMA operator COMMA value . RPARENT
 
-    RPARENT         shift and go to state 196
+    RPARENT         shift and go to state 198
 
 
-state 196
+state 198
 
     (29) value -> ALTER LPARENT ID COMMA operator COMMA value RPARENT .
 

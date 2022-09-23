@@ -4,17 +4,14 @@
  New @var2(Num,5);
  New @var1(Num,3);
  New @bool1(Bool, True);
- While isTrue(@bool1)(
-  PrintValues("1");
-  While @var2 > @var1 (
-   PrintValues("HOLA");
-    Alter(@var1, ADD, 1);
-  );
-  PrintValues("2");
-  PrintValues("3");
-  AlterB(@bool1);
+ Repeat(
+  PrintValues("HOLA");
  );
 );
+
+
+
+
 
 
 

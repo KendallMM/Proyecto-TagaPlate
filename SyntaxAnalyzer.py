@@ -232,8 +232,8 @@ def p_position4(p):
 
 
 def p_repeatInstructions(p):
-    '''repeat_instructions : instructions BREAK'''
-    p[0] = RepeatInstructions(p[1], p[2], 'RepeatInstructions')
+    '''repeat_instructions : instructions BREAK SEMICOLON commentary'''
+    p[0] = RepeatInstructions(p[2], p[3], p[4],p[1], 'RepeatInstructions')
 
 
 def p_untilbody(p):
