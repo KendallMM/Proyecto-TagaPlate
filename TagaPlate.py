@@ -357,7 +357,6 @@ def is_true(name):
 
 
 def call_function(proc_name, left, right):
-    print(left.name)
     if left.name != 'Null' and right.name != 'Null':
         if proc_name == left.son2:
             return recursive_execution(left.son4, left.son4, function_counter(left.son4), function_counter(left.son4))
