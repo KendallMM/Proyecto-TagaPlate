@@ -943,7 +943,7 @@ class WhileBody(Node):
 
 
 class CaseBody1(Node):
-    def __init__(self, son1, son2, son3, son4, son5, son6, son7, son8, son9, name):
+    def __init__(self, son1, son2, son3, son4, son5, son6, son7, son8, son9, son10, name):
         self.name = name
         self.son1 = son1
         self.son2 = son2
@@ -954,6 +954,7 @@ class CaseBody1(Node):
         self.son7 = son7
         self.son8 = son8
         self.son9 = son9
+        self.son10 = son10
 
     def printtxt(self, ident1, ident2):
         text = self.name + '\n' + ident1

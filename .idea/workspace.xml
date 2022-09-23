@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="funciones auxiliares">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ParseTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/ParseTree.py" afterDir="false" />
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="todo en TagaPlate.py">
       <change beforePath="$PROJECT_DIR$/Pruebas/Variables.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Variables.tgp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RunOperations.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SyntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/SyntaxAnalyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TagaPlate.py" beforeDir="false" afterPath="$PROJECT_DIR$/TagaPlate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsetab.py" afterDir="false" />
     </list>
     <list id="a7a8f410-996f-4d70-98a8-bc5f5cae8358" name="Changes by kendall" comment="Changes by kendall" />
     <option name="SHOW_DIALOG" value="false" />
@@ -399,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663906780469</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="todo en TagaPlate.py">
+      <created>1663910033367</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1663910033367</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -414,7 +419,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Analizador léxico finalizado" />
     <MESSAGE value="Analizador léxico finalizado v2" />
     <MESSAGE value="sintactico empezado" />
     <MESSAGE value="Sintactico terminado v2" />
@@ -439,6 +443,7 @@
     <MESSAGE value="run operations" />
     <MESSAGE value="Changes by kendall" />
     <MESSAGE value="funciones auxiliares" />
-    <option name="LAST_COMMIT_MESSAGE" value="funciones auxiliares" />
+    <MESSAGE value="todo en TagaPlate.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="todo en TagaPlate.py" />
   </component>
 </project>
