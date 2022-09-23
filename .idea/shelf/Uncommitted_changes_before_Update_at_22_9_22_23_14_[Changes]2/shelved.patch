@@ -1,0 +1,46 @@
+Index: RunOperations.py
+===================================================================
+diff --git a/RunOperations.py b/RunOperations.py
+--- a/RunOperations.py	
++++ b/RunOperations.py	
+@@ -1,5 +1,4 @@
+ import re
+-
+ import SyntaxAnalyzer as sx
+ 
+ print_txt = ''
+@@ -29,6 +28,8 @@
+         return printer(function.son3)
+     elif function.name == 'Instructions14':
+         return is_true(function.son1.son3)
++    elif function.name == 'Instructions11':
++        return while1(function.son1.son2,function.son1.son4)
+     else:
+         pass
+ 
+@@ -135,21 +136,20 @@
+ def find_condition(condition):
+     num1 = 0
+     num2 = 0
+-    if re.search('\d+', condition.son1):
++    try:
+         num1 = int(condition.son1)
+-    else:
++    except:
+         for x in sx.global_vars:
+             if x[0] == condition.son1:
+                 num1 = int(x[2])
+-    if re.search('\d+', condition.son3):
++    try:
+         num2 = int(condition.son3)
+-    else:
++    except:
+         for y in sx.global_vars:
+             if y[0] == condition.son3:
+                 num2 = int(y[2])
+     return num1, num2
+ 
+-
+ def function_counter(function):
+     counter = 0
+     while function.nexxt.name != 'Null':

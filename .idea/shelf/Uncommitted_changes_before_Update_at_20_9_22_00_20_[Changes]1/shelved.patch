@@ -1,0 +1,92 @@
+Index: Pruebas/Prueba sin principal.tgp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Pruebas/Prueba sin principal.tgp b/Pruebas/Prueba sin principal.tgp
+--- a/Pruebas/Prueba sin principal.tgp	
++++ b/Pruebas/Prueba sin principal.tgp	
+@@ -4,7 +4,7 @@
+  New @var1(Bool,False);
+  New @varia(Num, 12);
+  Alter(@varia, ADD, 12);
+- AlterB(@varia);
++ CALL(@hello1);
+ );
+ 
+ Proc @hello1(
+@@ -22,3 +22,4 @@
+ 
+ 
+ 
++
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -4,16 +4,11 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="semanticas de linea">
++    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Build parse tree">
++      <change beforePath="$PROJECT_DIR$/.idea/Proyecto-TagaPlate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Proyecto-TagaPlate.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Pruebas/Prueba real.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba real.tgp" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Pruebas/Prueba sin principal.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba sin principal.tgp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Pruebas/Prueba2.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba2.tgp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/lexicalAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/lexicalAnalyzer.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/parseTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/parseTree.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsetab.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/syntaxAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/syntaxAnalyzer.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/tagaplate.py" beforeDir="false" afterPath="$PROJECT_DIR$/tagaplate.py" afterDir="false" />
+     </list>
+     <list id="d289ab5a-7313-47ee-a93d-6e4c01cc87a9" name="Changes by kendall" comment="Changes by kendall" />
+@@ -155,7 +150,7 @@
+       <envs>
+         <env name="PYTHONUNBUFFERED" value="1" />
+       </envs>
+-      <option name="SDK_HOME" value="C:\Users\Usuario\Documents\GitHub\Proyecto-TagaPlate\venv\Scripts\python.exe" />
++      <option name="SDK_HOME" value="/usr/bin/python3.9" />
+       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+       <option name="IS_MODULE_SDK" value="false" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
+@@ -1,4 +1,4 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9 (Proyecto-TagaPlate)" project-jdk-type="Python SDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file
+Index: .idea/Proyecto-TagaPlate.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/Proyecto-TagaPlate.iml b/.idea/Proyecto-TagaPlate.iml
+--- a/.idea/Proyecto-TagaPlate.iml	
++++ b/.idea/Proyecto-TagaPlate.iml	
+@@ -4,7 +4,7 @@
+     <content url="file://$MODULE_DIR$">
+       <excludeFolder url="file://$MODULE_DIR$/venv" />
+     </content>
+-    <orderEntry type="jdk" jdkName="Python 3.9 (Proyecto-TagaPlate)" jdkType="Python SDK" />
++    <orderEntry type="jdk" jdkName="Python 3.9" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+ </module>
+\ No newline at end of file

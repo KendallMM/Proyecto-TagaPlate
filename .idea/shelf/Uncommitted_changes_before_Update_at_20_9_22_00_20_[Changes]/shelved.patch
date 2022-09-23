@@ -1,0 +1,14 @@
+Index: tagaplate.py
+===================================================================
+diff --git a/tagaplate.py b/tagaplate.py
+--- a/tagaplate.py	
++++ b/tagaplate.py	
+@@ -128,6 +128,8 @@
+     else:
+         lx.lexical_analisis(gpath)
+         lexical_error_check()
++        prs.init_vars.clear()
++        prs.init_procs.clear()
+         sx.syntax_analysis(gpath)
+         syntax_error_check()
+         semantic_error_check()

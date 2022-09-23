@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="todo en TagaPlate.py">
-      <change beforePath="$PROJECT_DIR$/Pruebas/Variables.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Variables.tgp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TagaPlate.py" beforeDir="false" afterPath="$PROJECT_DIR$/TagaPlate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsetab.py" afterDir="false" />
-    </list>
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="todo en TagaPlate.py" />
     <list id="a7a8f410-996f-4d70-98a8-bc5f5cae8358" name="Changes by kendall" comment="Changes by kendall" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

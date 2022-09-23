@@ -1,0 +1,16 @@
+--Comentario inicial
+Principal (
+    New @var1(Num, 1);
+    New @boolVar(Bool, True);
+    Alter(@var1, ADD, 3);
+    While @var1 < 100 (
+        MoveLeft;
+        MoveRight;
+        Alter(@var1, ADD, 1);
+    );
+);
+
+
+
+
+
