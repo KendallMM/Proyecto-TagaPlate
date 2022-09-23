@@ -6,6 +6,8 @@ from tkinter import messagebox
 import LexicalAnalyzer as lx
 import SyntaxAnalyzer as sx
 import ParseTree as prs
+from pymata4 import pymata4
+import time
 
 # GLOBAL VARIABLES
 gpath = ''
@@ -16,6 +18,16 @@ pr_row = 1
 runnable = False
 compilation_errors = 0
 print_txt = ''
+
+board = pymata4.Pymata4()
+angle = 90
+anglesPerSecond = 9
+board.set_pin_mode_servo(5)
+board.set_pin_mode_servo(7)
+num_steps_clockwise = 512
+num_steps_counterclockwise = -512
+pins = [8,10,9,11]
+board.set_pin_mode_stepper(num_steps_clockwise, pins)
 
 # MAIN WINDOW
 main = tk.Tk()
@@ -202,8 +214,10 @@ def execute(function):
     elif function.name == 'Instructions4':
         return alter_b(function.son3)
     elif function.name == 'Instructions5':
+        time.sleep(1)
         return move_right()
     elif function.name == 'Instructions6':
+        time.sleep(1)
         return move_left()
     elif function.name == 'Instructions7':
         return hammer(function.son3.son1)
@@ -261,22 +275,58 @@ def alter_b(name):
 
 
 def move_right():
-    print('Parte de Marco')
+    global num_steps_clockwise
+    board.stepper_write(63, num_steps_clockwise)
+    time.sleep(1)
+    board.stepper_write(63, num_steps_clockwise)
+    time.sleep(1)
 
 
 def move_left():
-    print('Parte de Marco')
+    global num_steps_counterclockwise
+    board.stepper_write(63, num_steps_counterclockwise)
+    time.sleep(1)
+    board.stepper_write(63, num_steps_counterclockwise)
+    time.sleep(1)
 
 
 def hammer(pos):
     if pos == 'N':
-        print('Marco norte')
+        global angle
+        if angle + anglesPerSecond < 180:
+            for i in range(0, 5):
+                angle = angle + anglesPerSecond
+                rotateServo(7, angle)
+            for i in range(0, 5):
+                angle = angle - anglesPerSecond
+                rotateServo(7, angle)
     elif pos == 'S':
-        print('Marco sur')
+        global angle
+        if angle - anglesPerSecond > 0:
+            for i in range(0, 5):
+                angle = angle - anglesPerSecond
+                rotateServo(7, angle)
+            for i in range(0, 5):
+                angle = angle + anglesPerSecond
+                rotateServo(7, angle)
     elif pos == 'E':
-        print('Marco este')
+        global angle
+        if angle + anglesPerSecond < 180:
+            for i in range(0, 5):
+                angle = angle + anglesPerSecond
+                rotateServo(5, angle)
+            for i in range(0, 5):
+                angle = angle - anglesPerSecond
+                rotateServo(5, angle)
     elif pos == 'O':
-        print('Marco oeste')
+        global angle
+        if angle - anglesPerSecond > 0:
+            for i in range(0, 5):
+                angle = angle - anglesPerSecond
+                rotateServo(5, angle)
+            for i in range(0, 5):
+                angle = angle + anglesPerSecond
+                rotateServo(5, angle)
 
 
 def stop():
