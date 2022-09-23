@@ -3,7 +3,7 @@
 @Principal(
  New @bu1(Bool, False);
  New @as(Num,12);
- New @otra(Num,18);
+ New @otra(Num,13);
  New @opo3(Num,13);
  Case When (isTrue(@bu1)) Then (
   New @kiki(Bool, True);
@@ -19,6 +19,7 @@
   PrintValues("Jeje");
  );
 );
+
 
 
 
