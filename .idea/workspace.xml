@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="funciones auxiliares">
-      <change beforePath="$PROJECT_DIR$/.idea/Proyecto-TagaPlate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Proyecto-TagaPlate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pruebas/Prueba2.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba2.tgp" afterDir="false" />
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="todo en TagaPlate.py">
+      <change beforePath="$PROJECT_DIR$/Pruebas/Variables.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Variables.tgp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TagaPlate.py" beforeDir="false" afterPath="$PROJECT_DIR$/TagaPlate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsetab.py" afterDir="false" />
@@ -60,7 +57,7 @@
       <recent name="C:\Users\Usuario\Documents\GitHub\Proyecto-TagaPlate\TagaPlate Compiler" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.TagaPlate (1)">
+  <component name="RunManager" selected="Python.TagaPlate">
     <configuration name="LexicalAnalyzer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Proyecto-TagaPlate" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -137,27 +134,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TagaPlate IDE.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TagaPlate (1)" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="Proyecto-TagaPlate" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="/usr/bin/python3.9" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TagaPlate.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -421,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663906780469</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="todo en TagaPlate.py">
+      <created>1663910033367</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1663910033367</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -436,7 +419,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Analizador léxico finalizado" />
     <MESSAGE value="Analizador léxico finalizado v2" />
     <MESSAGE value="sintactico empezado" />
     <MESSAGE value="Sintactico terminado v2" />
@@ -461,6 +443,7 @@
     <MESSAGE value="run operations" />
     <MESSAGE value="Changes by kendall" />
     <MESSAGE value="funciones auxiliares" />
-    <option name="LAST_COMMIT_MESSAGE" value="funciones auxiliares" />
+    <MESSAGE value="todo en TagaPlate.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="todo en TagaPlate.py" />
   </component>
 </project>

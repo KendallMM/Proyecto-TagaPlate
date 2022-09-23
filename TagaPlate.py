@@ -212,7 +212,7 @@ def execute(function):
         return stop()
     elif function.name == 'Instructions12':
         if function.son1.name == 'CaseBody1':
-            return case1(function.son1.son4, function.son1.son8)
+            return case1(function.son1.son4, function.son1.son8, function.son1.son10)
         elif function.son1.name == 'CaseBody3':
             return case3(function.son1.son2, function.son1.son3.son2, function.son1.son3.son5)
     elif function.name == 'Instructions13':
@@ -282,7 +282,7 @@ def stop():
     print('Parte Marco')
 
 
-def case1(condition, instructions):
+def case1(condition, instructions, else_body):
     numbers = find_condition(condition)
     count = function_counter(instructions)
     if condition.son2.son1 == '>' and numbers[0] > numbers[1]:
@@ -297,6 +297,9 @@ def case1(condition, instructions):
         return recursive_execution(instructions, instructions, count, count)
     elif condition.son2.son1 == '<>' and numbers[0] != numbers[1]:
         return recursive_execution(instructions, instructions, count, count)
+    elif else_body.name != 'NullNode':
+        count = function_counter(else_body.son3)
+        return recursive_execution(else_body.son3, else_body.son3, count, count)
 
 
 def case3(name, value, instructions):
