@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Semantica terminada">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29_8_2022_23_10__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29_8_2022_23_10__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_9_22_20_04__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_9_22_20_04__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_9_22_10_06__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_9_22_10_06__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_9_22_22_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_9_22_22_26__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_9_22_00_20__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_9_22_00_20__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_9_22_00_20__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_9_22_00_20__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_9_22_21_45__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_9_22_21_45__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_9_22_23_00__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_9_22_23_00__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_9_22_21_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_9_22_21_14__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_9_22_22_19__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_9_22_22_19__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_9_2022_00_00__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_9_2022_00_00__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_9_2022_00_00__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_9_2022_00_00__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_9_22_00_44__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_9_22_00_44__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_9_22_01_22__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_9_22_01_22__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pruebas/Prueba run.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Prueba run.tgp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pruebas/Variables.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Variables.tgp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TagaPlate.py" beforeDir="false" afterPath="$PROJECT_DIR$/TagaPlate.py" afterDir="false" />
-    </list>
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Funciones tagada" />
     <list id="a7a8f410-996f-4d70-98a8-bc5f5cae8358" name="Changes by kendall" comment="Changes by kendall" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,7 +225,7 @@
       <option name="presentableId" value="Default" />
       <updated>1660872241387</updated>
       <workItem from="1663918429452" duration="69000" />
-      <workItem from="1663918527753" duration="1992000" />
+      <workItem from="1663918527753" duration="2181000" />
     </task>
     <task id="LOCAL-00001" summary="Create tokens">
       <created>1660874868234</created>
@@ -477,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663916707737</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Funciones tagada">
+      <created>1663920635007</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1663920635007</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -495,7 +483,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="tagaplate.py mejorado" />
     <MESSAGE value="tagaplate.py comentado" />
     <MESSAGE value="tagaplate.py mejorado v2" />
     <MESSAGE value="tagaplate.py mejorado v3" />
@@ -520,7 +507,8 @@
     <MESSAGE value="Else arreglado" />
     <MESSAGE value="isTrue arreglado" />
     <MESSAGE value="call listo" />
-    <option name="LAST_COMMIT_MESSAGE" value="call listo" />
+    <MESSAGE value="Funciones tagada" />
+    <option name="LAST_COMMIT_MESSAGE" value="Funciones tagada" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Proye_compi$TagaPlate__1_.coverage" NAME="TagaPlate (1) Coverage Results" MODIFIED="1663920312625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

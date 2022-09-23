@@ -289,6 +289,9 @@ def move_left():
     board.stepper_write(63, num_steps_counterclockwise)
     time.sleep(1)
 
+def rotateServo(pin, angle):
+    board.servo_write(pin, angle)
+    time.sleep(0.015)
 
 def hammer(pos):
     if pos == 'N':
