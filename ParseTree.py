@@ -973,6 +973,12 @@ class CaseBody1(Node):
         return text
 
 
+class CaseBody2(Node):
+    def __init__(self, son1, name):
+        self.son1 = son1
+        self.name = name
+
+
 class CaseElse1(Node):
     def __init__(self, son1, son2, son3, son4, name):
         self.name = name

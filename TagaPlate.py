@@ -210,6 +210,8 @@ def execute(function):
         return hammer(function.son3.son1)
     elif function.name == 'Instructions8':
         return stop()
+    elif function.name == 'Instructions10':
+        return until_function(function.son1.son5, function.son1.son3)
     elif function.name == 'Instructions12':
         if function.son1.name == 'CaseBody1':
             return case1(function.son1.son4, function.son1.son8, function.son1.son10)
@@ -282,7 +284,28 @@ def stop():
     print('Parte Marco')
 
 
-def case1(condition, instructions, else_body):
+def until_function(condition, instructions):
+    numbers = find_condition(condition)
+    count = function_counter(instructions)
+    if condition.son2.son1 == '==' and numbers[0] != numbers[1]:
+        while numbers[0] != numbers[1]:
+            recursive_execution(instructions, instructions, count, count)
+            numbers = find_condition(condition)
+    elif (condition.son2.son1 == '>' or condition.son2.son1 == '>=') and numbers[0] < numbers[1]:
+        while numbers[0] < numbers[1]:
+            recursive_execution(instructions, instructions, count, count)
+            numbers = find_condition(condition)
+    elif (condition.son2.son1 == '<' or condition.son2.son1 == '<=') and numbers[0] > numbers[1]:
+        while numbers[0] > numbers[1]:
+            recursive_execution(instructions, instructions, count, count)
+            numbers = find_condition(condition)
+    elif condition.son2.son1 == '<>' and numbers[0] == numbers[1]:
+        while numbers[0] == numbers[1]:
+            recursive_execution(instructions, instructions, count, count)
+            numbers = find_condition(condition)
+
+
+def case1(condition, instructions, next_case):
     numbers = find_condition(condition)
     count = function_counter(instructions)
     if condition.son2.son1 == '>' and numbers[0] > numbers[1]:
@@ -297,9 +320,11 @@ def case1(condition, instructions, else_body):
         return recursive_execution(instructions, instructions, count, count)
     elif condition.son2.son1 == '<>' and numbers[0] != numbers[1]:
         return recursive_execution(instructions, instructions, count, count)
-    elif else_body.name != 'NullNode':
-        count = function_counter(else_body.son3)
-        return recursive_execution(else_body.son3, else_body.son3, count, count)
+    elif next_case.name != 'NullNode':
+        if next_case.name == 'CaseBody1':
+            return case1(next_case.son4, next_case.son8, next_case.son10)
+        elif next_case.name == 'CaseBody2' and next_case.son1.name == 'CaseElse1':
+            return recursive_execution(next_case.son1.son3, next_case.son1.son3, count, count)
 
 
 def case3(name, value, instructions):

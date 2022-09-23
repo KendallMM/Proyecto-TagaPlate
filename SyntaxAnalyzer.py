@@ -247,8 +247,12 @@ def p_whilebody(p):
 
 
 def p_casebody1(p):
-    '''casebody : CASE WHEN LPARENT condition RPARENT THEN LPARENT instructions RPARENT case_else'''
+    '''casebody : CASE WHEN LPARENT condition RPARENT THEN LPARENT instructions RPARENT casebody'''
     p[0] = CaseBody1(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], 'CaseBody1')
+
+def p_casebody2(p):
+    '''casebody : case_else'''
+    p[0] = CaseBody2(p[1], 'CaseBody2')
 
 
 def p_case_else1(p):
