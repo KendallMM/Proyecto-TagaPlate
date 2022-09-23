@@ -214,12 +214,12 @@ def execute(function):
     elif function.name == 'Instructions12':
         if function.son1.name == 'CaseBody1':
             return case1(function.son1.son4, function.son1.son8, function.son1.son10)
-        elif function.son1.name == 'CaseBody3':
-            return case3(function.son1.son2, function.son1.son3.son2, function.son1.son3.son5)
     elif function.name == 'Instructions13':
         return printer(function.son3)
     elif function.name == 'Instructions14':
         return is_true(function.son1.son3)
+    elif function.name == 'Instructions15':
+        return call_function(function.son3, sx.sem_tree.son2, sx.sem_tree.son4)
     elif function.name == 'Instructions11':
         While(function.son1.son2, function.son1.son4)
     else:
@@ -328,15 +328,11 @@ def case1(condition, instructions, next_case):
             return recursive_execution(instructions, instructions, count, count)
         elif condition.son2.son1 == '<>' and numbers[0] != numbers[1]:
             return recursive_execution(instructions, instructions, count, count)
-        elif next_case.name != 'NullNode':
+        elif next_case.name != 'Null':
             if next_case.name == 'CaseBody1':
                 return case1(next_case.son4, next_case.son8, next_case.son10)
             elif next_case.name == 'CaseBody2' and next_case.son1.name == 'CaseElse1' and next_case.son1.name != 'NullNode':
                 return recursive_execution(next_case.son1.son3, next_case.son1.son3, count, count)
-
-
-def case3(name, value, instructions):
-    print('Hola')
 
 
 def printer(args):
@@ -358,6 +354,27 @@ def is_true(name):
                 return False
         else:
             pass
+
+
+def call_function(proc_name, left, right):
+    print(left.name)
+    if left.name != 'Null' and right.name != 'Null':
+        if proc_name == left.son2:
+            return recursive_execution(left.son4, left.son4, function_counter(left.son4), function_counter(left.son4))
+        if proc_name == right.son2:
+            return recursive_execution(right.son4, right.son4, function_counter(right.son4), function_counter(right.son4))
+        else:
+            return call_function(proc_name, left.nexxt, right.nexxt)
+    elif left.name == 'Null' and right.name != 'Null':
+        if proc_name == right.son2:
+            return recursive_execution(right.son4, right.son4, function_counter(right.son4), function_counter(right.son4))
+        else:
+            return call_function(proc_name, left, right.nexxt)
+    elif left.name != 'Null' and right.name == 'Null':
+        if proc_name == left.son2:
+            return recursive_execution(left.son4, left.son4, function_counter(left.son4), function_counter(left.son4))
+        else:
+            return call_function(proc_name, left.nexxt, right)
 
 
 def find_condition(condition):

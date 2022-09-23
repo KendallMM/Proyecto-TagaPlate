@@ -11,14 +11,20 @@
   AlterB(@kiki);
   PrintValues(@kiki);
   PrintValues("Hola hola");  
- )
+ );
+ AlterB(@bu1);
  Case When (isTrue(@bu1)) Then (
-  PrintValues("else");
+  CALL(@abbu);
  )
  Else (
   PrintValues("Jeje");
  );
 );
+
+Proc @abbu(
+ PrintValues("Abu");
+);
+
 
 
 
