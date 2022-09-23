@@ -5,20 +5,22 @@
  New @as(Num,12);
  New @otra(Num,18);
  New @opo3(Num,13);
- Case When (@otra < @as) Then (
+ Case When (isTrue(@bu1)) Then (
   New @kiki(Bool, True);
   AlterB(@kiki);
   AlterB(@kiki);
   PrintValues(@kiki);
   PrintValues("Hola hola");  
  )
- Case When (@opo3 <> 13) Then (
+ Case When (isTrue(@bu1)) Then (
   PrintValues("else");
  )
  Else (
   PrintValues("Jeje");
  );
 );
+
+
 
 
 

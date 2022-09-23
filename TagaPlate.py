@@ -305,25 +305,34 @@ def until_function(condition, instructions):
 
 
 def case1(condition, instructions, next_case):
-    numbers = find_condition(condition)
     count = function_counter(instructions)
-    if condition.son2.son1 == '>' and numbers[0] > numbers[1]:
-        return recursive_execution(instructions, instructions, count, count)
-    elif condition.son2.son1 == '<' and numbers[0] < numbers[1]:
-        return recursive_execution(instructions, instructions, count, count)
-    elif condition.son2.son1 == '>=' and numbers[0] >= numbers[1]:
-        return recursive_execution(instructions, instructions, count, count)
-    elif condition.son2.son1 == '<=' and numbers[0] <= numbers[1]:
-        return recursive_execution(instructions, instructions, count, count)
-    elif condition.son2.son1 == '==' and numbers[0] == numbers[1]:
-        return recursive_execution(instructions, instructions, count, count)
-    elif condition.son2.son1 == '<>' and numbers[0] != numbers[1]:
-        return recursive_execution(instructions, instructions, count, count)
-    elif next_case.name != 'NullNode':
-        if next_case.name == 'CaseBody1':
-            return case1(next_case.son4, next_case.son8, next_case.son10)
-        elif next_case.name == 'CaseBody2' and next_case.son1.name == 'CaseElse1' and next_case.son1.name != 'NullNode':
-            return recursive_execution(next_case.son1.son3, next_case.son1.son3, count, count)
+    if condition.name == 'Condition7':
+        if is_true(condition.son1.son3):
+            return recursive_execution(instructions, instructions, count, count)
+        elif next_case.name != 'NullNode':
+            if next_case.name == 'CaseBody1':
+                return case1(next_case.son4, next_case.son8, next_case.son10)
+            elif next_case.name == 'CaseBody2' and next_case.son1.name == 'CaseElse1' and next_case.son1.name != 'NullNode':
+                return recursive_execution(next_case.son1.son3, next_case.son1.son3, count, count)
+    elif condition.name != 'Condition7':
+        numbers = find_condition(condition)
+        if condition.son2.son1 == '>' and numbers[0] > numbers[1]:
+            return recursive_execution(instructions, instructions, count, count)
+        elif condition.son2.son1 == '<' and numbers[0] < numbers[1]:
+            return recursive_execution(instructions, instructions, count, count)
+        elif condition.son2.son1 == '>=' and numbers[0] >= numbers[1]:
+            return recursive_execution(instructions, instructions, count, count)
+        elif condition.son2.son1 == '<=' and numbers[0] <= numbers[1]:
+            return recursive_execution(instructions, instructions, count, count)
+        elif condition.son2.son1 == '==' and numbers[0] == numbers[1]:
+            return recursive_execution(instructions, instructions, count, count)
+        elif condition.son2.son1 == '<>' and numbers[0] != numbers[1]:
+            return recursive_execution(instructions, instructions, count, count)
+        elif next_case.name != 'NullNode':
+            if next_case.name == 'CaseBody1':
+                return case1(next_case.son4, next_case.son8, next_case.son10)
+            elif next_case.name == 'CaseBody2' and next_case.son1.name == 'CaseElse1' and next_case.son1.name != 'NullNode':
+                return recursive_execution(next_case.son1.son3, next_case.son1.son3, count, count)
 
 
 def case3(name, value, instructions):
@@ -367,6 +376,7 @@ def find_condition(condition):
             if y[0] == condition.son3:
                 num2 = int(y[2])
     return num1, num2
+
 
 def while1(condition, instructions):
     values = find_condition(condition)
