@@ -14,15 +14,17 @@
  );
  AlterB(@bu1);
  Case When (isTrue(@bu1)) Then (
-  CALL(@abbu);
-  MoveRight;
-  MoveLeft;
-  MoveRight;
-  MoveLeft;
-  MoveRight;
-  MoveLeft;
 
 
+ Hammer(E);
+
+ Hammer(E);
+ Hammer(O);
+
+
+ 
+
+ CALL(@abbu);
  )
  Else (
   PrintValues("Jeje");
@@ -32,6 +34,23 @@
 Proc @abbu(
  PrintValues("Abu");
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

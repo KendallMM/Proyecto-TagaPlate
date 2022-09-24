@@ -20,8 +20,9 @@ compilation_errors = 0
 print_txt = ''
 
 board = pymata4.Pymata4()
-angle = 90
-anglesPerSecond = 9
+angle1 = 90
+angle2 = 105
+anglesPerSecond = 3
 board.set_pin_mode_servo(5)
 board.set_pin_mode_servo(7)
 num_steps_clockwise = 512
@@ -291,45 +292,45 @@ def move_left():
 
 def rotateServo(pin, angle):
     board.servo_write(pin, angle)
-    time.sleep(0.015)
+    time.sleep(0.2)
+
+rotateServo(5, 105)
+rotateServo(7, 90)
 
 def hammer(pos):
+    global angle1, angle2
     if pos == 'N':
-        global angle
-        if angle + anglesPerSecond < 180:
-            for i in range(0, 5):
-                angle = angle + anglesPerSecond
-                rotateServo(7, angle)
-            for i in range(0, 5):
-                angle = angle - anglesPerSecond
-                rotateServo(7, angle)
+        if angle1 + anglesPerSecond < 180:
+            for i in range(0, 4):
+                angle1 = angle1 + anglesPerSecond
+                rotateServo(7, angle1)
+            for i in range(0, 4):
+                angle1 = angle1 - anglesPerSecond
+                rotateServo(7, angle1)
     elif pos == 'S':
-        global angle
-        if angle - anglesPerSecond > 0:
-            for i in range(0, 5):
-                angle = angle - anglesPerSecond
-                rotateServo(7, angle)
-            for i in range(0, 5):
-                angle = angle + anglesPerSecond
-                rotateServo(7, angle)
+        if angle1 - anglesPerSecond > 0:
+            for i in range(0, 4):
+                angle1 = angle1 - anglesPerSecond
+                rotateServo(7, angle1)
+            for i in range(0, 4):
+                angle1 = angle1 + anglesPerSecond
+                rotateServo(7, angle1)
     elif pos == 'E':
-        global angle
-        if angle + anglesPerSecond < 180:
-            for i in range(0, 5):
-                angle = angle + anglesPerSecond
-                rotateServo(5, angle)
-            for i in range(0, 5):
-                angle = angle - anglesPerSecond
-                rotateServo(5, angle)
+        if angle2 + anglesPerSecond < 180:
+            for i in range(0, 4):
+                angle2 = angle2 + anglesPerSecond
+                rotateServo(5, angle2)
+            for i in range(0, 4):
+                angle2 = angle2 - anglesPerSecond
+                rotateServo(5, angle2)
     elif pos == 'O':
-        global angle
-        if angle - anglesPerSecond > 0:
-            for i in range(0, 5):
-                angle = angle - anglesPerSecond
-                rotateServo(5, angle)
-            for i in range(0, 5):
-                angle = angle + anglesPerSecond
-                rotateServo(5, angle)
+        if angle2 - anglesPerSecond > 0:
+            for i in range(0, 4):
+                angle2 = angle2 - anglesPerSecond
+                rotateServo(5, angle2)
+            for i in range(0, 4):
+                angle2 = angle2 + anglesPerSecond
+                rotateServo(5, angle2)
 
 
 def stop():
