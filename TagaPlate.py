@@ -20,8 +20,8 @@ compilation_errors = 0
 print_txt = ''
 
 board = pymata4.Pymata4()
-angle1 = 90
-angle2 = 105
+angle1 = 80
+angle2 = 100
 anglesPerSecond = 3
 board.set_pin_mode_servo(5)
 board.set_pin_mode_servo(7)
@@ -294,8 +294,8 @@ def rotateServo(pin, angle):
     board.servo_write(pin, angle)
     time.sleep(0.2)
 
-rotateServo(5, 105)
-rotateServo(7, 90)
+rotateServo(5, 100)
+rotateServo(7, 80)
 
 def hammer(pos):
     global angle1, angle2
@@ -320,9 +320,17 @@ def hammer(pos):
             for i in range(0, 4):
                 angle2 = angle2 + anglesPerSecond
                 rotateServo(5, angle2)
-            for i in range(0, 4):
-                angle2 = angle2 - anglesPerSecond
-                rotateServo(5, angle2)
+            #for i in range(0, 4):
+            #    angle2 = angle2 - anglesPerSecond
+            #    rotateServo(5, angle2)
+            #angle2 = 100
+            #rotateServo(5, angle2)
+            while angle2 != 100:
+                angle2 = angle2 - 1
+                board.servo_write(5, angle2)
+                time.sleep(0.015)
+
+
     elif pos == 'O':
         if angle2 - anglesPerSecond > 0:
             for i in range(0, 4):

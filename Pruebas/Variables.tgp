@@ -15,11 +15,19 @@
  AlterB(@bu1);
  Case When (isTrue(@bu1)) Then (
 
+Hammer(E);
+Hammer(O);
+Hammer(N);
+Hammer(S);
+Hammer(E);
 
- Hammer(E);
+Hammer(E);
+Hammer(O);
+Hammer(N);
+Hammer(S);
+Hammer(E);
 
- Hammer(E);
- Hammer(O);
+
 
 
  
@@ -34,6 +42,14 @@
 Proc @abbu(
  PrintValues("Abu");
 );
+
+
+
+
+
+
+
+
 
 
 

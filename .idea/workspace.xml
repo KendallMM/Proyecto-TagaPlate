@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="Rotacion servo">
+    <list default="true" id="ba0523e4-c17a-499c-8c9d-9960f72ac75a" name="Changes" comment="datos servo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pruebas/Variables.tgp" beforeDir="false" afterPath="$PROJECT_DIR$/Pruebas/Variables.tgp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TagaPlate.py" beforeDir="false" afterPath="$PROJECT_DIR$/TagaPlate.py" afterDir="false" />
@@ -231,7 +231,7 @@
       <workItem from="1663918429452" duration="69000" />
       <workItem from="1663918527753" duration="2181000" />
       <workItem from="1663958575539" duration="8034000" />
-      <workItem from="1663991372960" duration="599000" />
+      <workItem from="1663991372960" duration="4032000" />
     </task>
     <task id="LOCAL-00001" summary="Create tokens">
       <created>1660874868234</created>
@@ -478,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663958753253</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="datos servo">
+      <created>1663992403172</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1663992403172</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,7 +503,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="tagaplate.py mejorado v2" />
     <MESSAGE value="tagaplate.py mejorado v3" />
     <MESSAGE value="tagaplate.py mejorado v4" />
     <MESSAGE value="cambios varios" />
@@ -521,9 +527,10 @@
     <MESSAGE value="call listo" />
     <MESSAGE value="Funciones tagada" />
     <MESSAGE value="Rotacion servo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rotacion servo" />
+    <MESSAGE value="datos servo" />
+    <option name="LAST_COMMIT_MESSAGE" value="datos servo" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Proye_compi$TagaPlate__1_.coverage" NAME="TagaPlate (1) Coverage Results" MODIFIED="1663990922375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Proye_compi$TagaPlate__1_.coverage" NAME="TagaPlate (1) Coverage Results" MODIFIED="1663999172502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
