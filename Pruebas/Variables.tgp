@@ -18,7 +18,9 @@
 Hammer(E);
 Hammer(O);
 Hammer(N);
+MoveRight;
 Hammer(S);
+MoveLeft;
 Hammer(E);
 
 Hammer(E);
@@ -42,6 +44,7 @@ Hammer(E);
 Proc @abbu(
  PrintValues("Abu");
 );
+
 
 
 

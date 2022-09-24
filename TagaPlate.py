@@ -292,7 +292,7 @@ def move_left():
 
 def rotateServo(pin, angle):
     board.servo_write(pin, angle)
-    time.sleep(0.2)
+    time.sleep(0.1)
 
 rotateServo(5, 100)
 rotateServo(7, 80)
